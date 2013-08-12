@@ -10,8 +10,8 @@
     <color name="grey">#6d6c6c</color>
     <color name="black">#000000</color>
     
-    <color name="transparent100">#00000000</color>
-    <color name="transparent80">#33000000</color>
-    <color name="transparent60">#77000000</color>
+    <color name="transparent100">#00ffffff</color>
+    <color name="transparent80">#33ffffff</color>
+    <color name="transparent60">#77ffffff</color>
     
 </resources>

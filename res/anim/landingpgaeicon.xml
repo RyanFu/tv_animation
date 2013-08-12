@@ -2,13 +2,13 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:interpolator="@android:anim/accelerate_interpolator"
     android:oneshot="false" >
-    <item android:drawable="@drawable/1" android:duration="100" />
-    <item android:drawable="@drawable/2" android:duration="100" />
-    <item android:drawable="@drawable/3" android:duration="100" />
-    <item android:drawable="@drawable/4" android:duration="100" />
-    <item android:drawable="@drawable/5" android:duration="100" />
-    <item android:drawable="@drawable/4" android:duration="100" />
-    <item android:drawable="@drawable/3" android:duration="100" />
-    <item android:drawable="@drawable/2" android:duration="100" />
-    <item android:drawable="@drawable/1" android:duration="100" />
+    <item android:drawable="@drawable/loading_1" android:duration="100" />
+    <item android:drawable="@drawable/loading_2" android:duration="100" />
+    <item android:drawable="@drawable/loading_3" android:duration="100" />
+    <item android:drawable="@drawable/loading_4" android:duration="100" />
+    <item android:drawable="@drawable/loading_5" android:duration="100" />
+    <item android:drawable="@drawable/loading_4" android:duration="100" />
+    <item android:drawable="@drawable/loading_3" android:duration="100" />
+    <item android:drawable="@drawable/loading_2" android:duration="100" />
+    <item android:drawable="@drawable/loading_1" android:duration="100" />
 </animation-list>

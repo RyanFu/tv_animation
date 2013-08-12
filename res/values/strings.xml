@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">經典美劇</string>
+    <string name="app_name">動畫大學</string>
     
     <!--Activity: MainViewpager ..TypeName -->
     <string name="type_usa">"美劇"</string>

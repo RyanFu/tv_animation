@@ -1,43 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>    
     <!-- Application -->
-    <dimen name="topbar_height">50dp</dimen>
-    <dimen name="topbar_textsize">30dp</dimen>
+    <dimen name="topbar_height">42dp</dimen>
+    <dimen name="topbar_textsize">22dp</dimen>
     <dimen name="seperate_height">3dp</dimen>
     
     
     
     <!-- Usa Drama Activity -->
-    <dimen name="usadrama_activity_imagesize">50dp</dimen>
-    <dimen name="usadrama_activity_textsize">25dp</dimen>
-    
-    
-    
-    <!-- Main View Pager Activity -->
-    <dimen name="viewpager_activity_topbar_margin">3dp</dimen>
-    <dimen name="viewpager_activity_topbar_padding">3dp</dimen>
-    <dimen name="viewpager_activity_topbar_imagesize">38dp</dimen>
-    <dimen name="viewpager_activity_topbar_logo_imagesize">35dp</dimen>
-    <dimen name="viewpager_activity_topbar_logo_image_width">110dp</dimen>
-    <dimen name="viewpager_activity_topbar_textsize">30dp</dimen>
-    <dimen name="viewpager_activity_tab_height">38dp</dimen>
-    <dimen name="viewpager_activity_tab_textsize">26dp</dimen>
-    <dimen name="viewpager_activity_tab_padding">4dp</dimen>
-    <dimen name="viewpager_activity_tab_indicator">5dp</dimen>
-    <!-- Main View Pager Activity Action Item -->
-    <dimen name="viewpager_activity_action_item_horizontal_padding">5dp</dimen>
-    <dimen name="viewpager_activity_action_item_vertical_padding">15dp</dimen>
-    <dimen name="viewpager_activity_action_item_textsize">20dp</dimen>
-    <dimen name="viewpager_activity_action_item_seperate">1dp</dimen>
-    
-    
-    
-    <!-- Main Tab Activity -->
-    <dimen name="myfavorite_activity_action_item_padding">30dp</dimen>
-    <dimen name="myfavorite_activity_action_item_textsize">20dp</dimen>
-    
-    
-    
+    <dimen name="tvanimation_activity_imagesize">50dp</dimen>
+    <dimen name="tvanimation_activity_textsize">25dp</dimen>
     
     <!-- Grid View -->
     <integer name="gridview_num_columns">2</integer>
@@ -49,78 +21,5 @@
     <dimen name="gridview_item_text_padding_rl">2dp</dimen>
     <dimen name="gridview_item_name_textsize">18dp</dimen>
     <dimen name="gridview_item_season_textsize">13dp</dimen>
-    
-    <!-- Chapter Activity -->
-    <integer name="chapter_activity_item_num_column">6</integer>
-    <dimen name="chapter_activity_item_textsize">5dp</dimen>
-    <dimen name="chapter_activity_toast_textsize">20dp</dimen>
-    <dimen name="chapter_activity_toast_padding">2dp</dimen>
-    
-    <!-- Chapter Activity IntroDuction Dialog-->    
-    <dimen name="chapter_activity_dialog_seperate_height">1dp</dimen>
-    <dimen name="chapter_activity_dialog_title_textsize">24dp</dimen>
-    <dimen name="chapter_activity_dialog_content_textsize">18dp</dimen>
-    <dimen name="chapter_activity_dialog_send_textsize">20dp</dimen>
-    <dimen name="chapter_activity_dialog_send_padding_rl">20dp</dimen>
-    <dimen name="chapter_activity_dialog_send_padding_tb">5dp</dimen>
-    <dimen name="chapter_activity_dialog_margin">16dp</dimen>
-    <dimen name="chapter_activity_dialog_padding">20dp</dimen>
-    
-    <!-- Chapter Activity Report Dialog-->
-    <dimen name="chapter_activity_dialog_report_imagesize">19dp</dimen>
-    <dimen name="chapter_activity_dialog_report_imageMargin">5dp</dimen>
-    <dimen name="chapter_activity_dialog_report_b_padding_rl">30dp</dimen>
-    <dimen name="chapter_activity_dialog_report_b_padding_tb">5dp</dimen>
-    
-    <dimen name="chapter_activity_dialog_report_spinner_textsize">20dp</dimen>
-    <dimen name="chapter_activity_dialog_report_spinner_imagesize">15dp</dimen>
-    <dimen name="chapter_activity_dialog_report_spinner_padding_rl">15dp</dimen>
-    <dimen name="chapter_activity_dialog_report_spinner_padding_tb">5dp</dimen>
-    
-    <!-- Chapter Activity Function Bar -->
-    <dimen name="chapter_activity_function_ib_padding_rl">10dp</dimen>
-    <dimen name="chapter_activity_function_ib_padding_tb">2dp</dimen>
-    
-    <!-- Search listView -->
-    <dimen name="search_activity_itemsize">50dp</dimen>  
-    <dimen name="search_activity_itempadding">10dp</dimen> 
-    <dimen name="search_activity_seperate_height">1dp</dimen>
-    <dimen name="search_activity_textsize">25dp</dimen>
-
-    <!-- Search Activity -->
-    <dimen name="search_activity_rl_bg_padding">5dp</dimen>
-    <dimen name="search_activity_et_paddingleft">10dp</dimen>
-    <dimen name="search_activity_ll_enter_msg_paddingleft">10dp</dimen>
-    <dimen name="search_activity_im_width">20dp</dimen>
-    <dimen name="search_activity_im_height">20dp</dimen>
-    <dimen name="search_activity_tv_textsize">20dp</dimen>
-    
-    <!-- Setting Activity -->
-    <dimen name="setting_activity_seperate_height">1dp</dimen>
-    <dimen name="setting_activity_margin">20dp</dimen>    
-    <dimen name="setting_activity_itemsize">50dp</dimen>        
-    <dimen name="setting_activity_itempadding">10dp</dimen>        
-    <dimen name="setting_activity_itemmargin">6dp</dimen>
-    <dimen name="setting_activity_textsize">25dp</dimen>
-    <dimen name="setting_activity_imagesize">25dp</dimen>
-    
-    <!-- Layout Loading -->
-    <dimen name="layout_loading_imagesize">100dp</dimen>
-    
-    <!-- Dialog player Loading -->
-    <dimen name="dialog_player_loading_ll_margin">10dp</dimen>
-    <dimen name="dialog_player_loading_imagesize">40dp</dimen>
-    <dimen name="dialog_player_loading_textsize">20dp</dimen>
-    <dimen name="dialog_player_loading_tv_margin_rl">5dp</dimen>
-    <dimen name="dialog_player_loading_v_height">2dp</dimen>
-    <dimen name="dialog_player_loading_v_margin_rl">10dp</dimen>
-    
-    <!-- Player Controller -->
-    <dimen name="player_controller_textsize">14dp</dimen>
-    <dimen name="player_controller_imagesize">50dp</dimen>
-    <dimen name="player_controller_play_pause_imagesize">50dp</dimen>
-    <dimen name="player_controller_seekbarsize">28dp</dimen>
-    <dimen name="player_controller_padding">4dp</dimen>
-    <dimen name="player_controller_ll_margin">5dp</dimen>
     
 </resources>

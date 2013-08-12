@@ -1,5 +1,28 @@
 <resources>
 
-    <string name="app_name">動漫</string>
+    <string name="app_name">經典美劇</string>
+    
+    <!--Activity: MainViewpager ..TypeName -->
+    <string name="type_usa">"美劇"</string>
+ 	<string name="type_hk">"港劇"</string>
+ 	
+ 	<!--Activity: MyFavorite -->
+	<string name="myfavorite_title"> "我的收藏"</string>
+	<string name="no_like">"尚未有任何收藏"</string>
+	 
+	<!--Activity: Search -->
+	<string name="search_text"> "搜尋"</string>
+	<string name="search_title"> "搜尋"</string>
+	
+
+	<!-- promote -->
+	<string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="go">Go</string>
+    
+
+	<!-- admob mediation -->
+	<string name="admob_key">ac4b33b11e93463d</string>
+	
 
 </resources>

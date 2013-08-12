@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Application Color -->
+    <color name="main_color_green">#006779</color>
+    <color name="main_color_yellow">#e2a800</color>
+    
+    <color name="text">#000320</color>
+    <color name="background">#333333</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#6d6c6c</color>
+    <color name="black">#000000</color>
+    
+    <color name="transparent100">#00000000</color>
+    <color name="transparent80">#33000000</color>
+    <color name="transparent60">#77000000</color>
+    
+</resources>

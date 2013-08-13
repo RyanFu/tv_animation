@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout android:id="@+id/ll_enterspace"
+   	   android:layout_width="match_parent"
+   	   android:layout_height="@dimen/topbar_height"
+   	   android:orientation="horizontal"
+   	   android:background="@color/text"
+   	   android:paddingLeft="20dp"
+   	   android:paddingRight="20dp"
+   	   android:gravity="center_horizontal"
+   	   android:focusable="true" 
+       android:focusableInTouchMode="true"
+   	   >
+   	   
+        <ImageButton android:id="@+id/ib_search_icon"
+            android:layout_width="@dimen/search_activity_im_size"
+            android:layout_height="@dimen/search_activity_im_size"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ib_search_status"
+            android:background="@null"
+    		android:contentDescription="@null"
+    		android:layout_gravity="center_vertical"
+    		android:padding="@dimen/search_activity_enterspace_padding"/>
+
+        <EditText
+            android:id="@+id/et_search_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext_states"
+            android:padding="@dimen/search_activity_enterspace_padding"
+            android:hint="搜尋"
+            android:layout_gravity="center_vertical"
+            android:inputType="text" />
+        	
+   	</LinearLayout>
+   	<ListView android:id="@+id/lv_output"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="match_parent"
+   	    android:background="@color/white"/>
+   
+
+</LinearLayout>

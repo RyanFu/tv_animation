@@ -22,4 +22,46 @@
     <dimen name="gridview_item_name_textsize">18dp</dimen>
     <dimen name="gridview_item_season_textsize">13dp</dimen>
     
+      <!-- Search listView -->
+    <dimen name="search_activity_itemsize">50dp</dimen>  
+    <dimen name="search_activity_itempadding">10dp</dimen> 
+    <dimen name="search_activity_seperate_height">1dp</dimen>
+    <dimen name="search_activity_textsize">25dp</dimen>
+    
+    <!-- Search Activity -->
+    <dimen name="search_activity_enterspace_padding">5dp</dimen>
+    <dimen name="search_activity_et_paddingleft">10dp</dimen>
+    <dimen name="search_activity_im_size">37dp</dimen>
+    
+    <!-- Search listView -->
+    <dimen name="search_activity_itemsize">50dp</dimen>  
+    <dimen name="search_activity_itempadding">10dp</dimen> 
+    <dimen name="search_activity_seperate_height">1dp</dimen>
+    <dimen name="search_activity_textsize">25dp</dimen>
+    
+    <!-- Search Activity -->
+    <dimen name="search_activity_enterspace_padding">5dp</dimen>
+    <dimen name="search_activity_et_paddingleft">10dp</dimen>
+    <dimen name="search_activity_ll_enter_msg_paddingleft">10dp</dimen>
+    <dimen name="search_activity_im_size">37dp</dimen>
+    <dimen name="search_activity_tv_textsize">20dp</dimen>
+    
+    <!-- Setting Activity -->
+    <dimen name="setting_activity_seperate_height">1dp</dimen>
+    <dimen name="setting_activity_margin">20dp</dimen>    
+    <dimen name="setting_activity_itemsize">50dp</dimen>        
+    <dimen name="setting_activity_itempadding">10dp</dimen>        
+    <dimen name="setting_activity_itemmargin">6dp</dimen>
+    <dimen name="setting_activity_textsize">25dp</dimen>
+    <dimen name="setting_activity_imagesize">25dp</dimen>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </resources>

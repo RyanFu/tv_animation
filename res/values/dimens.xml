@@ -22,4 +22,30 @@
     <dimen name="gridview_item_name_textsize">18dp</dimen>
     <dimen name="gridview_item_season_textsize">13dp</dimen>
     
+    
+    <!-- My Favorite Fragment -->
+    <dimen name="myfavorite_activity_action_item_padding">30dp</dimen>
+    <dimen name="myfavorite_activity_action_item_textsize">20dp</dimen>
+    
+    <!-- Setting Fragment -->
+    <dimen name="setting_activity_seperate_height">1dp</dimen>
+    <dimen name="setting_activity_margin">20dp</dimen>    
+    <dimen name="setting_activity_itemsize">50dp</dimen>        
+    <dimen name="setting_activity_itempadding">10dp</dimen>        
+    <dimen name="setting_activity_itemmargin">6dp</dimen>
+    <dimen name="setting_activity_textsize">25dp</dimen>
+    <dimen name="setting_activity_imagesize">25dp</dimen>
+    
+    
+    
+    <!-- Layout Loading -->
+    <dimen name="layout_loading_imagesize">100dp</dimen>
+    
+    <!-- Dialog player Loading -->
+    <dimen name="dialog_player_loading_ll_margin">10dp</dimen>
+    <dimen name="dialog_player_loading_imagesize">40dp</dimen>
+    <dimen name="dialog_player_loading_textsize">20dp</dimen>
+    <dimen name="dialog_player_loading_tv_margin_rl">5dp</dimen>
+    <dimen name="dialog_player_loading_v_height">2dp</dimen>
+    <dimen name="dialog_player_loading_v_margin_rl">10dp</dimen>
 </resources>

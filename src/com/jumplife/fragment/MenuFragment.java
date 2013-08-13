@@ -42,8 +42,10 @@ public class MenuFragment extends Fragment {
 					FLAG_FANTASY = 5,
 					FLAG_OTHERS = 6;
 	
-	private int currentProgramFlag;   
-    private FragmentActivity mFragmentActivity;
+	private int typeId;
+	private int sortId;
+	
+	private FragmentActivity mFragmentActivity;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,14 +83,15 @@ public class MenuFragment extends Fragment {
 		vFantasy = (View)fragmentView.findViewById(R.id.v_fantasy);
 		vOthers = (View)fragmentView.findViewById(R.id.v_other);
 		
-		int flag = TvAnimationApplication.shIO.getInt("tvtype_flag", FLAG_HOTHEART);
-		currentProgramFlag = flag;
-		switchItemState(flag);
+		typeId = TvAnimationApplication.shIO.getInt("typeId", 0);
+		sortId = TvAnimationApplication.shIO.getInt("sortId", 0);
+		
+		switchItemState();
 	}
 	
-	private void switchItemState(int flag) {		
+	private void switchItemState() {		
 		setItemStateNormal();
-		setItemStatePress(flag);
+		setItemStatePress();
 	}
 	
 	private void setItemStateNormal() {
@@ -111,8 +114,8 @@ public class MenuFragment extends Fragment {
 		vOthers.setVisibility(View.INVISIBLE);
 	}
 	
-	private void setItemStatePress(int flag) {
-		switch(flag) {
+	private void setItemStatePress() {
+		switch(typeId) {
 		case FLAG_FAVORITE:
 			llFavorite.setBackgroundResource(R.color.background_item);
 			vFavorite.setVisibility(View.VISIBLE);
@@ -151,67 +154,77 @@ public class MenuFragment extends Fragment {
 	}
 	
 	private void setListener() {
-		 /*llFavorite.setOnClickListener(new OnClickListener() {
+		 llFavorite.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				TvAnimationApplication.shIO.edit().putInt("pre_flag", currentProgramFlag);
-				switchItemState(FLAG_FAVORITE);
-				TvAnimationApplication.shIO.edit().putInt("tvtype_flag", FLAG_FAVORITE);
+				typeId = FLAG_FAVORITE;
+				switchItemState();
+				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_FAVORITE).commit();
 				MyFavoriteFragment myFavorite = new MyFavoriteFragment();
 				switchFragment(myFavorite, true);
 			}			
-		});*/
-		llHotHeart.setOnClickListener(new OnClickListener() {
+		 });		
+		 llSetting.setOnClickListener(new OnClickListener() {
+			 public void onClick(View arg0) {
+				typeId = FLAG_SETTING;
+				switchItemState();
+				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_SETTING).commit();
+					MyFavoriteFragment myFavorite = new MyFavoriteFragment();
+					switchFragment(myFavorite, true);
+			 }			
+		 });
+		
+		 llHotHeart.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				currentProgramFlag = FLAG_HOTHEART;
-				switchItemState(FLAG_HOTHEART);
-				TvAnimationApplication.shIO.edit().putInt("tvtype_flag", FLAG_HOTHEART).commit();
-				/*TvChannelFragment tvchannels = TvChannelFragment.NewInstance(FLAG_HOTHEART);
-				switchFragment(tvchannels, false);*/
+				typeId = FLAG_HOTHEART;
+				switchItemState();
+				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_HOTHEART).commit();
+				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_HOTHEART);
+				switchFragment(tvchannels, false);
 			}			
-		});
-		llLove.setOnClickListener(new OnClickListener() {
+		 });
+		 llLove.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				currentProgramFlag = FLAG_LOVE;
-				switchItemState(FLAG_LOVE);
-				TvAnimationApplication.shIO.edit().putInt("tvtype_flag", FLAG_LOVE).commit();
-				/*TvChannelFragment tvchannels = TvChannelFragment.NewInstance(FLAG_LOVE);
-				switchFragment(tvchannels, false);*/
+				typeId = FLAG_LOVE;
+				switchItemState();
+				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_LOVE).commit();
+				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_LOVE);
+				switchFragment(tvchannels, false);
 			}			
 		});
 		llHumor.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				currentProgramFlag = FLAG_HUMOR;
-				switchItemState(FLAG_HUMOR);
-				TvAnimationApplication.shIO.edit().putInt("tvtype_flag", FLAG_HUMOR);				
-				/*TvChannelFragment tvchannels = TvChannelFragment.NewInstance(FLAG_HUMOR);
-				switchFragment(tvchannels, false);*/
+				typeId = FLAG_HUMOR;
+				switchItemState();
+				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_HUMOR);				
+				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_HUMOR);
+				switchFragment(tvchannels, false);
 			}			
 		});
 		llSuspense.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				currentProgramFlag = FLAG_SUSPENSE;
-				switchItemState(FLAG_SUSPENSE);
-				TvAnimationApplication.shIO.edit().putInt("tvtype_flag", FLAG_SUSPENSE).commit();				
-				/*TvChannelFragment tvchannels = TvChannelFragment.NewInstance(FLAG_SUSPENSE);
-				switchFragment(tvchannels, false);*/
+				typeId = FLAG_SUSPENSE;
+				switchItemState();
+				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_SUSPENSE).commit();				
+				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_SUSPENSE);
+				switchFragment(tvchannels, false);
 			}			
 		});
 		llFantasy.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				currentProgramFlag = FLAG_FANTASY;
-				switchItemState(FLAG_FANTASY);
-				TvAnimationApplication.shIO.edit().putInt("tvtype_flag", FLAG_FANTASY).commit();				
-				/*TvChannelFragment tvchannels = TvChannelFragment.NewInstance(FLAG_FANTASY);
-				switchFragment(tvchannels, false);*/
+				typeId = FLAG_FANTASY;
+				switchItemState();
+				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_FANTASY).commit();				
+				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_FANTASY);
+				switchFragment(tvchannels, false);
 			}			
 		});
 		llOthers.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				currentProgramFlag = FLAG_OTHERS;
-				switchItemState(FLAG_OTHERS);
-				TvAnimationApplication.shIO.edit().putInt("tvtype_flag", FLAG_OTHERS);				
-				/*TvChannelFragment tvchannels = TvChannelFragment.NewInstance(FLAG_OTHERS);
-				switchFragment(tvchannels, false);*/
+				typeId = FLAG_OTHERS;
+				switchItemState();
+				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_OTHERS);				
+				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_OTHERS);
+				switchFragment(tvchannels, false);
 			}			
 		});
 	}
@@ -223,7 +236,7 @@ public class MenuFragment extends Fragment {
 		
 		if (mFragmentActivity instanceof MainPageActivity) {
 			MainPageActivity tvfa = (MainPageActivity) getActivity();
-			tvfa.switchContent(fragment, isAdd);
+			tvfa.switchContent(fragment, typeId, isAdd);
 		} else 
 			return;
 	}

@@ -54,7 +54,7 @@ public class TvAnimationAPI {
 	}
 	
 	public TvAnimationAPI() {
-		this(new String("http://106.186.21.179:8000"));
+		this(new String("http://106.186.21.179:81"));
 	}
 	
 	public int connect(String requestedMethod, String apiPath) {
@@ -96,7 +96,7 @@ public class TvAnimationAPI {
 	
 	public ArrayList<Animate> getTvAnimationsIdViewsEps(){
 		ArrayList<Animate> tvAnimations = new ArrayList<Animate>(100);
-		String message = getMessageFromServer("GET", "api/v1/tvAnimations.json", null);
+		String message = getMessageFromServer("GET", "api/v1/dramas.json", null);
 		if(message == null) {
 			return null;
 		}
@@ -121,7 +121,7 @@ public class TvAnimationAPI {
 	
 	public void AddTvAnimationsFromInfo(SQLiteTvAnimationHelper instance, SQLiteDatabase db, String idlst) {
 		Log.d(TAG, "id list : " + idlst);
-		String message = getMessageFromServer("GET", "api/v1/tvAnimations/tvAnimations_info.json?tvAnimations_id=" + idlst, null);
+		String message = getMessageFromServer("GET", "api/v1/dramas/dramas_info.json?dramas_id=" + idlst, null);
 		
 		if(message != null) {
 			try {
@@ -144,7 +144,7 @@ public class TvAnimationAPI {
 	}
 	
 	public Animate getTvAnimationEpsNumViews(int tvAnimationId, Animate tvAnimation){
-		String message = getMessageFromServer("GET", "api/v1/tvAnimations/new_tvAnimations_info.json?tvAnimations_id=" + tvAnimationId, null);
+		String message = getMessageFromServer("GET", "api/v1/dramas/new_dramas_info.json?dramas_id=" + tvAnimationId, null);
 		if(message == null) {
 			return null;
 		}
@@ -166,7 +166,7 @@ public class TvAnimationAPI {
 	
 	public String getVideoLink(int tvAnimationId, int epsNum){
 		String link = null;
-		String message = getMessageFromServer("GET", "api/v1/eps/find_by_tvAnimation_and_ep_num.json?tvAnimation_id=" 
+		String message = getMessageFromServer("GET", "/api/v1/eps/find_by_drama_and_ep_num.json?drama_id=" 
 																					+ tvAnimationId + "&num=" + epsNum, null);
 		if(message == null) {
 			return null;
@@ -190,7 +190,7 @@ public class TvAnimationAPI {
 
 		try{
 			DefaultHttpClient httpClient = new DefaultHttpClient();
-			String url = urlAddress + "api/v1/tvAnimations/" + TvAnimationId + ".json";						
+			String url = urlAddress + "api/v1/dramas/" + TvAnimationId + ".json";						
 			if(DEBUG)
 				Log.d(TAG, "URL : " + url);
 			
@@ -219,7 +219,7 @@ public class TvAnimationAPI {
 	
 	public boolean report(int tvAnimationId, int chapterNum) {
 		boolean result = false;
-		String message = getMessageFromServer("GET", "api/v1/eps/update_ep_error.json?tvAnimation_id=" + tvAnimationId + "&num=" + chapterNum, null);
+		String message = getMessageFromServer("GET", "api/v1/eps/update_ep_error.json?drama_id=" + tvAnimationId + "&num=" + chapterNum, null);
 		if(message == null) {
 			return result;
 		} else {
@@ -237,7 +237,7 @@ public class TvAnimationAPI {
 	
 	public String getTvAnimationsHistory(){
 		String history = "";
-		String message = getMessageFromServer("GET", "api/v1/tvAnimation_history.json", null);
+		String message = getMessageFromServer("GET", "api/v1/drama_history.json", null);
 		if(message == null) {
 			return null;
 		}
@@ -319,19 +319,15 @@ public class TvAnimationAPI {
 		else {
 			try {
 				String season = "";
-				String coverPoster = "";
-				String introPoster = "";
+				String poster = "";
 				
 				if(!tvAnimationJson.getString("season").equalsIgnoreCase("null"))
 					season = tvAnimationJson.getString("season");
-				if(!tvAnimationJson.getString("cover_poster").equalsIgnoreCase("null"))
-					coverPoster = tvAnimationJson.getString("cover_poster");
-				if(!tvAnimationJson.getString("intro_poster").equalsIgnoreCase("null"))
-					introPoster = tvAnimationJson.getString("intro_poster");
+				if(!tvAnimationJson.getString("poster").equalsIgnoreCase("null"))
+					poster = tvAnimationJson.getString("poster");
 				
 				tvAnimation = new Animate(tvAnimationJson.getInt("id"), tvAnimationJson.getString("name"), season, 
-						coverPoster, introPoster, tvAnimationJson.getString("introduction"),
-						tvAnimationJson.getString("actors"), "", 0, tvAnimationJson.getInt("area_id"));				 
+						poster, tvAnimationJson.getString("introduction"), "", 0, tvAnimationJson.getInt("type_id"));				 
 			} 
 			catch (JSONException e) {
 				e.printStackTrace();

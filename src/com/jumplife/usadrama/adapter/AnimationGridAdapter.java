@@ -44,7 +44,7 @@ public class AnimationGridAdapter extends BaseAdapter {
 				- mActivity.getResources().getDimensionPixelSize(R.dimen.gridview_padding_rl)
 				- mActivity.getResources().getDimensionPixelSize(R.dimen.gridview_item_padding)*2;
 		
-		mHeight = mWidth * 5 / 6;
+		mHeight = mWidth * 3 / 2;
 		
 		
 		myInflater = LayoutInflater.from(mActivity);
@@ -108,7 +108,7 @@ public class AnimationGridAdapter extends BaseAdapter {
 		
 		
 		itemView.ivCoverPoster.setScaleType(ImageView.ScaleType.FIT_CENTER);
-		imageLoader.displayImage(animations.get(position).getCoverPosterUrl(), itemView.ivCoverPoster, options);
+		imageLoader.displayImage(animations.get(position).getPosterUrl(), itemView.ivCoverPoster, options);
 			
 		return convertView;
 	}

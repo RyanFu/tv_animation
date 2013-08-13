@@ -20,7 +20,7 @@ import android.util.Log;
 
 public class SQLiteTvAnimationHelper extends SQLiteOpenHelper {
     private static final String   TvAnimationTable	  = "dramas";
-    public  static final String   DB_NAME             = "series.sqlite";                            // 資料庫名稱
+    public  static final String   DB_NAME             = "anime.sqlite";                            // 資料庫名稱
     private static final int      DATABASE_VERSION    = 1;
     private final  Context 		  mContext;
     public  static String 		  DB_PATH_DATA;                                         // 資料庫版本
@@ -122,14 +122,12 @@ public class SQLiteTvAnimationHelper extends SQLiteOpenHelper {
 
     public long insertTvAnimation(SQLiteDatabase db, Animate tvAnimation) {
         if(!tvAnimation.getName().equals("") && !tvAnimation.getIntroduction().equals("") && 
-        		!tvAnimation.getCoverPosterUrl().equals("") && !tvAnimation.getIntroPosterUrl().equals("") && 
-        		!tvAnimation.getActors().equals("") && tvAnimation.getAreId() > 0) {
+        		!tvAnimation.getPosterUrl().equals("") && tvAnimation.getTypeId() > 0) {
         	db.execSQL(
-	                "INSERT OR IGNORE INTO " + TvAnimationTable + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+	                "INSERT OR IGNORE INTO " + TvAnimationTable + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
 	                new String[] {1+"", 0+"", "f", tvAnimation.getId()+"", tvAnimation.getName(), tvAnimation.getSeason(), 
-	                		tvAnimation.getAreId()+"", tvAnimation.getIntroduction(), tvAnimation.getCoverPosterUrl(), 
-	                		tvAnimation.getIntroPosterUrl(),	"f", tvAnimation.getViews()+"", tvAnimation.getEpsNumStr(), 
-	                		tvAnimation.getActors()});
+	                		tvAnimation.getTypeId()+"", tvAnimation.getIntroduction(), tvAnimation.getPosterUrl(),	
+	                		"f", tvAnimation.getViews()+"", tvAnimation.getEpsNumStr()});
         }
         return 0;
     }
@@ -282,14 +280,14 @@ public class SQLiteTvAnimationHelper extends SQLiteOpenHelper {
     	ArrayList<Animate> tvAnimation_lst = new ArrayList<Animate>();
     	try {
 	        Cursor cursor = null;
-	        cursor = db.rawQuery("SELECT id, name, season, cover_poster, views FROM " + TvAnimationTable + " WHERE like = '1';", null);
+	        cursor = db.rawQuery("SELECT id, name, season, poster, views FROM " + TvAnimationTable + " WHERE like = '1';", null);
 	        if (cursor != null) {
 	        	while(cursor.moveToNext()) {
 		            Animate tvAnimation = new Animate();
 		            tvAnimation.setId(cursor.getInt(0));
 		            tvAnimation.setName(cursor.getString(1));
 		            tvAnimation.setSeason(cursor.getString(2));
-		            tvAnimation.setCoverPosterUrl(cursor.getString(3));
+		            tvAnimation.setPosterUrl(cursor.getString(3));
 		            tvAnimation.setViews(cursor.getInt(4));
 		            tvAnimation_lst.add(tvAnimation);
 	        	}
@@ -305,17 +303,16 @@ public class SQLiteTvAnimationHelper extends SQLiteOpenHelper {
     
     public Animate getTvAnimation(SQLiteDatabase db, int tvAnimationId) throws SQLException {
     	Log.d(null, "id : " + tvAnimationId);
-    	Cursor cursor = db.rawQuery("SELECT id, name, introduction, intro_poster, eps_num_str, views, actors FROM " + TvAnimationTable + " WHERE id = " + tvAnimationId, null);
+    	Cursor cursor = db.rawQuery("SELECT id, name, introduction, poster, eps_num_str, views FROM " + TvAnimationTable + " WHERE id = " + tvAnimationId, null);
         Animate tvAnimation = new Animate();
         if (cursor != null) {
 	        while (cursor.moveToNext()) {
 	        	tvAnimation.setId(cursor.getInt(0));
 	        	tvAnimation.setName(cursor.getString(1));
 	        	tvAnimation.setIntroduction(cursor.getString(2));
-	        	tvAnimation.setIntroPosterUrl(cursor.getString(3));
+	        	tvAnimation.setPosterUrl(cursor.getString(3));
 	        	tvAnimation.setEpsNumStr(cursor.getString(4));
 	        	tvAnimation.setViews(cursor.getInt(5));
-	        	tvAnimation.setActors(cursor.getString(6));
 	        }
 	        cursor.close();
         }
@@ -415,18 +412,18 @@ public class SQLiteTvAnimationHelper extends SQLiteOpenHelper {
         return tvAnimation_lst;
     }*/
     
-    public ArrayList<Animate> getTvAnimationAreaList(SQLiteDatabase db, int area) throws SQLException {
+    public ArrayList<Animate> getTvAnimationTypeList(SQLiteDatabase db, int type) throws SQLException {
     	ArrayList<Animate> tvAnimation_lst = new ArrayList<Animate>();
     	try {
 	        Cursor cursor = null;
-	        cursor = db.rawQuery("SELECT id, name, season, cover_poster, views FROM " + TvAnimationTable + " WHERE area_id = " + area + " AND is_show = 't';", null);
+	        cursor = db.rawQuery("SELECT id, name, season, poster, views FROM " + TvAnimationTable + " WHERE type_id = " + type + " AND is_show = 't';", null);
 	        if (cursor != null) {
 	        	while(cursor.moveToNext()) {
 		            Animate tvAnimation = new Animate();
 		            tvAnimation.setId(cursor.getInt(0));
 		            tvAnimation.setName(cursor.getString(1));
 		            tvAnimation.setSeason(cursor.getString(2));
-		            tvAnimation.setCoverPosterUrl(cursor.getString(3));
+		            tvAnimation.setPosterUrl(cursor.getString(3));
 		            tvAnimation.setViews(cursor.getInt(4));
 		            tvAnimation_lst.add(tvAnimation);
 	        	}

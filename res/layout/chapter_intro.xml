@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
+	
+    <LinearLayout android:id="@+id/ll_story_report"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+    	android:orientation="vertical"
+    	android:gravity="center">
+        <ImageButton android:id="@+id/ib_story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ib_intro"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:contentDescription="@null"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/story"
+            android:textSize="@dimen/chapter_activity_textsize"
+            android:textColor="@drawable/function_text_color"/>
+       	<View 
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/chapter_activity_seperate_height"
+            android:background="@color/grey"/>
+        
+        <ImageButton android:id="@+id/ib_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ib_report"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:contentDescription="@null"/>
+         <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/report"
+            android:textSize="@dimen/chapter_activity_textsize"
+            android:textColor="@drawable/function_text_color"/>
+            
+    </LinearLayout>
+    <View android:id="@+id/v_seperate"
+        android:layout_height="match_parent"
+        android:layout_width="@dimen/chapter_activity_seperate_height"
+        android:background="@color/grey"
+        android:layout_toRightOf="@id/ll_story_report"/>
+    
+    <LinearLayout android:id="@+id/ll_favorite_countinue"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+    	android:orientation="vertical"
+    	android:gravity="center"
+    	android:layout_toRightOf="@id/v_seperate"
+    	>
+        <ImageButton android:id="@+id/ib_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ib_favorite"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:contentDescription="@null"/>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favorite"
+            android:textSize="@dimen/chapter_activity_textsize"
+            android:textColor="@drawable/function_text_color"/>
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/chapter_activity_seperate_height"
+            android:background="@color/grey"/>
+        
+        <ImageButton android:id="@+id/ib_countinue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ib_countinue"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:contentDescription="@null"/>
+         <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/countinue"
+            android:textSize="@dimen/chapter_activity_textsize"
+            android:textColor="@drawable/function_text_color"/>
+            
+    </LinearLayout>
+    
+    </RelativeLayout>
+
+

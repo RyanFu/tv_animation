@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:background="@color/background" >
+     
+    <GridView android:id="@+id/gridview_tvchannel"
+        android:background="@color/background"
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:verticalSpacing="5dp"  
+        android:horizontalSpacing="5dp"  
+        android:listSelector="@null"
+        android:numColumns="2"
+        />
+    
+    <ProgressBar android:id="@+id/pb_tvchannel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+    
+    <ImageButton android:id="@+id/refresh"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        android:background="@drawable/ib_renew_bg" />
+</RelativeLayout>

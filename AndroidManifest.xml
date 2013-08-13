@@ -35,12 +35,21 @@
         
         <activity android:name="TvAnimationActivity"
             android:screenOrientation="portrait" >
-             <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> 
+            </intent-filter>  
         </activity>
+
         <activity android:name="SearchActivity"/>
+
+        <activity android:name="MainPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar" />
+        <activity android:name="ChapterActivity">
+            
+        </activity>
+
         
     </application>
 

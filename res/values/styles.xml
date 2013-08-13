@@ -59,8 +59,6 @@
     <style name="AppTheme" parent="AppBaseTheme">
     </style>
     
-    
-    
     <style name="dialogBasic" parent="android:Theme.Dialog" >
         <item name="android:windowFrame">@null</item>
         <!-- 無標題 -->

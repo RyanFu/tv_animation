@@ -8,7 +8,7 @@
    	   android:layout_width="match_parent"
    	   android:layout_height="@dimen/topbar_height"
    	   android:orientation="horizontal"
-   	   android:background="@color/text"
+   	   android:background="@color/background_item"
    	   android:paddingLeft="20dp"
    	   android:paddingRight="20dp"
    	   android:gravity="center_horizontal"

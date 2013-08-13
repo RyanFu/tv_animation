@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+       android:id="@+id/scrollView1"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent" >
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/background"
+           android:orientation="vertical" >
+
+           <LinearLayout android:id="@+id/ll_interview"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:background="@color/black" >
+               <TextView 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" 
+                   android:layout_marginLeft="20dp"
+                   android:layout_marginRight="20dp"
+                   android:layout_marginTop="2dp"
+                   android:layout_marginBottom="2dp"
+                   android:text="功能列表"
+                   android:textSize="14dp"
+                   android:textColor="@color/white" />
+           </LinearLayout>
+           
+           
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+           <LinearLayout android:id="@+id/ll_myfavorite"
+               android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/transparent100" >
+                <View  android:id="@+id/v_myfavorite"
+                    android:layout_width="5dp"
+                    android:layout_height="50dp"
+                    android:background="@color/main_color_green"
+                    android:visibility="invisible" />
+               <ImageView
+                   android:layout_width="18dp"
+                   android:layout_height="18dp"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="20dp"
+                   android:contentDescription="@null"
+                   android:background="@drawable/favorite_normal"
+                   android:scaleType="fitCenter" />
+               <TextView 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" 
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="10dp"
+                   android:text="我的最愛"
+                   android:textSize="20dp"
+                   android:textColor="@color/white" />
+           </LinearLayout>
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+           
+           <LinearLayout android:id="@+id/ll_setting"
+               android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/transparent100" >
+                <View  android:id="@+id/v_setting"
+                    android:layout_width="5dp"
+                    android:layout_height="50dp"
+                    android:background="@color/main_color_green"
+                    android:visibility="invisible" />
+               <ImageView
+                   android:layout_width="18dp"
+                   android:layout_height="18dp"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="20dp"
+                   android:contentDescription="@null"
+                   android:background="@drawable/setting"
+                   android:scaleType="fitCenter" />
+               <TextView 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" 
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="10dp"
+                   android:text="設定"
+                   android:textSize="20dp"
+                   android:textColor="@color/white" />
+           </LinearLayout>
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+           
+           
+           
+           <!-- Animation Type -->
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:background="@color/black" >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:text="分類"
+                android:textSize="14dp"
+                android:textColor="@color/white" />
+           </LinearLayout>
+           
+           
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+           <LinearLayout android:id="@+id/ll_hotheart"
+               android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/transparent100" >
+                <View  android:id="@+id/v_hotheart"
+                    android:layout_width="5dp"
+                    android:layout_height="50dp"
+                    android:background="@color/main_color_green"
+                    android:visibility="invisible" />
+               <ImageView
+                   android:layout_width="18dp"
+                   android:layout_height="18dp"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="20dp"
+                   android:contentDescription="@null"
+                   android:background="@drawable/dramatype_1"
+                   android:scaleType="fitCenter" />
+               <TextView 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" 
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="10dp"
+                   android:text="熱血"
+                   android:textSize="20dp"
+                   android:textColor="@color/white" />
+           </LinearLayout>
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+           
+           
+           <LinearLayout android:id="@+id/ll_love"
+               android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/transparent100" >
+                <View  android:id="@+id/v_love"
+                    android:layout_width="5dp"
+                    android:layout_height="50dp"
+                    android:background="@color/main_color_green"
+                    android:visibility="invisible" />
+               <ImageView
+                   android:layout_width="18dp"
+                   android:layout_height="18dp"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="20dp"
+                   android:contentDescription="@null"
+                   android:background="@drawable/dramatype_2"
+                   android:scaleType="fitCenter" />
+               <TextView 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" 
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="10dp"
+                   android:text="戀愛"
+                   android:textSize="20dp"
+                   android:textColor="@color/white" />
+           </LinearLayout>
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+           
+           
+           
+           <LinearLayout android:id="@+id/ll_humor"
+               android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/transparent100" >
+                <View  android:id="@+id/v_humor"
+                    android:layout_width="5dp"
+                    android:layout_height="50dp"
+                    android:background="@color/main_color_green"
+                    android:visibility="invisible" />
+               <ImageView
+                   android:layout_width="18dp"
+                   android:layout_height="18dp"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="20dp"
+                   android:contentDescription="@null"
+                   android:background="@drawable/dramatype_3"
+                   android:scaleType="fitCenter" />
+               <TextView 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" 
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="10dp"
+                   android:text="搞笑"
+                   android:textSize="20dp"
+                   android:textColor="@color/white" />
+           </LinearLayout>
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+           
+           
+           
+           <LinearLayout android:id="@+id/ll_suspense"
+               android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/transparent100" >
+                <View  android:id="@+id/v_suspense"
+                    android:layout_width="5dp"
+                    android:layout_height="50dp"
+                    android:background="@color/main_color_green"
+                    android:visibility="invisible" />
+               <ImageView
+                   android:layout_width="18dp"
+                   android:layout_height="18dp"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="20dp"
+                   android:contentDescription="@null"
+                   android:background="@drawable/dramatype_4"
+                   android:scaleType="fitCenter" />
+               <TextView 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" 
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="10dp"
+                   android:text="懸疑"
+                   android:textSize="20dp"
+                   android:textColor="@color/white" />
+           </LinearLayout>
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+           
+           
+           
+           <LinearLayout android:id="@+id/ll_fantasy"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:background="@color/transparent100" >
+               <View  android:id="@+id/v_fantasy"
+                   android:layout_width="5dp"
+                   android:layout_height="50dp"
+                   android:background="@color/main_color_green"
+                   android:visibility="invisible" />
+               <ImageView
+                   android:layout_width="18dp"
+                   android:layout_height="18dp"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="20dp"
+                   android:contentDescription="@null"
+                   android:background="@drawable/dramatype_5"
+                   android:scaleType="fitCenter" />
+               <TextView 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" 
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="10dp"
+                   android:text="奇幻"
+                   android:textSize="20dp"
+                   android:textColor="@color/white" />
+           </LinearLayout>
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+
+           
+            
+           
+           
+           <LinearLayout android:id="@+id/ll_other"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:background="@color/transparent100" >
+               <View android:id="@+id/v_other"
+                   android:layout_width="5dp"
+                   android:layout_height="50dp"
+                   android:background="@color/main_color_green"
+                   android:visibility="invisible" />
+               <ImageView
+                   android:layout_width="18dp"
+                   android:layout_height="18dp"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="20dp"
+                   android:contentDescription="@null"
+                   android:background="@drawable/dramatype_6"
+                   android:scaleType="fitCenter" />
+               <TextView 
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" 
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginLeft="10dp"
+                   android:text="其他"
+                   android:textSize="20dp"
+                   android:textColor="@color/white" />
+           </LinearLayout>
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/black" />
+           <View 
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/grey" />
+           
+       </LinearLayout>
+   </ScrollView>

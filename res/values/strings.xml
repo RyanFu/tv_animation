@@ -24,5 +24,9 @@
 	<!-- admob mediation -->
 	<string name="admob_key">ac4b33b11e93463d</string>
 	
-
+	<!-- Chapter Activity -->
+	<string name="story">劇情簡介</string>
+	<string name="report">問題回報</string>
+	<string name="favorite">加入收藏</string>
+	<string name="countinue">繼續觀看</string>
 </resources>

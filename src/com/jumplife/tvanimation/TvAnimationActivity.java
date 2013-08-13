@@ -175,10 +175,10 @@ public class TvAnimationActivity extends Activity {
 	
 	private void setData(){
 		
-        /*Intent newAct = new Intent();
-		newAct.setClass( UsaDramaActivity.this, MainViewPagerActivity.class );
+        Intent newAct = new Intent();
+		newAct.setClass( TvAnimationActivity.this, MainPageActivity.class );
 		startActivity(newAct);
-    	finish();*/
+    	finish();
 	}
 	
 	class CheckVersionTask extends AsyncTask<Integer, Integer, String>{  
@@ -276,7 +276,7 @@ public class TvAnimationActivity extends Activity {
   
         @Override  
         protected void onPostExecute(String result) {
-        	/*if(result.equals("progress fail")) {
+        	if(result.equals("progress fail")) {
 	        	ivLoading.setVisibility(View.INVISIBLE);
 	        	tvloading.setText(Html.fromHtml("網路連線不穩" + "<br>" + "更新劇集失敗"));
 	        	try {
@@ -286,7 +286,7 @@ public class TvAnimationActivity extends Activity {
 					e.printStackTrace();
 				}
         	}
-        	setData();*/
+        	setData();
 	        super.onPostExecute(result);  
         }  
           

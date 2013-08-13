@@ -56,8 +56,10 @@
     <dimen name="setting_activity_imagesize">25dp</dimen>
     
     
-    
-    
+    <!-- Chapter Activity -->
+    <integer name="chapter_activity_item_num_column">5</integer>
+    <dimen name="chapter_activity_seperate_height">1dp</dimen>
+    <dimen name="chapter_activity_textsize">16dp</dimen>
     
     
     

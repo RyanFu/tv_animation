@@ -41,9 +41,7 @@
         </activity>
 
         <activity android:name="SearchActivity"/>
-
-       
-        <activity android:name="ChapterActivity">
+		<activity android:name="ChapterActivity">
            	 <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

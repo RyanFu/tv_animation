@@ -3,9 +3,9 @@ package com.jumplife.fragment;
 import java.util.ArrayList;
 
 import com.jumplife.tvanimation.R;
+import com.jumplife.tvanimation.adapter.AnimationGridAdapter;
 import com.jumplife.tvanimation.entity.Animate;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
-import com.jumplife.usadrama.adapter.AnimationGridAdapter;
 
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;

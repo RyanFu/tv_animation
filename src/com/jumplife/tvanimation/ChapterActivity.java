@@ -2,9 +2,9 @@ package com.jumplife.tvanimation;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
+import com.jumplife.tvanimation.adapter.ReportSpinnerAdapter;
 import com.jumplife.tvanimation.api.TvAnimationAPI;
 import com.jumplife.tvanimation.entity.Animate;
-import com.jumplife.usadrama.adapter.ReportSpinnerAdapter;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -125,8 +125,6 @@ public class ChapterActivity extends SherlockActivity {
 			
 		});
 		
-		
-		
 		options = new DisplayImageOptions.Builder()
 		.showStubImage(R.drawable.stub)
 		.showImageForEmptyUri(R.drawable.stub)
@@ -158,7 +156,7 @@ public class ChapterActivity extends SherlockActivity {
 			    	//EasyTracker.getTracker().trackEvent("戲劇集數", "我的收藏", "加入", (long)0);
 			    	likeDrama = 1;
 			    }
-				
+			/*	
 				SQLiteTvAnimationHelper instance = SQLiteTvAnimationHelper.getInstance(ChapterActivity.this);
 		        SQLiteDatabase db = instance.getWritableDatabase();
 		        db.beginTransaction();
@@ -168,14 +166,14 @@ public class ChapterActivity extends SherlockActivity {
 		        db.setTransactionSuccessful();
 		        db.endTransaction();
 		        db.close();
-		        instance.closeHelper();
+		        instance.closeHelper();*/
 				
 		        if(likeDrama == 1) {
 			    	ibFavorite.setImageResource(R.drawable.favorite_press);        		
-	        		setToast(true, "已加入至我的最愛", "已移除於我的最愛");
+	        		setToast(true, "已加入至收藏清單", "已從收藏清單移除");
 			    } else {
 			    	ibFavorite.setImageResource(R.drawable.favorite_normal);        		
-	        		setToast(false, "已加入至我的最愛", "已移除於我的最愛");
+	        		setToast(false, "已加入至收藏清單", "已從收藏清單移除");
 			    }
 			}
 			
@@ -462,9 +460,10 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
 					tvChapterItem[index] = new TextView(this);
 					tvChapterItem[index].setText(chapters[index]);				
 					tvChapterItem[index].setId(index);
-					tvChapterItem[index].setBackgroundResource(R.drawable.activity_chapter_item_normal);
+					tvChapterItem[index].setBackgroundResource(R.drawable.activity_chapter_item_shape);
 					tvChapterItem[index].setTextSize(TypedValue.COMPLEX_UNIT_PX, wh * 4 / 9);
 					tvChapterItem[index].setTextColor(getResources().getColor(R.color.white));
+					
 					tvChapterItem[index].setGravity(Gravity.CENTER);
 					tvChapterItem[index].setOnClickListener(new OnClickListener() {
 						public void onClick(View arg0) {
@@ -542,7 +541,7 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
 					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_select);
 					tvChapterItem[i].setTextColor(getResources().getColor(R.color.white));
 				} else {
-					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_normal);
+					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_shape);
 					tvChapterItem[i].setTextColor(getResources().getColor(R.color.background_item));
 				}
 			} else {
@@ -550,7 +549,7 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
 					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_select);
 					tvChapterItem[i].setTextColor(getResources().getColor(R.color.white));
 				} else {
-					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_normal);
+					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_shape);
 					tvChapterItem[i].setTextColor(getResources().getColor(R.color.background_item));
 				}
 			}

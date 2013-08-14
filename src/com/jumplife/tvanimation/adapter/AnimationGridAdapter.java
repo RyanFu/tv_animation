@@ -1,4 +1,4 @@
-package com.jumplife.usadrama.adapter;
+package com.jumplife.tvanimation.adapter;
 
 import java.util.ArrayList;
 

@@ -12,12 +12,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
-    android:background="@color/white">    
+    android:background="@color/white"
+    >    
 	    <LinearLayout android:id="@+id/ll_chapter_intro"
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent" 
 		    android:orientation="horizontal"
-		    android:background="@color/background_item"/>
+		    android:background="@color/background_item"
+		    android:gravity="center"/>
 	</LinearLayout>    
     </ScrollView>
     <ImageButton android:id="@+id/ib_refresh"

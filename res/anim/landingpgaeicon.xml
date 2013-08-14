@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
-    android:interpolator="@android:anim/accelerate_interpolator"
+    android:interpolator="@android:anim/linear_interpolator"
     android:oneshot="false" >
-    <item android:drawable="@drawable/mloading_1" android:duration="100" />
-    <item android:drawable="@drawable/mloading_2" android:duration="100" />
-    <item android:drawable="@drawable/mloading_3" android:duration="100" />
-    <item android:drawable="@drawable/mloading_4" android:duration="100" />
-    <item android:drawable="@drawable/mloading_5" android:duration="100" />
-    <item android:drawable="@drawable/mloading_4" android:duration="100" />
-    <item android:drawable="@drawable/mloading_3" android:duration="100" />
-    <item android:drawable="@drawable/mloading_2" android:duration="100" />
-    <item android:drawable="@drawable/mloading_1" android:duration="100" />
+    <item android:drawable="@drawable/loadingeye_1" android:duration="100" />
+    <item android:drawable="@drawable/loadingeye_2" android:duration="100" />
+    <item android:drawable="@drawable/loadingeye_3" android:duration="100" />
+    <item android:drawable="@drawable/loadingeye_4" android:duration="100" />
+    <item android:drawable="@drawable/loadingeye_5" android:duration="100" />
+    <item android:drawable="@drawable/loadingeye_4" android:duration="100" />
+    <item android:drawable="@drawable/loadingeye_3" android:duration="100" />
+    <item android:drawable="@drawable/loadingeye_2" android:duration="100" />
+    <item android:drawable="@drawable/loadingeye_1" android:duration="100" />
 </animation-list>

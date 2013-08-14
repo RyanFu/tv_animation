@@ -6,7 +6,6 @@ import com.google.android.gcm.GCMRegistrar;
 import com.jumplife.tvanimation.api.TvAnimationAPI;
 import com.jumplife.tvanimation.entity.Animate;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,6 +31,7 @@ import android.widget.ImageView.ScaleType;
 public class TvAnimationActivity extends Activity {
 	private LoadDataTask taskLoad;
 	private CheckVersionTask taskVersion;
+	private ImageView ivWoad;
 	private ImageView ivLoading;
 	private TextView tvloading;
 	private AnimationDrawable animationDrawable;
@@ -49,9 +49,15 @@ public class TvAnimationActivity extends Activity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         
+        ivWoad = (ImageView)findViewById(R.id.iv_word);
+        ivWoad.getLayoutParams().width = displayMetrics.widthPixels / 3;
+        ivWoad.getLayoutParams().height = displayMetrics.widthPixels / 12;
+        ivWoad.setScaleType(ScaleType.FIT_CENTER);
+        
         RelativeLayout.LayoutParams ivparams = new RelativeLayout.LayoutParams(
         		displayMetrics.widthPixels / 3, displayMetrics.widthPixels / 3);
-        ivparams.setMargins(0, displayMetrics.widthPixels / 6, 0, 50);
+        ivparams.setMargins(0, 0, 0, 50);
+        ivparams.addRule(RelativeLayout.ABOVE, ivWoad.getId());
         ivparams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         ivLoading = (ImageView)findViewById(R.id.iv_load);
         ivLoading.setLayoutParams(ivparams);
@@ -172,7 +178,7 @@ public class TvAnimationActivity extends Activity {
 	private void setData(){
 		
         Intent newAct = new Intent();
-		newAct.setClass( TvAnimationActivity.this, MainPageActivity.class );
+		newAct.setClass( TvAnimationActivity.this, MainActivity.class );
 		startActivity(newAct);
     	finish();
 	}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" >
+        <shape>
+            <solid android:color="@color/transparent100"/>
+        </shape>
+    </item>
+    <item >
+        <shape>
+            <gradient   
+                android:startColor="@color/transparent60" 
+                android:centerColor="@color/white" 
+                android:endColor="@color/transparent60"  
+                android:angle="0" />
+        </shape>
+    </item>
+</selector>

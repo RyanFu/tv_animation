@@ -22,21 +22,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class TvAnimationGridlFragment extends Fragment {
 	
-	private View 			 fragmentView;
-	private ImageButton      imageButtonRefresh;
-	private GridView 		 varietyGridView;
+	private View 			fragmentView;
+    private ImageButton		ibRefresh;
+	
+	private Animation animation;
+	private ImageView ivLoadingIcon;
+	private ImageView ivLoadingCircle;
+	
+	private GridView 		 gvAnimation;
 	private AnimationGridAdapter adapter;
-    private ArrayList<Animate> animateList;
-    
-    private FragmentActivity mFragmentActivity;
-    
+    private ArrayList<Animate> animateList;    
+    private FragmentActivity mFragmentActivity;    
 	private LoadDataTask loadtask;
 	
 	public static TvAnimationGridlFragment NewInstance(int sortId, int typeId) {
@@ -72,10 +79,17 @@ public class TvAnimationGridlFragment extends Fragment {
     }
 	
 	private void initView() {
-        varietyGridView = (GridView)fragmentView.findViewById(R.id.gridview_tvchannel);
+        gvAnimation = (GridView)fragmentView.findViewById(R.id.gridview_tvchannel);
+	    
+	    /*
+		 * Loading Animation Init
+		 */
+		setLoadingAnimation();
+		ivLoadingIcon = (ImageView)fragmentView.findViewById(R.id.iv_loading_icon);
+		ivLoadingCircle = (ImageView)fragmentView.findViewById(R.id.iv_loading_circle);
 		
-		imageButtonRefresh = (ImageButton)fragmentView.findViewById(R.id.refresh);
-		imageButtonRefresh.setOnClickListener(new OnClickListener() {
+		ibRefresh = (ImageButton)fragmentView.findViewById(R.id.refresh);
+		ibRefresh.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
             	loadtask = new LoadDataTask();
                 if(Build.VERSION.SDK_INT < 11)
@@ -84,6 +98,15 @@ public class TvAnimationGridlFragment extends Fragment {
                 	loadtask.executeOnExecutor(LoadDataTask.THREAD_POOL_EXECUTOR, 0);
             }
         });
+	}
+	
+	private void setLoadingAnimation() {
+		animation = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+		animation.setDuration((long) 500);
+		animation.setRepeatCount(Animation.INFINITE);
+		animation.setInterpolator(AnimationUtils.loadInterpolator(mFragmentActivity, android.R.anim.linear_interpolator));
+		animation.setFillAfter(true);
+		animation.setFillEnabled(true);
 	}
 	
 	private void newSort(ArrayList<Animate> AnimateList) {
@@ -134,24 +157,27 @@ public class TvAnimationGridlFragment extends Fragment {
 	
 	private void setGridAdatper() {
 		adapter = new AnimationGridAdapter(mFragmentActivity, animateList);
-        varietyGridView.setAdapter(adapter);
+        gvAnimation.setAdapter(adapter);
 	}
 	
 	private void setListener() {
-        varietyGridView.setOnItemClickListener(new OnItemClickListener(){
+        gvAnimation.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				
 			}
 		});
-        varietyGridView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
+        gvAnimation.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
 	}
 	
 	class LoadDataTask extends AsyncTask<Integer, Integer, String>{  
         
     	@Override  
         protected void onPreExecute() {
-    		varietyGridView.setVisibility(View.GONE);
-        	imageButtonRefresh.setVisibility(View.GONE);
+			ivLoadingIcon.setVisibility(View.VISIBLE);
+			ivLoadingCircle.setVisibility(View.VISIBLE);
+			ivLoadingCircle.startAnimation(animation);
+			
+			ibRefresh.setVisibility(View.GONE);
     		super.onPreExecute();  
         }  
           
@@ -172,12 +198,17 @@ public class TvAnimationGridlFragment extends Fragment {
         	if(animateList != null && animateList.size() > 0){
         		setGridAdatper();
         		setListener();
-            	varietyGridView.setVisibility(View.VISIBLE);
-            	imageButtonRefresh.setVisibility(View.GONE);		
+            	gvAnimation.setVisibility(View.VISIBLE);
+            	ibRefresh.setVisibility(View.GONE);		
     		} else {
-    			varietyGridView.setVisibility(View.GONE);
-                imageButtonRefresh.setVisibility(View.VISIBLE);
+    			gvAnimation.setVisibility(View.GONE);
+    			ibRefresh.setVisibility(View.VISIBLE);
     		}
+        	
+        	animation.cancel();
+        	ivLoadingCircle.clearAnimation();
+        	ivLoadingIcon.setVisibility(View.GONE);
+        	ivLoadingCircle.setVisibility(View.GONE);
 
 	        super.onPostExecute(result);  
         }

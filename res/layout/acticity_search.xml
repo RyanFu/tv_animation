@@ -6,7 +6,7 @@
 
     <LinearLayout android:id="@+id/ll_enterspace"
    	   android:layout_width="match_parent"
-   	   android:layout_height="@dimen/topbar_height"
+   	   android:layout_height="42dp"
    	   android:orientation="horizontal"
    	   android:background="@color/background_item"
    	   android:paddingLeft="20dp"

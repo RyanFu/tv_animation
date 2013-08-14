@@ -1,6 +1,6 @@
 package com.jumplife.fragment;
 
-import com.jumplife.tvanimation.MainPageActivity;
+import com.jumplife.tvanimation.MainActivity;
 import com.jumplife.tvanimation.R;
 import com.jumplife.tvanimation.TvAnimationApplication;
 
@@ -83,7 +83,7 @@ public class MenuFragment extends Fragment {
 		vFantasy = (View)fragmentView.findViewById(R.id.v_fantasy);
 		vOthers = (View)fragmentView.findViewById(R.id.v_other);
 		
-		typeId = TvAnimationApplication.shIO.getInt("typeId", 0);
+		typeId = TvAnimationApplication.shIO.getInt("typeId", 1);
 		sortId = TvAnimationApplication.shIO.getInt("sortId", 0);
 		
 		switchItemState();
@@ -168,8 +168,8 @@ public class MenuFragment extends Fragment {
 				typeId = FLAG_SETTING;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_SETTING).commit();
-					MyFavoriteFragment myFavorite = new MyFavoriteFragment();
-					switchFragment(myFavorite, true);
+				SettingFragment setting = new SettingFragment();
+				switchFragment(setting, true);
 			 }			
 		 });
 		
@@ -178,8 +178,8 @@ public class MenuFragment extends Fragment {
 				typeId = FLAG_HOTHEART;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_HOTHEART).commit();
-				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_HOTHEART);
-				switchFragment(tvchannels, false);
+				TvAnimationGridlFragment tvTypes = TvAnimationGridlFragment.NewInstance(sortId, FLAG_HOTHEART);
+				switchFragment(tvTypes, false);
 			}			
 		 });
 		 llLove.setOnClickListener(new OnClickListener() {
@@ -187,8 +187,8 @@ public class MenuFragment extends Fragment {
 				typeId = FLAG_LOVE;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_LOVE).commit();
-				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_LOVE);
-				switchFragment(tvchannels, false);
+				TvAnimationGridlFragment tvTypes = TvAnimationGridlFragment.NewInstance(sortId, FLAG_LOVE);
+				switchFragment(tvTypes, false);
 			}			
 		});
 		llHumor.setOnClickListener(new OnClickListener() {
@@ -196,8 +196,8 @@ public class MenuFragment extends Fragment {
 				typeId = FLAG_HUMOR;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_HUMOR);				
-				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_HUMOR);
-				switchFragment(tvchannels, false);
+				TvAnimationGridlFragment tvTypes = TvAnimationGridlFragment.NewInstance(sortId, FLAG_HUMOR);
+				switchFragment(tvTypes, false);
 			}			
 		});
 		llSuspense.setOnClickListener(new OnClickListener() {
@@ -205,8 +205,8 @@ public class MenuFragment extends Fragment {
 				typeId = FLAG_SUSPENSE;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_SUSPENSE).commit();				
-				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_SUSPENSE);
-				switchFragment(tvchannels, false);
+				TvAnimationGridlFragment tvTypes = TvAnimationGridlFragment.NewInstance(sortId, FLAG_SUSPENSE);
+				switchFragment(tvTypes, false);
 			}			
 		});
 		llFantasy.setOnClickListener(new OnClickListener() {
@@ -214,8 +214,8 @@ public class MenuFragment extends Fragment {
 				typeId = FLAG_FANTASY;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_FANTASY).commit();				
-				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_FANTASY);
-				switchFragment(tvchannels, false);
+				TvAnimationGridlFragment tvTypes = TvAnimationGridlFragment.NewInstance(sortId, FLAG_FANTASY);
+				switchFragment(tvTypes, false);
 			}			
 		});
 		llOthers.setOnClickListener(new OnClickListener() {
@@ -223,8 +223,8 @@ public class MenuFragment extends Fragment {
 				typeId = FLAG_OTHERS;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_OTHERS);				
-				TvAnimationGridlFragment tvchannels = TvAnimationGridlFragment.NewInstance(sortId, FLAG_OTHERS);
-				switchFragment(tvchannels, false);
+				TvAnimationGridlFragment tvTypes = TvAnimationGridlFragment.NewInstance(sortId, FLAG_OTHERS);
+				switchFragment(tvTypes, false);
 			}			
 		});
 	}
@@ -234,8 +234,8 @@ public class MenuFragment extends Fragment {
 		if (mFragmentActivity == null)
 			return;
 		
-		if (mFragmentActivity instanceof MainPageActivity) {
-			MainPageActivity tvfa = (MainPageActivity) getActivity();
+		if (mFragmentActivity instanceof MainActivity) {
+			MainActivity tvfa = (MainActivity) getActivity();
 			tvfa.switchContent(fragment, typeId, isAdd);
 		} else 
 			return;

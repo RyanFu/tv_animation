@@ -12,11 +12,14 @@ import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 import android.app.Activity;
 import android.graphics.Bitmap.Config;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class AnimationGridAdapter extends BaseAdapter {
@@ -25,12 +28,13 @@ public class AnimationGridAdapter extends BaseAdapter {
 	private DisplayImageOptions options;
     private int mWidth;
 	private int mHeight;
-	
+	private int padding;
 	
 	private ArrayList<Animate> animations;
 	private LayoutInflater myInflater;
 	private class ItemView {
-		
+		RelativeLayout rlAnimationImage;
+		RelativeLayout rlAnimationText;
 		ImageView ivCoverPoster;
 		TextView tvAnimationName;
 		TextView tvAnimationSeason;
@@ -46,6 +50,7 @@ public class AnimationGridAdapter extends BaseAdapter {
 		
 		mHeight = mWidth * 3 / 2;
 		
+		padding = (int) mActivity.getResources().getDimension(R.dimen.gridview_item_padding);
 		
 		myInflater = LayoutInflater.from(mActivity);
 		
@@ -89,11 +94,24 @@ public class AnimationGridAdapter extends BaseAdapter {
 			convertView = myInflater.inflate(R.layout.grid_animation_item, null);
 			itemView = new ItemView();
 			
-			itemView.tvAnimationName= (TextView)convertView.findViewById(R.id.tv_animation_name);
+			itemView.rlAnimationImage = (RelativeLayout)convertView.findViewById(R.id.rl_animation_image);
+			itemView.rlAnimationText = (RelativeLayout)convertView.findViewById(R.id.rl_animation_text);
+			itemView.tvAnimationName = (TextView)convertView.findViewById(R.id.tv_animation_name);
 			itemView.tvAnimationSeason = (TextView)convertView.findViewById(R.id.tv_animation_season);
 			itemView.ivCoverPoster = (ImageView)convertView.findViewById(R.id.iv_animation_cover_poster);
+			
+			itemView.rlAnimationImage.getLayoutParams().height = mHeight + 2*padding;
+			itemView.rlAnimationImage.getLayoutParams().width = mWidth + 2*padding;
+			itemView.rlAnimationImage.setPadding(padding, padding, padding, padding);
+			itemView.rlAnimationImage.setGravity(Gravity.CENTER);
+			
 			itemView.ivCoverPoster.getLayoutParams().height = mHeight;
 			itemView.ivCoverPoster.getLayoutParams().width = mWidth;
+			
+			RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(mWidth, LayoutParams.WRAP_CONTENT);
+			rlParams.addRule(RelativeLayout.ALIGN_BOTTOM, itemView.rlAnimationImage.getId());
+			rlParams.setMargins(padding, padding, padding, padding);
+			itemView.rlAnimationText.setLayoutParams(rlParams);
 			
 			convertView.setTag(itemView);
 		}

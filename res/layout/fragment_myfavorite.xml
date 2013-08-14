@@ -21,11 +21,11 @@
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
-		android:paddingTop="@dimen/myfavorite_activity_action_item_padding"
+		android:paddingTop="@dimen/myfavorite_fragment_action_item_padding"
 		android:gravity="center_horizontal"
 		android:background="@color/white"
         android:textColor="@color/black"
-        android:textSize = "@dimen/myfavorite_activity_action_item_textsize" 
+        android:textSize = "@dimen/myfavorite_fragment_action_item_textsize" 
 		android:text="@string/no_like" />	        
 	        
 	<include layout="@layout/layout_loading"

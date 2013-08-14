@@ -16,9 +16,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/menu_item_action_provider_action_bar"
-        android:title="Search"
+        android:title="@null"
+        android:actionLayout="@layout/action_bar_search"
         android:showAsAction="always"
-        android:icon="@drawable/search_normal"
         android:actionProviderClass="com.jumplife.actionprovider.SearchActionProviderr"/>
 
 </menu>

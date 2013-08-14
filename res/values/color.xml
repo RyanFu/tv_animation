@@ -4,6 +4,7 @@
     <color name="main_color_green">#006779</color>
     <color name="main_color_yellow">#e2a800</color>
     
+    <color name="setting_background_item">#c9c9c9</color>
     <color name="background_item">#000320</color>
     <color name="background">#333333</color>
     <color name="white">#FFFFFF</color>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" >
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="@dimen/player_activity_dialog_margin"
+	    android:background="@color/background"
+	    android:orientation="vertical" >
+	    
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="left"
+	        android:textColor="@color/white"
+	        android:textSize="@dimen/player_activity_dialog_content_textsize"
+	        android:text="目前並未使用Wifi網路,建議使用Wifi已獲得更好的播放品質"/>
+	    <View 
+	        android:layout_width="match_parent"
+	        android:layout_height="@dimen/player_activity_dialog_seperate_height"
+	        android:layout_marginTop="@dimen/player_activity_dialog_margin"
+	        android:layout_marginBottom="@dimen/player_activity_dialog_margin"
+	        android:background="@color/grey"/>
+	     <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal" >
+		    <Button android:id="@+id/button_play"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/player_activity_dialog_send_padding_rl"
+                android:layout_marginRight="@dimen/player_activity_dialog_send_padding_rl"
+                android:layout_weight="1"
+		        android:background="@drawable/dialog_player_wifi_button_bg"
+		        android:paddingTop="@dimen/player_activity_dialog_send_padding_tb"
+	            android:paddingBottom="@dimen/player_activity_dialog_send_padding_tb"
+		        android:textColor="@color/black"
+		        android:textSize="@dimen/player_activity_dialog_send_textsize"
+                android:text="繼續觀看"/>
+	       <Button android:id="@+id/button_wifi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/player_activity_dialog_send_padding_rl"
+                android:layout_marginRight="@dimen/player_activity_dialog_send_padding_rl"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_player_wifi_button_bg"
+                android:paddingTop="@dimen/player_activity_dialog_send_padding_tb"
+                android:paddingBottom="@dimen/player_activity_dialog_send_padding_tb"
+                android:textColor="@color/black"
+                android:textSize="@dimen/player_activity_dialog_send_textsize"
+                android:text="開啟wifi"/>
+        </LinearLayout>
+	    
+	</LinearLayout>
+</ScrollView>
+

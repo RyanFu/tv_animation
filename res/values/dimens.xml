@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>    
     <!-- Application -->
-    <dimen name="topbar_height">42dp</dimen>
-    <dimen name="topbar_textsize">22dp</dimen>
     <dimen name="seperate_height">3dp</dimen>
     
+    <!-- Action Bar Item -->
+    <dimen name="actionbar_item_padding">10dp</dimen>
+    <dimen name="actionbar_item_imagesize">40dp</dimen>
     
     
     <!-- Usa Drama Activity -->
@@ -17,7 +18,7 @@
     <dimen name="gridview_horizontal_spacing">3dp</dimen>
     <dimen name="gridview_padding_rl">10dp</dimen>
     <!-- Grid View Item -->
-    <dimen name="gridview_item_padding">3dp</dimen>
+    <dimen name="gridview_item_padding">4dp</dimen>
     <dimen name="gridview_item_text_padding_rl">2dp</dimen>
     <dimen name="gridview_item_name_textsize">18dp</dimen>
     <dimen name="gridview_item_season_textsize">13dp</dimen>
@@ -36,18 +37,50 @@
     
    
     
+    
+    <!-- Menu Fragment -->
+    <dimen name="menu_fragment_divider">1dp</dimen>
+    <dimen name="menu_fragment_margin_rl">20dp</dimen>
+    <dimen name="menu_fragment_margin_tb">2dp</dimen>
+    <dimen name="menu_fragment_title_textsize">14dp</dimen>
+    <dimen name="menu_fragment_item_imagetsize">18dp</dimen>
+    <dimen name="menu_fragment_item_textsize">20dp</dimen>
+    <dimen name="menu_fragment_item_text_margin">10dp</dimen>
+    <dimen name="memu_fragment_item_padding">30dp</dimen>
+    <dimen name="menu_fragment_item_mark_width">5dp</dimen>
+    <dimen name="menu_fragment_item_mark_height">50dp</dimen>
+    
+    
+    
     <!-- My Favorite Fragment -->
-    <dimen name="myfavorite_activity_action_item_padding">30dp</dimen>
-    <dimen name="myfavorite_activity_action_item_textsize">20dp</dimen>
+    <dimen name="myfavorite_fragment_action_item_padding">30dp</dimen>
+    <dimen name="myfavorite_fragment_action_item_textsize">20dp</dimen>
+    
+    
     
     <!-- Setting Fragment -->
-    <dimen name="setting_activity_seperate_height">1dp</dimen>
-    <dimen name="setting_activity_margin">20dp</dimen>    
-    <dimen name="setting_activity_itemsize">50dp</dimen>        
-    <dimen name="setting_activity_itempadding">10dp</dimen>        
-    <dimen name="setting_activity_itemmargin">6dp</dimen>
-    <dimen name="setting_activity_textsize">25dp</dimen>
-    <dimen name="setting_activity_imagesize">25dp</dimen>
+    <dimen name="setting_fragment_seperate_height">1dp</dimen>
+    <dimen name="setting_fragment_margin">20dp</dimen>    
+    <dimen name="setting_fragment_itemsize">50dp</dimen>        
+    <dimen name="setting_fragment_itempadding">10dp</dimen>        
+    <dimen name="setting_fragment_itemmargin">6dp</dimen>
+    <dimen name="setting_fragment_textsize">25dp</dimen>
+    <dimen name="setting_fragment_imagesize">25dp</dimen>
+    
+    
+    
+    <!-- Player Activity -->
+    <!-- Player Activity Dialog-->    
+    <dimen name="player_activity_dialog_seperate_height">1dp</dimen>
+    <dimen name="player_activity_dialog_title_textsize">24dp</dimen>
+    <dimen name="player_activity_dialog_content_textsize">18dp</dimen>
+    <dimen name="player_activity_dialog_send_textsize">20dp</dimen>
+    <dimen name="player_activity_dialog_send_padding_rl">20dp</dimen>
+    <dimen name="player_activity_dialog_send_padding_tb">5dp</dimen>
+    <dimen name="player_activity_dialog_margin">16dp</dimen>
+    <dimen name="player_activity_dialog_padding">20dp</dimen>
+    
+    
     
     
 
@@ -88,5 +121,25 @@
     <dimen name="dialog_player_loading_tv_margin_rl">5dp</dimen>
     <dimen name="dialog_player_loading_v_height">2dp</dimen>
     <dimen name="dialog_player_loading_v_margin_rl">10dp</dimen>
+
+    
+    <!-- Dialog Promote -->
+    <dimen name="dialog_promote_width">250dp</dimen>
+    <dimen name="dialog_promote_margin">8dp</dimen>
+    <dimen name="dialog_promote_textsize">20dp</dimen>
+    <dimen name="dialog_promote_divider_height">2dp</dimen>
+    
+    <!-- Player Controller -->
+    <dimen name="player_controller_textsize">14dp</dimen>
+    <dimen name="player_controller_imagesize">50dp</dimen>
+    <dimen name="player_controller_play_pause_imagesize">50dp</dimen>
+    <dimen name="player_controller_seekbarsize">28dp</dimen>
+    <dimen name="player_controller_padding">4dp</dimen>
+    <dimen name="player_controller_ll_margin">5dp</dimen>
+    
+    <!-- Spinner -->
+    <dimen name="spinner_dropdown_textsize">18dp</dimen>
+    <dimen name="spinner_dropdown_text_padding_rl">8dp</dimen>
+    
 
 </resources>

@@ -68,8 +68,9 @@ public class ChapterActivity extends SherlockActivity {
 	private int itemMargin = 0;
 	private int chapterCount = 0;
 	private int currentChapter = 0;
-	private int likeDrama = 0;
-	private int dramaId = 0;
+	private int likeAnimate = 0;
+	private int animateId = 0;
+	private String animateName = "";
 	private String[] chapters;
 	
 	@Override
@@ -80,9 +81,6 @@ public class ChapterActivity extends SherlockActivity {
         
         initView();
         
-        
-        //this.setAd();
-        
         loadData = new LoadDataTask();
         if(Build.VERSION.SDK_INT < 11)
         	loadData.execute();
@@ -90,6 +88,15 @@ public class ChapterActivity extends SherlockActivity {
         	loadData.executeOnExecutor(LoadDataTask.THREAD_POOL_EXECUTOR, 0);
 	}
 	private void initView() {
+		Bundle extras = getIntent().getExtras();
+		if(extras != null) {
+        	animateId = extras.getInt("animate_id");
+        	animateName = extras.getString("animate_name");
+        } else {
+        	animateId = 1;
+        	animateName = "測試";
+        }
+		
 		tlColumnNum = getResources().getInteger(R.integer.chapter_activity_item_num_column);
 		
 		DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -151,18 +158,18 @@ public class ChapterActivity extends SherlockActivity {
 		ibFavorite.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				if(likeDrama == 1) {
+				if(likeAnimate == 1) {
 					//EasyTracker.getTracker().trackEvent("戲劇集數", "我的收藏", "取消", (long)0);
-					likeDrama = 0;
+					likeAnimate = 0;
 			    } else {
 			    	//EasyTracker.getTracker().trackEvent("戲劇集數", "我的收藏", "加入", (long)0);
-			    	likeDrama = 1;
+			    	likeAnimate = 1;
 			    }
 				
 				SQLiteTvAnimationHelper instance = SQLiteTvAnimationHelper.getInstance(ChapterActivity.this);
 		        SQLiteDatabase db = instance.getWritableDatabase();
 		        db.beginTransaction();
-		        instance.updateTvAnimationLike(db, dramaId, likeDrama);
+		        instance.updateTvAnimationLike(db, animateId, likeAnimate);
 				
 				instance.updateTvAnimationChapterRecord(db, animate.getId(), currentChapter);
 		        db.setTransactionSuccessful();
@@ -170,7 +177,7 @@ public class ChapterActivity extends SherlockActivity {
 		        db.close();
 		        instance.closeHelper();
 				
-		        if(likeDrama == 1) {
+		        if(likeAnimate == 1) {
 			    	ibFavorite.setImageResource(R.drawable.favorite_press);        		
 	        		setToast(true, "已加入至我的最愛", "已移除於我的最愛");
 			    } else {
@@ -303,7 +310,7 @@ public class ChapterActivity extends SherlockActivity {
 		dialogReport.show();
 		
 	}
-class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
+	class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
 		
 		@Override  
         protected void onPreExecute() {
@@ -319,8 +326,8 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
 		@Override  
         protected Boolean doInBackground(Integer... params) {
         	Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-        	TvAnimationAPI dramaAPI = new TvAnimationAPI();
-        	return dramaAPI.report(animate.getId(), Integer.parseInt(chapters[spinnerChapter.getSelectedItemPosition()]));
+        	TvAnimationAPI tvAnimateAPI = new TvAnimationAPI();
+        	return tvAnimateAPI.report(animate.getId(), Integer.parseInt(chapters[spinnerChapter.getSelectedItemPosition()]));
         }
   
         @Override  
@@ -347,24 +354,19 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
 	}
 	private Animate fetchData() {
 		
-	/*SQLiteTvAnimationHelper instance = SQLiteTvAnimationHelper.getInstance(this);
+		SQLiteTvAnimationHelper instance = SQLiteTvAnimationHelper.getInstance(this);
         SQLiteDatabase db = instance.getReadableDatabase();
         db.beginTransaction();
-        animate = instance.getTvAnimation(db, dramaId);
-		likeDrama = instance.getTvAnimationLike(db, dramaId); 
-		currentChapter = instance.getTvAnimationChapterRecord(db, dramaId);
+        animate = instance.getTvAnimation(db, animateId);
+		likeAnimate = instance.getTvAnimationLike(db, animateId); 
+		currentChapter = instance.getTvAnimationChapterRecord(db, animateId);
         db.setTransactionSuccessful();
         db.endTransaction();
         db.close();
         instance.closeHelper();
         chapters = animate.getEpsNumStr().split(",");
-		chapterCount = chapters.length;*/
-		animate = new Animate ();
-		animate.setPosterUrl("http://iv.ckcdn.com/images/tvcover/100302/00100302.jpg");
-		likeDrama = 0; 
-		currentChapter = 3;
-		chapters = new String[] {"1","2","3","4","5","6","7","8","9","10"};
 		chapterCount = chapters.length;
+		
 		return animate;		
 		
 	}
@@ -388,9 +390,9 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
         }
   
         @Override  
-        protected void onPostExecute(Animate drama) {
+        protected void onPostExecute(Animate animate) {
         	
-        	if(drama != null) {
+        	if(animate != null) {
         		setChapterItem();
         		setView();
         		setClickListener();
@@ -402,7 +404,7 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
         	ivLoadingIcon.setVisibility(View.GONE);
         	ivLoadingCircle.setVisibility(View.GONE);*/
         	
-	        super.onPostExecute(drama);  
+	        super.onPostExecute(animate);  
         }
 		
 	}
@@ -439,7 +441,7 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
 		setLike();
 	}
 	private void setLike() {		
-		if(likeDrama == 1) {
+		if(likeAnimate == 1) {
 	    	ibFavorite.setImageResource(R.drawable.favorite_press);
 	    } else {
 	    	ibFavorite.setImageResource(R.drawable.favorite_normal);
@@ -489,7 +491,7 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
 							setItemMark();  
 							
 							Intent newAct = new Intent();
-							newAct.putExtra("drama_id", animate.getId());
+							newAct.putExtra("animate_id", animate.getId());
 							newAct.putExtra("eps_num", Integer.parseInt(chapters[position]));
 			                //newAct.setClass(ChapterActivity.this, PlayerActivity.class);
 			                ChapterActivity.this.startActivity(newAct);
@@ -530,8 +532,8 @@ class ReportTask extends AsyncTask<Integer, Integer, Boolean> {
 	class UpdateViewTask extends AsyncTask<Integer, Integer, String> {
 	    @Override
 	    protected String doInBackground(Integer... params) {
-			TvAnimationAPI dramaAPI = new TvAnimationAPI();
-			dramaAPI.updateViews(dramaId);
+			TvAnimationAPI tvAnimateAPI = new TvAnimationAPI();
+			tvAnimateAPI.updateViews(animateId);
 	        return "progress end";
 	    }
 	}

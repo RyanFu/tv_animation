@@ -27,7 +27,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,6 +87,9 @@ public class MainActivity extends SlidingFragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getSupportMenuInflater().inflate(R.menu.action_bar_search, menu);
+        /*MenuItem item = menu.findItem(R.id.menu_item_action_provider_action_bar);
+        SearchActionProvider mSearchActionProvider = (SearchActionProvider) item.getActionProvider();*/
+        
         return true;
     }
 	 
@@ -93,7 +98,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			toggle();
-			return true;
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

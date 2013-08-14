@@ -2,12 +2,14 @@ package com.jumplife.fragment;
 
 import java.util.ArrayList;
 
+import com.jumplife.tvanimation.ChapterActivity;
 import com.jumplife.tvanimation.R;
 import com.jumplife.tvanimation.adapter.AnimationGridAdapter;
 import com.jumplife.tvanimation.entity.Animate;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -97,7 +99,11 @@ public class MyFavoriteFragment extends Fragment {
 	private void setViews() {
         gvAnimate.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            	
+				Intent newAct = new Intent();
+                newAct.putExtra("animate_id", animateList.get(position).getId());
+                newAct.putExtra("animate_name", animateList.get(position).getName());
+				newAct.setClass(mFragmentActivity, ChapterActivity.class );
+				mFragmentActivity.startActivity(newAct);
             }
         });
         adapter = new AnimationGridAdapter(mFragmentActivity, animateList);        

@@ -18,6 +18,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:clickable="false"
     android:gravity="center"
     android:background="@null">
 
@@ -26,6 +27,7 @@
         android:layout_height="@dimen/actionbar_item_imagesize"
         android:padding="@dimen/actionbar_item_padding"
         android:contentDescription="@null"
+        android:clickable="true"
         android:background="@null"
         android:src="@drawable/ib_search"
         android:scaleType="fitCenter" />

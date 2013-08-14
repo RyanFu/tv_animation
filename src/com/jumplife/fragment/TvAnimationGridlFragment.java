@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.jumplife.tvanimation.ChapterActivity;
 import com.jumplife.tvanimation.R;
 import com.jumplife.tvanimation.adapter.AnimationGridAdapter;
 import com.jumplife.tvanimation.entity.Animate;
@@ -12,6 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -163,7 +165,11 @@ public class TvAnimationGridlFragment extends Fragment {
 	private void setListener() {
         gvAnimation.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				
+				Intent newAct = new Intent();
+                newAct.putExtra("animate_id", animateList.get(position).getId());
+                newAct.putExtra("animate_name", animateList.get(position).getName());
+				newAct.setClass(mFragmentActivity, ChapterActivity.class );
+				mFragmentActivity.startActivity(newAct);				
 			}
 		});
         gvAnimation.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));

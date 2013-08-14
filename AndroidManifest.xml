@@ -31,26 +31,27 @@
 		android:theme="@style/Theme.Sherlock.Light.DarkActionBar"
 		android:name=".TvAnimationApplication"
         android:hardwareAccelerated="true" 
-        >
-       
+        >       
         
         <activity android:name="TvAnimationActivity"
-
             android:screenOrientation="portrait" >
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
            
         </activity>
 
-        <activity android:name="SearchActivity"/>
-		<activity android:name="ChapterActivity">
-           	 <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>   
+        <activity android:name="SearchActivity"
+            android:screenOrientation="portrait"/>
+		<activity android:name="ChapterActivity"
+		    android:screenOrientation="portrait" >
+         	
         </activity>
-		<activity android:name="MainActivity"
+    
+        <activity android:name="MainActivity"
             android:screenOrientation="portrait" />
-
-        
+           
     </application>
 
 </manifest>

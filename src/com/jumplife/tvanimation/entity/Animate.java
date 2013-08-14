@@ -4,30 +4,26 @@ public class Animate{
 	private int id;
 	private String name;
 	private String season;
-	private String coverPosterUrl;
-	private String introPosterUrl;
+	private String posterUrl;
 	private String introduction;
-	private String actors;
 	private String epsNumStr;
 	private int views;
-	private int areaId;
+	private int typeId;
 	
 	public Animate() {
-		this(-1, "", "", "", "", "", "", "", 0, 0);
+		this(-1, "", "", "", "", "", 0, 0);
 	}
 	
-	public Animate (int id, String name, String season, String coverPosterUrl, String introPosterUrl, String introduction, 
-			String actors, String epsNumStr, int views, int areaId) {
+	public Animate (int id, String name, String season, String posterUrl, String introduction, 
+			String epsNumStr, int views, int typeId) {
 		this.id = id;
 		this.name = name;
 		this.season = season;
-		this.coverPosterUrl = coverPosterUrl;
-		this.introPosterUrl = introPosterUrl;
+		this.posterUrl = posterUrl;
 		this.introduction = introduction;
-		this.actors = actors;
 		this.epsNumStr = epsNumStr;
 		this.views = views;
-		this.areaId = areaId;
+		this.typeId = typeId;
 	}
 	
 	
@@ -49,29 +45,17 @@ public class Animate{
 	public void setSeason(String season){
 		this.season = season;
 	}
-	public String getCoverPosterUrl(){
-		return coverPosterUrl;
+	public String getPosterUrl(){
+		return posterUrl;
 	}
-	public void setCoverPosterUrl(String coverPosterUrl){
-		this.coverPosterUrl = coverPosterUrl;
-	}
-	public String getIntroPosterUrl(){
-		return introPosterUrl;
-	}
-	public void setIntroPosterUrl(String introPosterUrl){
-		this.introPosterUrl = introPosterUrl;
+	public void setPosterUrl(String posterUrl){
+		this.posterUrl = posterUrl;
 	}
 	public String getIntroduction(){
 		return introduction;
 	}
 	public void setIntroduction(String introduction){
 		this.introduction = introduction;
-	}	
-	public String getActors(){
-		return this.actors;
-	}
-	public void setActors(String actors){
-		this.actors = actors;
 	}
 	public String getEpsNumStr(){
 		return epsNumStr;
@@ -85,10 +69,10 @@ public class Animate{
 	public void setViews(int views){
 		this.views = views;
 	}
-	public int getAreId(){
-		return areaId;
+	public int getTypeId(){
+		return typeId;
 	}
-	public void setAreId(int areaId){
-		this.areaId = areaId;
+	public void setTypeId(int typeId){
+		this.typeId = typeId;
 	}
 }

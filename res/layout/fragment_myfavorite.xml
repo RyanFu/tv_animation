@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:id="@+id/rl_has_myfavorite"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+    
+    <GridView android:id="@+id/gridview_myfavorite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="@dimen/gridview_padding_rl"
+        android:paddingRight="@dimen/gridview_padding_rl"
+        android:verticalSpacing="@dimen/gridview_vertical_spacing"  
+        android:horizontalSpacing="@dimen/gridview_horizontal_spacing" 
+        android:background="@color/white"
+        android:listSelector="@null" 
+        android:numColumns="@integer/gridview_num_columns" />
+
+	<TextView android:id="@+id/textview_myfavorite"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+		android:paddingTop="@dimen/myfavorite_activity_action_item_padding"
+		android:gravity="center_horizontal"
+		android:background="@color/white"
+        android:textColor="@color/black"
+        android:textSize = "@dimen/myfavorite_activity_action_item_textsize" 
+		android:text="@string/no_like" />	        
+	        
+	<include layout="@layout/layout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true" />
+	        
+	<ImageButton android:id="@+id/refresh"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        android:contentDescription="@null"
+        android:background="@drawable/ib_renew_bg"
+        android:src="@drawable/renew" />
+
+</RelativeLayout>
+	    
+ 
+	   
+	    
+	  

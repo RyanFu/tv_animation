@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+        android:padding="@dimen/chapter_activity_dialog_padding"
+	    android:orientation="vertical" >
+	    
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:textColor="@color/white"
+	        android:textSize="@dimen/chapter_activity_dialog_title_textsize"
+	        android:text="戲劇簡介"/>
+	    <View 
+	        android:layout_width="match_parent"
+	        android:layout_height="@dimen/chapter_activity_dialog_seperate_height"
+	        android:layout_marginTop="@dimen/chapter_activity_dialog_margin"
+	        android:layout_marginBottom="@dimen/chapter_activity_dialog_margin"
+	        android:background="@color/grey"/>
+	    <TextView android:id="@+id/tv_views"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="@color/white"
+	        android:textSize="@dimen/chapter_activity_dialog_content_textsize"
+	        android:text="觀看次數 : "/>
+	    <TextView android:id="@+id/tv_actors"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="@dimen/chapter_activity_dialog_margin"
+	        android:lineSpacingMultiplier="1.5"
+	        android:textColor="@color/white"
+	        android:textSize="@dimen/chapter_activity_dialog_content_textsize"
+	        android:text="演員 : "/>
+	    <TextView android:id="@+id/tv_intro"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="@dimen/chapter_activity_dialog_margin"
+            android:layout_marginBottom="@dimen/chapter_activity_dialog_margin"
+            android:lineSpacingMultiplier="1.5"
+	        android:textColor="@color/white"
+	        android:textSize="@dimen/chapter_activity_dialog_content_textsize"
+	        android:text="簡介 : "/>
+	</LinearLayout>
+</ScrollView>

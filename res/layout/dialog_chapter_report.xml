@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" >
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="@dimen/chapter_activity_dialog_margin"
+	    android:orientation="vertical" >
+	    
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:textColor="@color/white"
+	        android:textSize="@dimen/chapter_activity_dialog_title_textsize"
+	        android:text="問題回報"/>
+	    <View 
+	        android:layout_width="match_parent"
+	        android:layout_height="@dimen/chapter_activity_dialog_seperate_height"
+	        android:layout_marginTop="@dimen/chapter_activity_dialog_margin"
+	        android:layout_marginBottom="@dimen/chapter_activity_dialog_margin"
+	        android:background="@color/grey"/>
+	    <RelativeLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/chapter_activity_dialog_margin" >
+            <ImageView android:id="@+id/iv_icon1"
+                android:layout_width="@dimen/chapter_activity_dialog_report_imagesize"
+                android:layout_height="@dimen/chapter_activity_dialog_report_imagesize"
+                android:layout_marginRight="@dimen/chapter_activity_dialog_report_imageMargin"
+                android:contentDescription="@null"
+                android:background="@drawable/loadingeye_3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_icon1"
+                android:text="請選擇發生問題的集數"
+                android:textColor="@color/white"
+                android:textSize="@dimen/chapter_activity_dialog_content_textsize" />
+
+        </RelativeLayout>
+	    <Spinner android:id="@+id/sp_chapter"	        
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/chapter_activity_dialog_margin"
+            android:background="@color/white"
+            android:spinnerMode="dropdown"
+            android:dropDownVerticalOffset="@dimen/chapter_activity_dialog_report_spinner_padding_tb" />
+	    <RelativeLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+            android:layout_margin="@dimen/chapter_activity_dialog_margin" >
+		    <ImageView android:id="@+id/iv_icon2"
+		        android:layout_width="@dimen/chapter_activity_dialog_report_imagesize"
+	            android:layout_height="@dimen/chapter_activity_dialog_report_imagesize"
+	            android:layout_marginRight="@dimen/chapter_activity_dialog_report_imageMargin"
+	            android:contentDescription="@null"
+	            android:background="@drawable/loadingeye_3" />
+		    <TextView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_toRightOf="@+id/iv_icon2"
+		        android:textColor="@color/white"
+		        android:textSize="@dimen/chapter_activity_dialog_content_textsize"
+		        android:text="若還有其他使用上問題或建議，請使用設定裡的［建議回饋］功能告知我們，謝謝！"/>
+	    </RelativeLayout>
+	     <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/chapter_activity_dialog_margin"
+            android:gravity="center"
+            android:orientation="horizontal" >
+		    <Button android:id="@+id/button_send"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:background="@drawable/dialog_chapter_report_text_bg"
+		        android:paddingTop="@dimen/chapter_activity_dialog_send_padding_tb"
+	            android:paddingBottom="@dimen/chapter_activity_dialog_send_padding_tb"
+		        android:paddingLeft="@dimen/chapter_activity_dialog_send_padding_rl"
+		        android:paddingRight="@dimen/chapter_activity_dialog_send_padding_rl"
+		        android:textColor="@drawable/dialog_chapter_report_text_color"
+		        android:textSize="@dimen/chapter_activity_dialog_send_textsize"
+                android:text="送出"/>
+	    </LinearLayout>
+	</LinearLayout>
+</ScrollView>
+

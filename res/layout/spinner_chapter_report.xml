@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/spinner_item_linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/chapter_activity_dialog_report_spinner_padding_tb"
+    android:paddingBottom="@dimen/chapter_activity_dialog_report_spinner_padding_tb"
+    android:paddingLeft="@dimen/chapter_activity_dialog_report_spinner_padding_rl"
+    android:paddingRight="@dimen/chapter_activity_dialog_report_spinner_padding_rl"
+    android:orientation="horizontal"
+    android:background="@drawable/spinner_bg" >
+    
+    <TextView android:id="@+id/tv_spinner"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_centerVertical="true"
+	    android:textColor="@drawable/spinner_tv_bg"
+	    android:textSize="@dimen/chapter_activity_dialog_report_spinner_textsize" />
+    <ImageView android:id="@+id/iv_spinner"
+        android:layout_width="@dimen/chapter_activity_dialog_report_spinner_imagesize"
+        android:layout_height="@dimen/chapter_activity_dialog_report_spinner_imagesize"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/spinner_iv_bg"
+        android:contentDescription="@null" />
+</RelativeLayout>

@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <ScrollView 
+   <ScrollView  
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        
-	    <RelativeLayout android:id="@+id/rl_chapter_intro"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+   <LinearLayout
+    android:id="@+id/ll_chapter"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="@color/white">    
+	    <LinearLayout android:id="@+id/ll_chapter_intro"
 		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content" />
-	    
+		    android:layout_height="match_parent" 
+		    android:orientation="horizontal"
+		    android:background="@color/background_item"/>
+	</LinearLayout>    
     </ScrollView>
     <ImageButton android:id="@+id/ib_refresh"
         android:layout_width="match_parent"
@@ -21,4 +29,4 @@
         android:src="@drawable/renew" />
 
  
-</RelativeLayout>
+</LinearLayout>

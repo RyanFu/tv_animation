@@ -32,7 +32,6 @@ import android.widget.ImageView.ScaleType;
 public class TvAnimationActivity extends Activity {
 	private LoadDataTask taskLoad;
 	private CheckVersionTask taskVersion;
-	private ImageView ivWoad;
 	private ImageView ivLoading;
 	private TextView tvloading;
 	private AnimationDrawable animationDrawable;
@@ -50,12 +49,9 @@ public class TvAnimationActivity extends Activity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         
-        ivWoad = (ImageView)findViewById(R.id.iv_word);
-        
         RelativeLayout.LayoutParams ivparams = new RelativeLayout.LayoutParams(
         		displayMetrics.widthPixels / 3, displayMetrics.widthPixels / 3);
-        ivparams.setMargins(0, 0, 0, 50);
-        ivparams.addRule(RelativeLayout.ABOVE, ivWoad.getId());
+        ivparams.setMargins(0, displayMetrics.widthPixels / 6, 0, 50);
         ivparams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         ivLoading = (ImageView)findViewById(R.id.iv_load);
         ivLoading.setLayoutParams(ivparams);

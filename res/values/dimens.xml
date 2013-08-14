@@ -22,6 +22,7 @@
     <dimen name="gridview_item_name_textsize">18dp</dimen>
     <dimen name="gridview_item_season_textsize">13dp</dimen>
     
+
       <!-- Search listView -->
     <dimen name="search_activity_itemsize">50dp</dimen>  
     <dimen name="search_activity_itempadding">10dp</dimen> 
@@ -33,20 +34,13 @@
     <dimen name="search_activity_et_paddingleft">10dp</dimen>
     <dimen name="search_activity_im_size">37dp</dimen>
     
-    <!-- Search listView -->
-    <dimen name="search_activity_itemsize">50dp</dimen>  
-    <dimen name="search_activity_itempadding">10dp</dimen> 
-    <dimen name="search_activity_seperate_height">1dp</dimen>
-    <dimen name="search_activity_textsize">25dp</dimen>
+   
     
-    <!-- Search Activity -->
-    <dimen name="search_activity_enterspace_padding">5dp</dimen>
-    <dimen name="search_activity_et_paddingleft">10dp</dimen>
-    <dimen name="search_activity_ll_enter_msg_paddingleft">10dp</dimen>
-    <dimen name="search_activity_im_size">37dp</dimen>
-    <dimen name="search_activity_tv_textsize">20dp</dimen>
+    <!-- My Favorite Fragment -->
+    <dimen name="myfavorite_activity_action_item_padding">30dp</dimen>
+    <dimen name="myfavorite_activity_action_item_textsize">20dp</dimen>
     
-    <!-- Setting Activity -->
+    <!-- Setting Fragment -->
     <dimen name="setting_activity_seperate_height">1dp</dimen>
     <dimen name="setting_activity_margin">20dp</dimen>    
     <dimen name="setting_activity_itemsize">50dp</dimen>        
@@ -56,14 +50,43 @@
     <dimen name="setting_activity_imagesize">25dp</dimen>
     
     
+
     <!-- Chapter Activity -->
     <integer name="chapter_activity_item_num_column">5</integer>
     <dimen name="chapter_activity_seperate_height">1dp</dimen>
     <dimen name="chapter_activity_textsize">16dp</dimen>
+    <dimen name="chapter_activity_toast_textsize">20dp</dimen>
+    <dimen name="chapter_activity_toast_padding">2dp</dimen>
     
+    <!-- Chapter Activity IntroDuction Dialog-->    
+    <dimen name="chapter_activity_dialog_seperate_height">1dp</dimen>
+    <dimen name="chapter_activity_dialog_title_textsize">24dp</dimen>
+    <dimen name="chapter_activity_dialog_content_textsize">18dp</dimen>
+    <dimen name="chapter_activity_dialog_send_textsize">20dp</dimen>
+    <dimen name="chapter_activity_dialog_send_padding_rl">20dp</dimen>
+    <dimen name="chapter_activity_dialog_send_padding_tb">5dp</dimen>
+    <dimen name="chapter_activity_dialog_margin">16dp</dimen>
+    <dimen name="chapter_activity_dialog_padding">20dp</dimen>
+ 	
+     <!-- Chapter Activity Report Dialog-->
+    <dimen name="chapter_activity_dialog_report_imagesize">19dp</dimen>
+    <dimen name="chapter_activity_dialog_report_imageMargin">5dp</dimen>
+    <dimen name="chapter_activity_dialog_report_b_padding_rl">30dp</dimen>
+    <dimen name="chapter_activity_dialog_report_b_padding_tb">5dp</dimen>
+    <dimen name="chapter_activity_dialog_report_spinner_textsize">20dp</dimen>
+    <dimen name="chapter_activity_dialog_report_spinner_imagesize">15dp</dimen>
+    <dimen name="chapter_activity_dialog_report_spinner_padding_rl">15dp</dimen>
+    <dimen name="chapter_activity_dialog_report_spinner_padding_tb">5dp</dimen>
     
+    <!-- Layout Loading -->
+    <dimen name="layout_loading_imagesize">100dp</dimen>
     
-    
-    
-    
+    <!-- Dialog player Loading -->
+    <dimen name="dialog_player_loading_ll_margin">10dp</dimen>
+    <dimen name="dialog_player_loading_imagesize">40dp</dimen>
+    <dimen name="dialog_player_loading_textsize">20dp</dimen>
+    <dimen name="dialog_player_loading_tv_margin_rl">5dp</dimen>
+    <dimen name="dialog_player_loading_v_height">2dp</dimen>
+    <dimen name="dialog_player_loading_v_margin_rl">10dp</dimen>
+
 </resources>

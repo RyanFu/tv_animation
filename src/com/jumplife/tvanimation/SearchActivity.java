@@ -44,7 +44,8 @@ public class SearchActivity extends SherlockActivity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-		setContentView(R.layout.acticity_search);
+	    getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
+	    setContentView(R.layout.acticity_search);
 
 		initViews();  
 		fetchData();

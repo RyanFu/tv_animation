@@ -27,9 +27,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItemCompat;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +37,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -65,6 +64,9 @@ public class MainActivity extends SlidingFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+	    getSupportActionBar().setIcon(R.drawable.loading_logo);
+		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
 
 		initView();
 		initSlidingMenu(savedInstanceState);
@@ -83,12 +85,24 @@ public class MainActivity extends SlidingFragmentActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-	 @Override
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getSupportMenuInflater().inflate(R.menu.action_bar_search, menu);
-        /*MenuItem item = menu.findItem(R.id.menu_item_action_provider_action_bar);
-        SearchActionProvider mSearchActionProvider = (SearchActionProvider) item.getActionProvider();*/
+        
+        MenuItem item = menu.findItem(R.id.menu_item_action_provider_search);
+        View actionView = item.getActionView();
+        ImageButton ibRefresh = (ImageButton) actionView.findViewById(R.id.ib_actionbar_search);
+        if (ibRefresh != null) {
+        	ibRefresh.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					Intent newAct = new Intent();
+					newAct.setClass(MainActivity.this, SearchActivity.class );
+					MainActivity.this.startActivity(newAct);
+				}            	
+            });
+        }
         
         return true;
     }
@@ -106,7 +120,6 @@ public class MainActivity extends SlidingFragmentActivity {
 
 	private void initView() {
 		setActionBarListNavigation();
-		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
 		
 		/*
 		 * Loading Animation Init

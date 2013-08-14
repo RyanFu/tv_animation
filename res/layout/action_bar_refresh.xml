@@ -18,18 +18,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:clickable="false"
     android:gravity="center"
     android:background="@null">
 
-    <ImageButton android:id="@+id/ib_actionbar_search"
+    <ImageButton android:id="@+id/ib_actionbar_refresh"
         android:layout_width="@dimen/actionbar_item_imagesize"
         android:layout_height="@dimen/actionbar_item_imagesize"
         android:padding="@dimen/actionbar_item_padding"
         android:contentDescription="@null"
-        android:clickable="true"
         android:background="@null"
-        android:src="@drawable/ib_search"
+        android:src="@drawable/ib_refresh"
         android:scaleType="fitCenter" />
 
 </LinearLayout>

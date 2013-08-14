@@ -20,7 +20,7 @@
             android:layout_width="@dimen/search_activity_im_size"
             android:layout_height="@dimen/search_activity_im_size"
             android:scaleType="fitCenter"
-            android:src="@drawable/ib_search_status"
+            android:src="@drawable/search_normal"
             android:background="@null"
     		android:contentDescription="@null"
     		android:layout_gravity="center_vertical"

@@ -4,7 +4,7 @@
     <dimen name="seperate_height">3dp</dimen>
     
     <!-- Action Bar Item -->
-    <dimen name="actionbar_item_padding">10dp</dimen>
+    <dimen name="actionbar_item_padding">8dp</dimen>
     <dimen name="actionbar_item_imagesize">40dp</dimen>
     
     

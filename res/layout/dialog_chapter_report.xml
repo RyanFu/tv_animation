@@ -30,7 +30,7 @@
                 android:layout_height="@dimen/chapter_activity_dialog_report_imagesize"
                 android:layout_marginRight="@dimen/chapter_activity_dialog_report_imageMargin"
                 android:contentDescription="@null"
-                android:background="@drawable/loadingeye_3" />
+                android:background="@drawable/landingeye_3" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
 	            android:layout_height="@dimen/chapter_activity_dialog_report_imagesize"
 	            android:layout_marginRight="@dimen/chapter_activity_dialog_report_imageMargin"
 	            android:contentDescription="@null"
-	            android:background="@drawable/loadingeye_3" />
+	            android:background="@drawable/landingeye_3" />
 		    <TextView 
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"

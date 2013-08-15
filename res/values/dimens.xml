@@ -18,7 +18,7 @@
     <dimen name="gridview_horizontal_spacing">3dp</dimen>
     <dimen name="gridview_padding_rl">10dp</dimen>
     <!-- Grid View Item -->
-    <dimen name="gridview_item_padding">4dp</dimen>
+    <dimen name="gridview_item_padding">5dp</dimen>
     <dimen name="gridview_item_text_padding_rl">2dp</dimen>
     <dimen name="gridview_item_name_textsize">18dp</dimen>
     <dimen name="gridview_item_season_textsize">13dp</dimen>
@@ -31,6 +31,7 @@
     <dimen name="search_activity_textsize">25dp</dimen>
     
     <!-- Search Activity -->
+    <dimen name="search_activity_enterspace_height">42dp</dimen>
     <dimen name="search_activity_enterspace_padding">5dp</dimen>
     <dimen name="search_activity_et_paddingleft">10dp</dimen>
     <dimen name="search_activity_im_size">37dp</dimen>

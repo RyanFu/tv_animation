@@ -5,42 +5,41 @@
     android:orientation="vertical" >
 
     <LinearLayout android:id="@+id/ll_enterspace"
-   	   android:layout_width="match_parent"
-   	   android:layout_height="42dp"
-   	   android:orientation="horizontal"
-   	   android:background="@color/background_item"
-   	   android:paddingLeft="20dp"
-   	   android:paddingRight="20dp"
-   	   android:gravity="center_horizontal"
-   	   android:focusable="true" 
-       android:focusableInTouchMode="true"
-   	   >
+		android:layout_width="match_parent"
+		android:layout_height="42dp"
+		android:orientation="horizontal"
+		android:background="@color/background_item"
+		android:paddingLeft="20dp"
+		android:paddingRight="20dp"
+		android:gravity="center_horizontal"
+		android:focusable="true" 
+        android:focusableInTouchMode="true" >
    	   
-        <ImageButton android:id="@+id/ib_search_icon"
+        <ImageView android:id="@+id/iv_search_icon"
             android:layout_width="@dimen/search_activity_im_size"
             android:layout_height="@dimen/search_activity_im_size"
-            android:scaleType="fitCenter"
-            android:src="@drawable/search_normal"
-            android:background="@null"
-    		android:contentDescription="@null"
-    		android:layout_gravity="center_vertical"
-    		android:padding="@dimen/search_activity_enterspace_padding"/>
-
-        <EditText
-            android:id="@+id/et_search_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext_states"
-            android:padding="@dimen/search_activity_enterspace_padding"
-            android:hint="搜尋"
             android:layout_gravity="center_vertical"
-            android:inputType="text" />
+            android:padding="@dimen/search_activity_enterspace_padding"
+            android:background="@null"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/search_normal" />
+
+		<EditText
+			android:id="@+id/et_search_input"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/rounded_edittext_states"
+			android:padding="@dimen/search_activity_enterspace_padding"
+			android:hint="搜尋"
+			android:layout_gravity="center_vertical"
+			android:inputType="text" />
         	
-   	</LinearLayout>
+	</LinearLayout>
+   	
    	<ListView android:id="@+id/lv_output"
-   	    android:layout_width="match_parent"
-   	    android:layout_height="match_parent"
-   	    android:background="@color/white"/>
-   
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/white" />   
 
 </LinearLayout>

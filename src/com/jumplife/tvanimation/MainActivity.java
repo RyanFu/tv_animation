@@ -136,7 +136,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	private void setActionBarListNavigation() {
 		Context context = getSupportActionBar().getThemedContext();
         ArrayAdapter<String> list = 
-        		new ArrayAdapter<String>(context, R.layout.sherlock_spinner_item, new String[]{"依更新日期排序", "依撥放次數排序"});
+        		new ArrayAdapter<String>(context, R.layout.sherlock_spinner_item, new String[]{"依更新日期排序", "依播放次數排序"});
         list.setDropDownViewResource(R.layout.spinner_dropdown_sort_item);
 
         getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);

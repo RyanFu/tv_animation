@@ -153,7 +153,7 @@ public class TvAnimationActivity extends Activity {
 	        
 	        instance.updateTvAnimationIsShow(db, dramasShowId);
 	        instance.updateTvAnimationViews(db, dramas);
-	        instance.updateDramaEps(db, dramas);
+	        instance.updateTvAnimationEps(db, dramas);
             db.setTransactionSuccessful();
             db.endTransaction();
             db.close();

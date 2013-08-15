@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -199,6 +200,12 @@ public class ChapterActivity extends SherlockActivity {
 			@Override
 			public void onClick(View v) {
 				
+				Intent newAct = new Intent();
+				newAct.putExtra("animate_id", animate.getId());
+				newAct.putExtra("eps_num", Integer.parseInt(chapters[currentChapter]));
+                newAct.setClass(ChapterActivity.this, PlayerActivity.class);
+                ChapterActivity.this.startActivity(newAct);
+                
 			}
 			
 		});
@@ -364,7 +371,7 @@ public class ChapterActivity extends SherlockActivity {
         instance.closeHelper();
         chapters = animate.getEpsNumStr().split(",");
 		chapterCount = chapters.length;
-		
+		Log.d("chapters", ""+animate.getEpsNumStr());
 		return animate;		
 		
 	}
@@ -378,19 +385,22 @@ public class ChapterActivity extends SherlockActivity {
 			ivLoadingCircle.startAnimation(animation);*/
 			
 			//ibRefresh.setVisibility(View.GONE);
+			
             super.onPreExecute();  
         }  
 		
 		@Override  
         protected Animate doInBackground(Integer... params) {
         	Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+        	
         	return fetchData();
         }
   
         @Override  
         protected void onPostExecute(Animate animate) {
-        	
+        
         	if(animate != null) {
+        		
         		setChapterItem();
         		setView();
         		setClickListener();
@@ -440,6 +450,7 @@ public class ChapterActivity extends SherlockActivity {
 	}
 	private void setLike() {		
 		if(likeAnimate == 1) {
+			
 	    	ibFavorite.setImageResource(R.drawable.favorite_press);
 	    } else {
 	    	ibFavorite.setImageResource(R.drawable.favorite_normal);
@@ -460,7 +471,7 @@ public class ChapterActivity extends SherlockActivity {
 				
 				if(index > -1 && index < chapterCount) {
 					tvChapterItem[index] = new TextView(this);
-					tvChapterItem[index].setText(chapters[index]);				
+					tvChapterItem[index].setText(chapters[index]);	
 					tvChapterItem[index].setId(index);
 					tvChapterItem[index].setBackgroundResource(R.drawable.activity_chapter_item_shape);
 					tvChapterItem[index].setTextSize(TypedValue.COMPLEX_UNIT_PX, wh * 4 / 9);
@@ -492,7 +503,7 @@ public class ChapterActivity extends SherlockActivity {
 							Intent newAct = new Intent();
 							newAct.putExtra("animate_id", animate.getId());
 							newAct.putExtra("eps_num", Integer.parseInt(chapters[position]));
-			                //newAct.setClass(ChapterActivity.this, PlayerActivity.class);
+			                newAct.setClass(ChapterActivity.this, PlayerActivity.class);
 			                ChapterActivity.this.startActivity(newAct);
 			                
 							

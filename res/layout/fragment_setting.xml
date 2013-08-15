@@ -17,7 +17,7 @@
 	    <RelativeLayout android:id="@+id/rl_declare"
 	        android:layout_width="match_parent"
 	        android:layout_height="@dimen/setting_fragment_itemsize"
-	        android:padding="@dimen/setting_fragment_itempadding"
+	        android:paddingLeft="@dimen/setting_fragment_itempadding"
 	        android:background="@drawable/setting_item_bg" >
 
             <ImageView android:id="@+id/iv_declare"
@@ -51,7 +51,7 @@
         <RelativeLayout android:id="@+id/rl_feedback"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_fragment_itemsize"
-            android:padding="@dimen/setting_fragment_itempadding"
+            android:paddingLeft="@dimen/setting_fragment_itempadding"
             android:background="@drawable/setting_item_bg" >
 
             <ImageView android:id="@+id/iv_feedback"
@@ -85,7 +85,7 @@
         <RelativeLayout android:id="@+id/rl_notification"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_fragment_itemsize"
-            android:padding="@dimen/setting_fragment_itempadding"
+            android:paddingLeft="@dimen/setting_fragment_itempadding"
             android:background="@drawable/setting_item_bg" >
 
             <ImageView android:id="@+id/iv_notification"
@@ -127,7 +127,7 @@
         <RelativeLayout android:id="@+id/rl_clean"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_fragment_itemsize"
-            android:padding="@dimen/setting_fragment_itempadding"
+            android:paddingLeft="@dimen/setting_fragment_itempadding"
             android:background="@drawable/setting_item_bg" >
 
             <ImageView android:id="@+id/iv_clear"
@@ -161,7 +161,7 @@
         <RelativeLayout android:id="@+id/rl_versionrecord"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_fragment_itemsize"
-            android:padding="@dimen/setting_fragment_itempadding"
+            android:paddingLeft="@dimen/setting_fragment_itempadding"
             android:background="@drawable/setting_item_bg" >
 
             <ImageView android:id="@+id/iv_versincheck"

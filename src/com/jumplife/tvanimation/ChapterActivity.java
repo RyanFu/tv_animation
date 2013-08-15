@@ -1,6 +1,8 @@
 package com.jumplife.tvanimation;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
 import com.jumplife.tvanimation.adapter.ReportSpinnerAdapter;
 import com.jumplife.tvanimation.api.TvAnimationAPI;
@@ -45,13 +47,26 @@ public class ChapterActivity extends SherlockActivity {
 	
 	private LinearLayout llChapter;
 	private LinearLayout llChapterIntro;
-	private ImageView ivChapter;
-	private ImageButton ibFavorite;
-	private ImageButton ibStory; 
-	private ImageButton ibReport; 
-	private ImageButton ibCountinue;
+	private ImageView ivPoster;
+	
+	private LinearLayout llFavorite;
+	private LinearLayout llStory;
+	private LinearLayout llReport;
+	private LinearLayout llCountinue;
+	
+	private ImageView ivFavorite;
+	private ImageView ivStory;
+	private ImageView ivReport;
+	private ImageView ivCountinue;
+	
+	private TextView tvFavorite;
+	private TextView tvStory;
+	private TextView tvReport;
+	private TextView tvCountinue;
+	
 	private ImageButton ibRefresh;
 	private View viewFunction;
+	private View vSeperate;
 	private TextView[] tvChapterItem;
 	private Animate animate;
 	
@@ -59,6 +74,7 @@ public class ChapterActivity extends SherlockActivity {
 	private DisplayImageOptions options;
 	
 	private LoadDataTask loadData;
+	private ReNewEpsNumTask reNewEpsNum;
 	private UpdateViewTask updateTask;
 	
 	private Dialog dialogReport;
@@ -77,7 +93,10 @@ public class ChapterActivity extends SherlockActivity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
+		
+	    getSupportActionBar().setIcon(R.drawable.loading_logo);
+		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
+		
         setContentView(R.layout.activity_chapter);
         
         initView();
@@ -88,6 +107,45 @@ public class ChapterActivity extends SherlockActivity {
         else
         	loadData.executeOnExecutor(LoadDataTask.THREAD_POOL_EXECUTOR, 0);
 	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+        getSupportMenuInflater().inflate(R.menu.action_bar_refresh, menu);
+        
+        MenuItem item = menu.findItem(R.id.menu_item_action_provider_refresh);
+        View actionView = item.getActionView();
+        ImageButton ibRefresh = (ImageButton) actionView.findViewById(R.id.ib_actionbar_refresh);
+        if (ibRefresh != null) {
+        	ibRefresh.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					reNewEpsNum = new ReNewEpsNumTask();
+			        if(Build.VERSION.SDK_INT < 11)
+			        	reNewEpsNum.execute();
+			        else
+			        	reNewEpsNum.executeOnExecutor(LoadDataTask.THREAD_POOL_EXECUTOR, 0);
+				}            	
+            });
+        }
+        
+        return true;
+    }
+	 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_item_action_provider_refresh:
+			reNewEpsNum = new ReNewEpsNumTask();
+	        if(Build.VERSION.SDK_INT < 11)
+	        	reNewEpsNum.execute();
+	        else
+	        	reNewEpsNum.executeOnExecutor(LoadDataTask.THREAD_POOL_EXECUTOR, 0);
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
 	private void initView() {
 		Bundle extras = getIntent().getExtras();
 		if(extras != null) {
@@ -97,6 +155,7 @@ public class ChapterActivity extends SherlockActivity {
         	animateId = 1;
         	animateName = "測試";
         }
+		getSupportActionBar().setTitle(animateName);
 		
 		tlColumnNum = getResources().getInteger(R.integer.chapter_activity_item_num_column);
 		
@@ -106,12 +165,26 @@ public class ChapterActivity extends SherlockActivity {
 		itemMargin = displayMetrics.widthPixels / 48;
 		
 		viewFunction = (View)LayoutInflater.from(this).inflate(R.layout.chapter_intro,null);
-		ibFavorite = (ImageButton)viewFunction.findViewById(R.id.ib_favorite);
-		ibStory = (ImageButton)viewFunction.findViewById(R.id.ib_story);
-		ibReport = (ImageButton)viewFunction.findViewById(R.id.ib_report);
-		ibCountinue = (ImageButton)viewFunction.findViewById(R.id.ib_countinue);
 		
-		ivChapter = new ImageView(this);
+		llFavorite = (LinearLayout)viewFunction.findViewById(R.id.ll_favorite);
+		llStory = (LinearLayout)viewFunction.findViewById(R.id.ll_story);
+		llReport = (LinearLayout)viewFunction.findViewById(R.id.ll_report);
+		llCountinue = (LinearLayout)viewFunction.findViewById(R.id.ll_countinue);
+		
+		
+		tvFavorite = (TextView)viewFunction.findViewById(R.id.tv_favorite);
+		tvStory = (TextView)viewFunction.findViewById(R.id.tv_story);
+		tvReport = (TextView)viewFunction.findViewById(R.id.tv_report);
+		tvCountinue = (TextView)viewFunction.findViewById(R.id.tv_countinue);
+		
+		ivFavorite = (ImageView)viewFunction.findViewById(R.id.iv_favorite);
+		ivStory = (ImageView)viewFunction.findViewById(R.id.iv_story);
+		ivReport = (ImageView)viewFunction.findViewById(R.id.iv_report);
+		ivCountinue = (ImageView)viewFunction.findViewById(R.id.iv_countinue);
+		
+		vSeperate =(View)viewFunction.findViewById(R.id.v_seperate);
+		
+		ivPoster = new ImageView(this);
 		tlChapter = new TableLayout(this);
 		llChapter = (LinearLayout)findViewById(R.id.ll_chapter);
 		llChapterIntro = (LinearLayout)findViewById(R.id.ll_chapter_intro);
@@ -145,7 +218,7 @@ public class ChapterActivity extends SherlockActivity {
 		
 	}
 	private void setClickListener() {
-		ibStory.setOnClickListener(new OnClickListener(){
+		llStory.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				//EasyTracker.getTracker().trackEvent("戲劇集數", "點擊", "戲劇簡介", (long)0);
@@ -154,7 +227,7 @@ public class ChapterActivity extends SherlockActivity {
 			
 		});
 		
-		ibFavorite.setOnClickListener(new OnClickListener(){
+		llFavorite.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				if(likeAnimate == 1) {
@@ -177,18 +250,17 @@ public class ChapterActivity extends SherlockActivity {
 		        instance.closeHelper();
 				
 		        if(likeAnimate == 1) {
-			    	ibFavorite.setImageResource(R.drawable.favorite_press);        		
-	        		setToast(true, "已加入至收藏清單", "已從收藏清單移除");
+			    	setToast(true, "已加入至收藏清單", "已從收藏清單移除");
 			    } else {
-			    	ibFavorite.setImageResource(R.drawable.favorite_normal);        		
-	        		setToast(false, "已加入至收藏清單", "已從收藏清單移除");
+			    	setToast(false, "已加入至收藏清單", "已從收藏清單移除");
 			    }
+		        setLike();
 			}
 			
 		});
 		
 		
-		ibReport.setOnClickListener(new OnClickListener(){
+		llReport.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				//EasyTracker.getTracker().trackEvent("戲劇集數", "點擊", "問題回報", (long)0);
@@ -196,7 +268,7 @@ public class ChapterActivity extends SherlockActivity {
 			}
 			
 		});
-		ibCountinue.setOnClickListener(new OnClickListener(){
+		llCountinue.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				
@@ -226,6 +298,14 @@ public class ChapterActivity extends SherlockActivity {
 		
 		
 	}
+	
+	private Animate loadEpsNum() {
+		TvAnimationAPI tvAnimationAPI = new TvAnimationAPI();
+		animate = tvAnimationAPI.getTvAnimationEpsNumViews(animate.getId(), animate);
+		
+		return animate;
+	}
+	
 	private void setToast(boolean success, String succeeStr, String failStr) {
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -417,6 +497,56 @@ public class ChapterActivity extends SherlockActivity {
 		
 	}
 	
+	class ReNewEpsNumTask extends AsyncTask<Integer, Integer, Animate> {
+		
+		@Override  
+        protected void onPreExecute() {
+			/*ivDialogLoadingIcon.setVisibility(View.VISIBLE);
+			ivDialogLoadingCircle.setVisibility(View.VISIBLE);
+			ivDialogLoadingCircle.startAnimation(animation);
+			
+			mDialogLoader.show();*/
+            super.onPreExecute();  
+        }  
+		
+		@Override  
+        protected Animate doInBackground(Integer... params) {
+        	Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+        	return loadEpsNum();
+        }
+  
+        @Override  
+        protected void onPostExecute(Animate animate) {
+        	
+        	if(animate != null) {
+        		
+        		SQLiteTvAnimationHelper instance = SQLiteTvAnimationHelper.getInstance(ChapterActivity.this);
+                SQLiteDatabase db = instance.getWritableDatabase();
+                instance.updateTvAnimationEpsNumViews(db, animate);
+                db.close();
+                instance.closeHelper();
+        		
+        		chapters = animate.getEpsNumStr().split(",");
+        		chapterCount = chapters.length;
+        		
+        		tlChapter.removeAllViews();
+        		setChapterItem();
+        		
+        		setToast(true, "劇集更新成功", "劇集更新失敗，請在更新一次");
+        	} else {
+        		setToast(false, "劇集更新成功", "劇集更新失敗，請在更新一次");
+        	}
+        	
+        	/*mDialogLoader.cancel();
+        	animation.cancel();
+        	ivDialogLoadingCircle.clearAnimation();
+        	ivDialogLoadingIcon.setVisibility(View.GONE);
+        	ivDialogLoadingCircle.setVisibility(View.GONE);*/
+        	
+	        super.onPostExecute(animate);  
+        }
+	}
+
 	private void setView() {
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -424,21 +554,46 @@ public class ChapterActivity extends SherlockActivity {
 		LinearLayout.LayoutParams llChapterIntroParams = new LinearLayout.LayoutParams(
 				displayMetrics.widthPixels , displayMetrics.widthPixels * 5/8);
 		llChapterIntro.setLayoutParams(llChapterIntroParams);
+		llChapterIntro.setGravity(Gravity.CENTER);
+		llChapterIntro.setPadding(displayMetrics.widthPixels * 3/40,displayMetrics.widthPixels * 1/16,
+				 displayMetrics.widthPixels * 3/40,displayMetrics.widthPixels * 1/16);
 		
 		LinearLayout.LayoutParams ivChapterParams = new LinearLayout.LayoutParams(
 				displayMetrics.widthPixels * 1/3 , displayMetrics.widthPixels * 1/2);
-		ivChapter.setLayoutParams(ivChapterParams);
-		ivChapter.setScaleType(ScaleType.FIT_CENTER);
-		ivChapter.setPadding(displayMetrics.widthPixels * 3/40, 0,0,0);
-		imageLoader.displayImage(animate.getPosterUrl(), ivChapter, options);
-		llChapterIntro.addView(ivChapter);
 		
-	
+		ivPoster.setLayoutParams(ivChapterParams);
+		ivPoster.setScaleType(ScaleType.FIT_CENTER);
+		
+		imageLoader.displayImage(animate.getPosterUrl(), ivPoster, options);
+		llChapterIntro.addView(ivPoster);
+		
 		LinearLayout.LayoutParams viewFunctionParams = new LinearLayout.LayoutParams(
-				displayMetrics.widthPixels * 2/3, displayMetrics.widthPixels * 1/2);
+				displayMetrics.widthPixels * 53/120 ,LayoutParams.WRAP_CONTENT);
+		viewFunctionParams.setMargins(displayMetrics.widthPixels * 3/40, 0, 0, 0);
 		viewFunction.setLayoutParams(viewFunctionParams);
-		viewFunction.setPadding(displayMetrics.widthPixels * 3/40,displayMetrics.widthPixels * 3/40,
-				displayMetrics.widthPixels * 3/40,displayMetrics.widthPixels * 3/40);
+		
+		llFavorite.setPadding(0, displayMetrics.widthPixels*1/36, 0, displayMetrics.widthPixels*1/36);
+		llStory.setPadding(0, displayMetrics.widthPixels*1/36, 0, displayMetrics.widthPixels*1/36);
+		llReport.setPadding(0, displayMetrics.widthPixels*1/36, 0, displayMetrics.widthPixels*1/36);
+		llCountinue.setPadding(0, displayMetrics.widthPixels*1/36, 0, displayMetrics.widthPixels*1/36);
+		
+		LinearLayout.LayoutParams ivPicItemParams = new LinearLayout.LayoutParams(
+				displayMetrics.widthPixels*1/12 ,displayMetrics.widthPixels*1/12);
+		ivPicItemParams.setMargins(0, 0, 0, displayMetrics.widthPixels*1/36);
+		ivFavorite.setLayoutParams(ivPicItemParams);
+		ivStory.setLayoutParams(ivPicItemParams);
+		ivReport.setLayoutParams(ivPicItemParams);
+		ivCountinue.setLayoutParams(ivPicItemParams);
+		
+		tvFavorite.setTextSize(displayMetrics.widthPixels*1/36);
+		tvStory.setTextSize(displayMetrics.widthPixels*1/36);
+		tvReport.setTextSize(displayMetrics.widthPixels*1/36);
+		tvCountinue.setTextSize(displayMetrics.widthPixels*1/36);
+		
+		
+		
+		vSeperate.getLayoutParams().height = displayMetrics.widthPixels * 1/2;
+		
 		llChapterIntro.addView(viewFunction);
 		
 		LinearLayout.LayoutParams tlChapterParams = new LinearLayout.LayoutParams(
@@ -447,13 +602,15 @@ public class ChapterActivity extends SherlockActivity {
 		tlChapter.setLayoutParams(tlChapterParams);
 		llChapter.addView(tlChapter);
 		setLike();
+		 tvCountinue.setText("續看第"+Integer.parseInt(chapters[currentChapter])+"話");
 	}
 	private void setLike() {		
 		if(likeAnimate == 1) {
-			
-	    	ibFavorite.setImageResource(R.drawable.favorite_press);
+			ivFavorite.setImageResource(R.drawable.favorite_press);
+			tvFavorite.setText("移除收藏");
 	    } else {
-	    	ibFavorite.setImageResource(R.drawable.favorite_normal);
+	    	ivFavorite.setImageResource(R.drawable.favorite_normal);
+	    	tvFavorite.setText("加入收藏");
 	    }
 	}
 	private void setChapterItem() {
@@ -476,7 +633,6 @@ public class ChapterActivity extends SherlockActivity {
 					tvChapterItem[index].setBackgroundResource(R.drawable.activity_chapter_item_shape);
 					tvChapterItem[index].setTextSize(TypedValue.COMPLEX_UNIT_PX, wh * 4 / 9);
 					tvChapterItem[index].setTextColor(getResources().getColor(R.color.white));
-					
 					tvChapterItem[index].setGravity(Gravity.CENTER);
 					tvChapterItem[index].setOnClickListener(new OnClickListener() {
 						public void onClick(View arg0) {
@@ -498,6 +654,7 @@ public class ChapterActivity extends SherlockActivity {
 					        db.close();
 					        instance.closeHelper();
 					        
+					        tvCountinue.setText("續看第"+Integer.parseInt(chapters[currentChapter])+"話");
 							setItemMark();  
 							
 							Intent newAct = new Intent();
@@ -512,7 +669,7 @@ public class ChapterActivity extends SherlockActivity {
 			            	ivDialogLoadingCircle.clearAnimation();
 			            	ivDialogLoadingIcon.setVisibility(View.GONE);
 			            	ivDialogLoadingCircle.setVisibility(View.GONE);*/
-			               
+			                
 			                updateTask = new UpdateViewTask();
 			                updateTask.execute();
 			            	

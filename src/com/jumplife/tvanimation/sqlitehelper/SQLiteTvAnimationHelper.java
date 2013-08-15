@@ -199,11 +199,6 @@ public class SQLiteTvAnimationHelper extends SQLiteOpenHelper {
         db.execSQL(updateViews.toString());
     }
     
-    public void updateTvAnimationEps(SQLiteDatabase db, int tvAnimationId, String eps) {
-    	db.execSQL("UPDATE " + TvAnimationTable + " SET eps_num_str = ? WHERE id = ?", 
-        									new String[] {eps + "", tvAnimationId + ""});
-    }
-    
     public int getTvAnimationChapterRecord(SQLiteDatabase db, int tvAnimationId) throws SQLException {
     	Cursor cursor = db.rawQuery("SELECT chapter_record FROM " + TvAnimationTable + " WHERE id = '" + tvAnimationId + "'", null);
         int chapter = -1;

@@ -6,9 +6,9 @@ import java.util.Comparator;
 
 import com.jumplife.tvanimation.ChapterActivity;
 import com.jumplife.tvanimation.R;
+import com.jumplife.tvanimation.adapter.AnimationGridAdapter;
 import com.jumplife.tvanimation.entity.Animate;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
-import com.jumplife.usadrama.adapter.AnimationGridAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 

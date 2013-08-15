@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/listview_item_bg" >
-
+	
     <TextView
         android:id="@+id/tv_listitem_drama"
         android:layout_width="match_parent"
@@ -13,11 +13,11 @@
         android:singleLine="true"
         android:text="名偵探柯南"
         android:textColor="@drawable/listview_item_textcolor"
+        android:background="@null"
         android:textSize="@dimen/search_activity_textsize"/>
-
-    <View
+	<View
         android:layout_width="match_parent"
         android:layout_height="@dimen/search_activity_seperate_height"
         android:background="@color/background" />
-
+	
 </LinearLayout>

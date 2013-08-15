@@ -4,9 +4,10 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
+import com.jumplife.tvanimation.adapter.ReportSpinnerAdapter;
 import com.jumplife.tvanimation.api.TvAnimationAPI;
 import com.jumplife.tvanimation.entity.Animate;
-import com.jumplife.usadrama.adapter.ReportSpinnerAdapter;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -20,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -45,13 +47,26 @@ public class ChapterActivity extends SherlockActivity {
 	
 	private LinearLayout llChapter;
 	private LinearLayout llChapterIntro;
-	private ImageView ivChapter;
-	private ImageButton ibFavorite;
-	private ImageButton ibStory; 
-	private ImageButton ibReport; 
-	private ImageButton ibCountinue;
+	private ImageView ivPoster;
+	
+	private LinearLayout llFavorite;
+	private LinearLayout llStory;
+	private LinearLayout llReport;
+	private LinearLayout llCountinue;
+	
+	private ImageView ivFavorite;
+	private ImageView ivStory;
+	private ImageView ivReport;
+	private ImageView ivCountinue;
+	
+	private TextView tvFavorite;
+	private TextView tvStory;
+	private TextView tvReport;
+	private TextView tvCountinue;
+	
 	private ImageButton ibRefresh;
 	private View viewFunction;
+	private View vSeperate;
 	private TextView[] tvChapterItem;
 	private Animate animate;
 	
@@ -150,12 +165,26 @@ public class ChapterActivity extends SherlockActivity {
 		itemMargin = displayMetrics.widthPixels / 48;
 		
 		viewFunction = (View)LayoutInflater.from(this).inflate(R.layout.chapter_intro,null);
-		ibFavorite = (ImageButton)viewFunction.findViewById(R.id.ib_favorite);
-		ibStory = (ImageButton)viewFunction.findViewById(R.id.ib_story);
-		ibReport = (ImageButton)viewFunction.findViewById(R.id.ib_report);
-		ibCountinue = (ImageButton)viewFunction.findViewById(R.id.ib_countinue);
 		
-		ivChapter = new ImageView(this);
+		llFavorite = (LinearLayout)viewFunction.findViewById(R.id.ll_favorite);
+		llStory = (LinearLayout)viewFunction.findViewById(R.id.ll_story);
+		llReport = (LinearLayout)viewFunction.findViewById(R.id.ll_report);
+		llCountinue = (LinearLayout)viewFunction.findViewById(R.id.ll_countinue);
+		
+		
+		tvFavorite = (TextView)viewFunction.findViewById(R.id.tv_favorite);
+		tvStory = (TextView)viewFunction.findViewById(R.id.tv_story);
+		tvReport = (TextView)viewFunction.findViewById(R.id.tv_report);
+		tvCountinue = (TextView)viewFunction.findViewById(R.id.tv_countinue);
+		
+		ivFavorite = (ImageView)viewFunction.findViewById(R.id.iv_favorite);
+		ivStory = (ImageView)viewFunction.findViewById(R.id.iv_story);
+		ivReport = (ImageView)viewFunction.findViewById(R.id.iv_report);
+		ivCountinue = (ImageView)viewFunction.findViewById(R.id.iv_countinue);
+		
+		vSeperate =(View)viewFunction.findViewById(R.id.v_seperate);
+		
+		ivPoster = new ImageView(this);
 		tlChapter = new TableLayout(this);
 		llChapter = (LinearLayout)findViewById(R.id.ll_chapter);
 		llChapterIntro = (LinearLayout)findViewById(R.id.ll_chapter_intro);
@@ -189,7 +218,7 @@ public class ChapterActivity extends SherlockActivity {
 		
 	}
 	private void setClickListener() {
-		ibStory.setOnClickListener(new OnClickListener(){
+		llStory.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				//EasyTracker.getTracker().trackEvent("戲劇集數", "點擊", "戲劇簡介", (long)0);
@@ -198,7 +227,7 @@ public class ChapterActivity extends SherlockActivity {
 			
 		});
 		
-		ibFavorite.setOnClickListener(new OnClickListener(){
+		llFavorite.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				if(likeAnimate == 1) {
@@ -221,18 +250,17 @@ public class ChapterActivity extends SherlockActivity {
 		        instance.closeHelper();
 				
 		        if(likeAnimate == 1) {
-			    	ibFavorite.setImageResource(R.drawable.favorite_press);        		
-	        		setToast(true, "已加入至我的最愛", "已移除於我的最愛");
+			    	setToast(true, "已加入至收藏清單", "已從收藏清單移除");
 			    } else {
-			    	ibFavorite.setImageResource(R.drawable.favorite_normal);        		
-	        		setToast(false, "已加入至我的最愛", "已移除於我的最愛");
+			    	setToast(false, "已加入至收藏清單", "已從收藏清單移除");
 			    }
+		        setLike();
 			}
 			
 		});
 		
 		
-		ibReport.setOnClickListener(new OnClickListener(){
+		llReport.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				//EasyTracker.getTracker().trackEvent("戲劇集數", "點擊", "問題回報", (long)0);
@@ -240,10 +268,16 @@ public class ChapterActivity extends SherlockActivity {
 			}
 			
 		});
-		ibCountinue.setOnClickListener(new OnClickListener(){
+		llCountinue.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				
+				Intent newAct = new Intent();
+				newAct.putExtra("animate_id", animate.getId());
+				newAct.putExtra("eps_num", Integer.parseInt(chapters[currentChapter]));
+                newAct.setClass(ChapterActivity.this, PlayerActivity.class);
+                ChapterActivity.this.startActivity(newAct);
+                
 			}
 			
 		});
@@ -417,7 +451,7 @@ public class ChapterActivity extends SherlockActivity {
         instance.closeHelper();
         chapters = animate.getEpsNumStr().split(",");
 		chapterCount = chapters.length;
-		
+		Log.d("chapters", ""+animate.getEpsNumStr());
 		return animate;		
 		
 	}
@@ -431,19 +465,22 @@ public class ChapterActivity extends SherlockActivity {
 			ivLoadingCircle.startAnimation(animation);*/
 			
 			//ibRefresh.setVisibility(View.GONE);
+			
             super.onPreExecute();  
         }  
 		
 		@Override  
         protected Animate doInBackground(Integer... params) {
         	Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+        	
         	return fetchData();
         }
   
         @Override  
         protected void onPostExecute(Animate animate) {
-        	
+        
         	if(animate != null) {
+        		
         		setChapterItem();
         		setView();
         		setClickListener();
@@ -517,21 +554,46 @@ public class ChapterActivity extends SherlockActivity {
 		LinearLayout.LayoutParams llChapterIntroParams = new LinearLayout.LayoutParams(
 				displayMetrics.widthPixels , displayMetrics.widthPixels * 5/8);
 		llChapterIntro.setLayoutParams(llChapterIntroParams);
+		llChapterIntro.setGravity(Gravity.CENTER);
+		llChapterIntro.setPadding(displayMetrics.widthPixels * 3/40,displayMetrics.widthPixels * 1/16,
+				 displayMetrics.widthPixels * 3/40,displayMetrics.widthPixels * 1/16);
 		
 		LinearLayout.LayoutParams ivChapterParams = new LinearLayout.LayoutParams(
 				displayMetrics.widthPixels * 1/3 , displayMetrics.widthPixels * 1/2);
-		ivChapter.setLayoutParams(ivChapterParams);
-		ivChapter.setScaleType(ScaleType.FIT_CENTER);
-		ivChapter.setPadding(displayMetrics.widthPixels * 3/40, 0,0,0);
-		imageLoader.displayImage(animate.getPosterUrl(), ivChapter, options);
-		llChapterIntro.addView(ivChapter);
 		
-	
+		ivPoster.setLayoutParams(ivChapterParams);
+		ivPoster.setScaleType(ScaleType.FIT_CENTER);
+		
+		imageLoader.displayImage(animate.getPosterUrl(), ivPoster, options);
+		llChapterIntro.addView(ivPoster);
+		
 		LinearLayout.LayoutParams viewFunctionParams = new LinearLayout.LayoutParams(
-				displayMetrics.widthPixels * 2/3, displayMetrics.widthPixels * 1/2);
+				displayMetrics.widthPixels * 53/120 ,LayoutParams.WRAP_CONTENT);
+		viewFunctionParams.setMargins(displayMetrics.widthPixels * 3/40, 0, 0, 0);
 		viewFunction.setLayoutParams(viewFunctionParams);
-		viewFunction.setPadding(displayMetrics.widthPixels * 3/40,displayMetrics.widthPixels * 3/40,
-				displayMetrics.widthPixels * 3/40,displayMetrics.widthPixels * 3/40);
+		
+		llFavorite.setPadding(0, displayMetrics.widthPixels*1/36, 0, displayMetrics.widthPixels*1/36);
+		llStory.setPadding(0, displayMetrics.widthPixels*1/36, 0, displayMetrics.widthPixels*1/36);
+		llReport.setPadding(0, displayMetrics.widthPixels*1/36, 0, displayMetrics.widthPixels*1/36);
+		llCountinue.setPadding(0, displayMetrics.widthPixels*1/36, 0, displayMetrics.widthPixels*1/36);
+		
+		LinearLayout.LayoutParams ivPicItemParams = new LinearLayout.LayoutParams(
+				displayMetrics.widthPixels*1/12 ,displayMetrics.widthPixels*1/12);
+		ivPicItemParams.setMargins(0, 0, 0, displayMetrics.widthPixels*1/36);
+		ivFavorite.setLayoutParams(ivPicItemParams);
+		ivStory.setLayoutParams(ivPicItemParams);
+		ivReport.setLayoutParams(ivPicItemParams);
+		ivCountinue.setLayoutParams(ivPicItemParams);
+		
+		tvFavorite.setTextSize(displayMetrics.widthPixels*1/36);
+		tvStory.setTextSize(displayMetrics.widthPixels*1/36);
+		tvReport.setTextSize(displayMetrics.widthPixels*1/36);
+		tvCountinue.setTextSize(displayMetrics.widthPixels*1/36);
+		
+		
+		
+		vSeperate.getLayoutParams().height = displayMetrics.widthPixels * 1/2;
+		
 		llChapterIntro.addView(viewFunction);
 		
 		LinearLayout.LayoutParams tlChapterParams = new LinearLayout.LayoutParams(
@@ -540,12 +602,15 @@ public class ChapterActivity extends SherlockActivity {
 		tlChapter.setLayoutParams(tlChapterParams);
 		llChapter.addView(tlChapter);
 		setLike();
+		 tvCountinue.setText("續看第"+Integer.parseInt(chapters[currentChapter])+"話");
 	}
 	private void setLike() {		
 		if(likeAnimate == 1) {
-	    	ibFavorite.setImageResource(R.drawable.favorite_press);
+			ivFavorite.setImageResource(R.drawable.favorite_press);
+			tvFavorite.setText("移除收藏");
 	    } else {
-	    	ibFavorite.setImageResource(R.drawable.favorite_normal);
+	    	ivFavorite.setImageResource(R.drawable.favorite_normal);
+	    	tvFavorite.setText("加入收藏");
 	    }
 	}
 	private void setChapterItem() {
@@ -563,9 +628,9 @@ public class ChapterActivity extends SherlockActivity {
 				
 				if(index > -1 && index < chapterCount) {
 					tvChapterItem[index] = new TextView(this);
-					tvChapterItem[index].setText(chapters[index]);				
+					tvChapterItem[index].setText(chapters[index]);	
 					tvChapterItem[index].setId(index);
-					tvChapterItem[index].setBackgroundResource(R.drawable.activity_chapter_item_normal);
+					tvChapterItem[index].setBackgroundResource(R.drawable.activity_chapter_item_shape);
 					tvChapterItem[index].setTextSize(TypedValue.COMPLEX_UNIT_PX, wh * 4 / 9);
 					tvChapterItem[index].setTextColor(getResources().getColor(R.color.white));
 					tvChapterItem[index].setGravity(Gravity.CENTER);
@@ -589,12 +654,13 @@ public class ChapterActivity extends SherlockActivity {
 					        db.close();
 					        instance.closeHelper();
 					        
+					        tvCountinue.setText("續看第"+Integer.parseInt(chapters[currentChapter])+"話");
 							setItemMark();  
 							
 							Intent newAct = new Intent();
 							newAct.putExtra("animate_id", animate.getId());
 							newAct.putExtra("eps_num", Integer.parseInt(chapters[position]));
-			                //newAct.setClass(ChapterActivity.this, PlayerActivity.class);
+			                newAct.setClass(ChapterActivity.this, PlayerActivity.class);
 			                ChapterActivity.this.startActivity(newAct);
 			                
 							
@@ -603,7 +669,7 @@ public class ChapterActivity extends SherlockActivity {
 			            	ivDialogLoadingCircle.clearAnimation();
 			            	ivDialogLoadingIcon.setVisibility(View.GONE);
 			            	ivDialogLoadingCircle.setVisibility(View.GONE);*/
-			               
+			                
 			                updateTask = new UpdateViewTask();
 			                updateTask.execute();
 			            	
@@ -645,7 +711,7 @@ public class ChapterActivity extends SherlockActivity {
 					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_select);
 					tvChapterItem[i].setTextColor(getResources().getColor(R.color.white));
 				} else {
-					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_normal);
+					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_shape);
 					tvChapterItem[i].setTextColor(getResources().getColor(R.color.background_item));
 				}
 			} else {
@@ -653,7 +719,7 @@ public class ChapterActivity extends SherlockActivity {
 					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_select);
 					tvChapterItem[i].setTextColor(getResources().getColor(R.color.white));
 				} else {
-					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_normal);
+					tvChapterItem[i].setBackgroundResource(R.drawable.activity_chapter_item_shape);
 					tvChapterItem[i].setTextColor(getResources().getColor(R.color.background_item));
 				}
 			}

@@ -139,7 +139,7 @@ public class PlayerActivity extends Activity implements VideoControllerView.Medi
     	
     	Bundle extras = getIntent().getExtras();
 		if(extras != null) {
-        	dramaId = extras.getInt("drama_id");
+        	dramaId = extras.getInt("animate_id");
         	epsNum = extras.getInt("eps_num");
         }
     	  

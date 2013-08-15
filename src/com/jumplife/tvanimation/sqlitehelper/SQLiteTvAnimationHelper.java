@@ -311,6 +311,7 @@ public class SQLiteTvAnimationHelper extends SQLiteOpenHelper {
 	        }
 	        cursor.close();
         }
+        Log.d(null, "id22222 : " + tvAnimation.getEpsNumStr());
         return tvAnimation;
     }
     
@@ -430,4 +431,5 @@ public class SQLiteTvAnimationHelper extends SQLiteOpenHelper {
 
         return tvAnimation_lst;
     }
+
 }

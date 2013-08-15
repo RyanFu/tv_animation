@@ -103,7 +103,7 @@
     <dimen name="chapter_activity_dialog_padding">20dp</dimen>
  	
      <!-- Chapter Activity Report Dialog-->
-    <dimen name="chapter_activity_dialog_report_imagesize">19dp</dimen>
+    <dimen name="chapter_activity_dialog_report_imagesize">24dp</dimen>
     <dimen name="chapter_activity_dialog_report_imageMargin">5dp</dimen>
     <dimen name="chapter_activity_dialog_report_b_padding_rl">30dp</dimen>
     <dimen name="chapter_activity_dialog_report_b_padding_tb">5dp</dimen>

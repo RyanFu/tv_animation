@@ -4,10 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/listview_item_bg" >
-	<View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/search_activity_seperate_height"
-        android:background="@color/background" />
+	
     <TextView
         android:id="@+id/tv_listitem_drama"
         android:layout_width="match_parent"
@@ -18,7 +15,9 @@
         android:textColor="@drawable/listview_item_textcolor"
         android:background="@null"
         android:textSize="@dimen/search_activity_textsize"/>
-
-   
-
+	<View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_activity_seperate_height"
+        android:background="@color/background" />
+	
 </LinearLayout>

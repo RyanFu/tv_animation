@@ -585,10 +585,10 @@ public class ChapterActivity extends SherlockActivity {
 		ivReport.setLayoutParams(ivPicItemParams);
 		ivCountinue.setLayoutParams(ivPicItemParams);
 		
-		tvFavorite.setTextSize(displayMetrics.widthPixels*1/36);
-		tvStory.setTextSize(displayMetrics.widthPixels*1/36);
-		tvReport.setTextSize(displayMetrics.widthPixels*1/36);
-		tvCountinue.setTextSize(displayMetrics.widthPixels*1/36);
+		tvFavorite.setTextSize(TypedValue.COMPLEX_UNIT_PX, displayMetrics.widthPixels * 1 / 28);
+		tvStory.setTextSize(TypedValue.COMPLEX_UNIT_PX, displayMetrics.widthPixels * 1 / 28);
+		tvReport.setTextSize(TypedValue.COMPLEX_UNIT_PX, displayMetrics.widthPixels * 1 / 28);
+		tvCountinue.setTextSize(TypedValue.COMPLEX_UNIT_PX, displayMetrics.widthPixels * 1 / 28);
 		
 		
 		
@@ -602,7 +602,7 @@ public class ChapterActivity extends SherlockActivity {
 		tlChapter.setLayoutParams(tlChapterParams);
 		llChapter.addView(tlChapter);
 		setLike();
-		 tvCountinue.setText("續看第"+Integer.parseInt(chapters[currentChapter])+"話");
+		 tvCountinue.setText("續看"+Integer.parseInt(chapters[currentChapter])+"話");
 	}
 	private void setLike() {		
 		if(likeAnimate == 1) {

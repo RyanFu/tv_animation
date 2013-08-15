@@ -79,7 +79,7 @@ public class ChapterActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 		
-	    getSupportActionBar().setIcon(R.drawable.loading_logo);
+	    getSupportActionBar().setIcon(R.drawable.landingeye_3);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
 		
         setContentView(R.layout.activity_chapter);

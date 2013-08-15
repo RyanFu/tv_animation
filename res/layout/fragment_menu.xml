@@ -32,15 +32,11 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/menu_fragment_divider"
                android:background="@color/black" />
-           <View 
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/menu_fragment_divider"
-               android:background="@color/grey" />
            <LinearLayout android:id="@+id/ll_myfavorite"
                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/transparent100" >
+                android:background="@drawable/fragement_menu_item_bg_normal" >
                 <View  android:id="@+id/v_myfavorite"
                     android:layout_width="@dimen/menu_fragment_item_mark_width"
                     android:layout_height="@dimen/menu_fragment_item_mark_height"
@@ -67,16 +63,12 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/menu_fragment_divider"
                android:background="@color/black" />
-           <View 
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/menu_fragment_divider"
-               android:background="@color/grey" />
            
            <LinearLayout android:id="@+id/ll_setting"
                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/transparent100" >
+                android:background="@drawable/fragement_menu_item_bg_normal" >
                 <View  android:id="@+id/v_setting"
                     android:layout_width="@dimen/menu_fragment_item_mark_width"
                     android:layout_height="@dimen/menu_fragment_item_mark_height"
@@ -103,10 +95,6 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/menu_fragment_divider"
                android:background="@color/black" />
-           <View 
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/menu_fragment_divider"
-               android:background="@color/grey" />
            
            
            
@@ -133,15 +121,11 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/menu_fragment_divider"
                android:background="@color/black" />
-           <View 
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/menu_fragment_divider"
-               android:background="@color/grey" />
            <LinearLayout android:id="@+id/ll_hotheart"
                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/transparent100" >
+                android:background="@drawable/fragement_menu_item_bg_normal" >
                 <View  android:id="@+id/v_hotheart"
                     android:layout_width="@dimen/menu_fragment_item_mark_width"
                     android:layout_height="@dimen/menu_fragment_item_mark_height"
@@ -168,17 +152,13 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/menu_fragment_divider"
                android:background="@color/black" />
-           <View 
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/menu_fragment_divider"
-               android:background="@color/grey" />
            
            
            <LinearLayout android:id="@+id/ll_love"
                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/transparent100" >
+                android:background="@drawable/fragement_menu_item_bg_normal" >
                 <View  android:id="@+id/v_love"
                     android:layout_width="@dimen/menu_fragment_item_mark_width"
                     android:layout_height="@dimen/menu_fragment_item_mark_height"
@@ -205,10 +185,6 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/menu_fragment_divider"
                android:background="@color/black" />
-           <View 
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/menu_fragment_divider"
-               android:background="@color/grey" />
            
            
            
@@ -216,7 +192,7 @@
                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/transparent100" >
+                android:background="@drawable/fragement_menu_item_bg_normal" >
                 <View  android:id="@+id/v_humor"
                     android:layout_width="@dimen/menu_fragment_item_mark_width"
                     android:layout_height="@dimen/menu_fragment_item_mark_height"
@@ -243,10 +219,6 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/menu_fragment_divider"
                android:background="@color/black" />
-           <View 
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/menu_fragment_divider"
-               android:background="@color/grey" />
            
            
            
@@ -254,7 +226,7 @@
                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@color/transparent100" >
+                android:background="@drawable/fragement_menu_item_bg_normal" >
                 <View  android:id="@+id/v_suspense"
                     android:layout_width="@dimen/menu_fragment_item_mark_width"
                     android:layout_height="@dimen/menu_fragment_item_mark_height"
@@ -281,10 +253,6 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/menu_fragment_divider"
                android:background="@color/black" />
-           <View 
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/menu_fragment_divider"
-               android:background="@color/grey" />
            
            
            
@@ -292,7 +260,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:orientation="horizontal"
-               android:background="@color/transparent100" >
+               android:background="@drawable/fragement_menu_item_bg_normal" >
                <View  android:id="@+id/v_fantasy"
                    android:layout_width="@dimen/menu_fragment_item_mark_width"
                    android:layout_height="@dimen/menu_fragment_item_mark_height"
@@ -319,10 +287,6 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/menu_fragment_divider"
                android:background="@color/black" />
-           <View 
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/menu_fragment_divider"
-               android:background="@color/grey" />
 
            
             
@@ -332,7 +296,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:orientation="horizontal"
-               android:background="@color/transparent100" >
+               android:background="@drawable/fragement_menu_item_bg_normal" >
                <View android:id="@+id/v_other"
                    android:layout_width="@dimen/menu_fragment_item_mark_width"
                    android:layout_height="@dimen/menu_fragment_item_mark_height"

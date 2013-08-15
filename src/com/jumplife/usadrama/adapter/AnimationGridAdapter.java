@@ -110,7 +110,7 @@ public class AnimationGridAdapter extends BaseAdapter {
 			
 			RelativeLayout.LayoutParams rlParams = new RelativeLayout.LayoutParams(mWidth, LayoutParams.WRAP_CONTENT);
 			rlParams.addRule(RelativeLayout.ALIGN_BOTTOM, itemView.rlAnimationImage.getId());
-			rlParams.setMargins(padding, padding, padding, padding);
+			rlParams.setMargins(padding, 0, padding, padding);
 			itemView.rlAnimationText.setLayoutParams(rlParams);
 			
 			convertView.setTag(itemView);

@@ -95,14 +95,14 @@ public class MenuFragment extends Fragment {
 	}
 	
 	private void setItemStateNormal() {
-		llFavorite.setBackgroundResource(R.color.transparent100);
-		llSetting.setBackgroundResource(R.color.transparent100);
-		llHotHeart.setBackgroundResource(R.color.transparent100);
-		llLove.setBackgroundResource(R.color.transparent100);
-		llHumor.setBackgroundResource(R.color.transparent100);
-		llSuspense.setBackgroundResource(R.color.transparent100);
-		llFantasy.setBackgroundResource(R.color.transparent100);
-		llOthers.setBackgroundResource(R.color.transparent100);		
+		llFavorite.setBackgroundResource(R.drawable.fragement_menu_item_bg_normal);
+		llSetting.setBackgroundResource(R.drawable.fragement_menu_item_bg_normal);
+		llHotHeart.setBackgroundResource(R.drawable.fragement_menu_item_bg_normal);
+		llLove.setBackgroundResource(R.drawable.fragement_menu_item_bg_normal);
+		llHumor.setBackgroundResource(R.drawable.fragement_menu_item_bg_normal);
+		llSuspense.setBackgroundResource(R.drawable.fragement_menu_item_bg_normal);
+		llFantasy.setBackgroundResource(R.drawable.fragement_menu_item_bg_normal);
+		llOthers.setBackgroundResource(R.drawable.fragement_menu_item_bg_normal);		
 
 		vFavorite.setVisibility(View.INVISIBLE);
 		vSetting.setVisibility(View.INVISIBLE);

@@ -13,6 +13,7 @@
     
     <color name="transparent100">#00ffffff</color>
     <color name="transparent80">#33ffffff</color>
-    <color name="transparent60">#77ffffff</color>
+    <color name="transparent60">#55ffffff</color>
+    <color name="transparent30">#aaffffff</color>
     
 </resources>

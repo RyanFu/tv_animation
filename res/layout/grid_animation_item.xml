@@ -22,26 +22,39 @@
 	    android:layout_height="wrap_content" 
 	    android:layout_alignBottom="@+id/rl_animation_image"
 	    android:padding="@dimen/gridview_item_text_padding_rl"
-	    android:background="@color/transparent60">
+	    android:background="@color/transparent30">
     
         <TextView
 			android:id="@+id/tv_animation_name"
-			android:layout_width="match_parent"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_toLeftOf="@+id/tv_animation_season"
 			android:singleLine="true"
-			android:textColor="@color/black"
+			android:textColor="@color/background_item"
 			android:textSize="@dimen/gridview_item_name_textsize"
 			/>
 
 		<TextView
 			android:id="@+id/tv_animation_season"
-			android:layout_width="match_parent"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/tv_animation_name"
+			android:layout_alignParentRight="true"
+			android:layout_alignBottom="@+id/tv_animation_name"
 			android:singleLine="true"
-			android:textColor="@color/black"
+			android:textColor="@color/background_item"
 			android:textSize="@dimen/gridview_item_season_textsize" 
 			/>
+		
+		<TextView
+            android:id="@+id/tv_animation_views"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_animation_name"
+            android:singleLine="true"
+            android:textColor="@color/background_item"
+            android:textSize="@dimen/gridview_item_season_textsize" 
+            />
 
 		</RelativeLayout>
       

@@ -38,6 +38,7 @@ public class AnimationGridAdapter extends BaseAdapter {
 		ImageView ivCoverPoster;
 		TextView tvAnimationName;
 		TextView tvAnimationSeason;
+		TextView tvAnimationViews;
 	}
 	public AnimationGridAdapter(Activity mActivity, ArrayList<Animate> animations){
 		this.animations = animations;
@@ -98,6 +99,7 @@ public class AnimationGridAdapter extends BaseAdapter {
 			itemView.rlAnimationText = (RelativeLayout)convertView.findViewById(R.id.rl_animation_text);
 			itemView.tvAnimationName = (TextView)convertView.findViewById(R.id.tv_animation_name);
 			itemView.tvAnimationSeason = (TextView)convertView.findViewById(R.id.tv_animation_season);
+			itemView.tvAnimationViews = (TextView)convertView.findViewById(R.id.tv_animation_views);
 			itemView.ivCoverPoster = (ImageView)convertView.findViewById(R.id.iv_animation_cover_poster);
 			
 			itemView.rlAnimationImage.getLayoutParams().height = mHeight + 2*padding;
@@ -118,6 +120,7 @@ public class AnimationGridAdapter extends BaseAdapter {
 		
 		
 		itemView.tvAnimationName.setText(animations.get(position).getName());
+		itemView.tvAnimationViews.setText("撥放次數 : " + animations.get(position).getViews());
 		if(animations.get(position).getSeason() == null || animations.get(position).getSeason().equalsIgnoreCase("null")){
 			 itemView.tvAnimationSeason.setText(" ");
 		}else{

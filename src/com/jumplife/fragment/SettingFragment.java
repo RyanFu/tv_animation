@@ -1,5 +1,9 @@
 package com.jumplife.fragment;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.jumplife.tvanimation.R;
 import com.jumplife.tvanimation.TvAnimationApplication;
 import com.jumplife.tvanimation.api.TvAnimationAPI;
@@ -113,10 +117,14 @@ public class SettingFragment extends Fragment {
 	}
 	
 	private void setClickListener() {
+		final Tracker tracker = EasyTracker.getInstance(this.getActivity());
+		tracker.set(Fields.SCREEN_NAME, "設定Fragment");
+		
 		rlDeclare.setOnClickListener(new OnClickListener(){
 			@SuppressWarnings("deprecation")
 			@Override
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "免責聲明", null).build());
 				AlertDialog dialog = new AlertDialog.Builder(mFragmentActivity).create();
 		        dialog.setTitle("免責聲明");
 		        dialog.setMessage(Html.fromHtml("<b>經典美劇為第三方影音共享播放清單彙整軟體，作為影音內容" +
@@ -141,6 +149,7 @@ public class SettingFragment extends Fragment {
 		rlFeedback.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "建議回饋", null).build());
 				PackageInfo packageInfo = null;
             	int tmpVersionCode = -1;
     			try {
@@ -174,8 +183,10 @@ public class SettingFragment extends Fragment {
 				setNotification();
 				String message = "";
 				if(notificationKey) {
+					tracker.send(MapBuilder.createEvent("設定", "開啟", "推播", null).build());
 					message = "新劇推播通知[開啟]";
 				} else {
+					tracker.send(MapBuilder.createEvent("設定", "關閉", "推播", null).build());
 					message = "新劇推播通知[關閉]";
 				}
 				Toast toast = Toast.makeText(mFragmentActivity, message, Toast.LENGTH_SHORT);
@@ -187,6 +198,7 @@ public class SettingFragment extends Fragment {
 		rlClean.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "清除緩衝", null).build());
 				imageLoader.clearMemoryCache();
 				imageLoader.clearDiscCache();
 				Toast toast = Toast.makeText(mFragmentActivity, "清除圖片緩衝完成", Toast.LENGTH_LONG);
@@ -198,6 +210,7 @@ public class SettingFragment extends Fragment {
 		rlVersionRecord.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "更新日誌", null).build());
 				diaryDataTask = new DiaryDataTask();
         	    if(Build.VERSION.SDK_INT < 11)
         	    	diaryDataTask.execute();
@@ -283,4 +296,18 @@ public class SettingFragment extends Fragment {
 	public void onDestroy() {	
 	    super.onDestroy();
 	}
+	
+	@Override
+	public void onStart() {
+        super.onStart();
+        
+        EasyTracker.getInstance(this.getActivity()).activityStart(this.getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        
+        EasyTracker.getInstance(this.getActivity()).activityStop(this.getActivity());
+    }
 }

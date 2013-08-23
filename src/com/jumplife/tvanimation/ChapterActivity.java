@@ -3,6 +3,10 @@ package com.jumplife.tvanimation;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
 import com.jumplife.tvanimation.adapter.ReportSpinnerAdapter;
 import com.jumplife.tvanimation.api.TvAnimationAPI;
@@ -218,10 +222,13 @@ public class ChapterActivity extends SherlockActivity {
 		
 	}
 	private void setClickListener() {
+		final Tracker tracker = EasyTracker.getInstance(this);
+		tracker.set(Fields.SCREEN_NAME, "劇集列表");
+		
 		llStory.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				//EasyTracker.getTracker().trackEvent("戲劇集數", "點擊", "戲劇簡介", (long)0);
+				tracker.send(MapBuilder.createEvent("劇集列表", "點擊", "戲劇簡介", null).build());
 				setDialogIntroduction();
 			}
 			
@@ -231,10 +238,10 @@ public class ChapterActivity extends SherlockActivity {
 			@Override
 			public void onClick(View v) {
 				if(likeAnimate == 1) {
-					//EasyTracker.getTracker().trackEvent("戲劇集數", "我的收藏", "取消", (long)0);
+					tracker.send(MapBuilder.createEvent("劇集列表", "取消", "我的最愛", (long) animateId).build());
 					likeAnimate = 0;
 			    } else {
-			    	//EasyTracker.getTracker().trackEvent("戲劇集數", "我的收藏", "加入", (long)0);
+			    	tracker.send(MapBuilder.createEvent("劇集列表", "加入", "我的最愛", (long) animateId).build());
 			    	likeAnimate = 1;
 			    }
 				
@@ -263,7 +270,7 @@ public class ChapterActivity extends SherlockActivity {
 		llReport.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				//EasyTracker.getTracker().trackEvent("戲劇集數", "點擊", "問題回報", (long)0);
+				tracker.send(MapBuilder.createEvent("劇集列表", "點擊", "問題回報", null).build());
 				setDialogReport();
 			}
 			
@@ -271,7 +278,7 @@ public class ChapterActivity extends SherlockActivity {
 		llCountinue.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				
+				tracker.send(MapBuilder.createEvent("劇集列表", "點擊", "續看", null).build());
 				Intent newAct = new Intent();
 				newAct.putExtra("animate_id", animate.getId());
 				newAct.putExtra("eps_num", Integer.parseInt(chapters[currentChapter]));
@@ -725,5 +732,19 @@ public class ChapterActivity extends SherlockActivity {
 			}
 		}
 	}
+	
+	@Override
+    protected void onStart() {
+        super.onStart();
+        
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        
+        EasyTracker.getInstance(this).activityStop(this);
+    }
 	
 }

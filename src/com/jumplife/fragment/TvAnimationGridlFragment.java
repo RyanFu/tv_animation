@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.jumplife.tvanimation.ChapterActivity;
 import com.jumplife.tvanimation.R;
 import com.jumplife.tvanimation.adapter.AnimationGridAdapter;
@@ -169,6 +173,12 @@ public class TvAnimationGridlFragment extends Fragment {
                 newAct.putExtra("animate_id", animateList.get(position).getId());
                 newAct.putExtra("animate_name", animateList.get(position).getName());
 				newAct.setClass(mFragmentActivity, ChapterActivity.class );
+				
+				Tracker tracker = EasyTracker.getInstance(TvAnimationGridlFragment.this.getActivity());
+				tracker.set(Fields.SCREEN_NAME, "動畫GridFragment");
+				 
+				tracker.send(MapBuilder.createEvent("動畫GridFragment", "點擊", animateList.get(position).getName(), null).build());
+				
 				mFragmentActivity.startActivity(newAct);				
 			}
 		});
@@ -218,5 +228,19 @@ public class TvAnimationGridlFragment extends Fragment {
 
 	        super.onPostExecute(result);  
         }
+    }
+	
+	@Override
+	public void onStart() {
+        super.onStart();
+        
+        EasyTracker.getInstance(this.getActivity()).activityStart(this.getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        
+        EasyTracker.getInstance(this.getActivity()).activityStop(this.getActivity());
     }
 }

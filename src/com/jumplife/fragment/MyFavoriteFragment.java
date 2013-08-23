@@ -2,6 +2,10 @@ package com.jumplife.fragment;
 
 import java.util.ArrayList;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.jumplife.tvanimation.ChapterActivity;
 import com.jumplife.tvanimation.R;
 import com.jumplife.tvanimation.adapter.AnimationGridAdapter;
@@ -103,6 +107,12 @@ public class MyFavoriteFragment extends Fragment {
                 newAct.putExtra("animate_id", animateList.get(position).getId());
                 newAct.putExtra("animate_name", animateList.get(position).getName());
 				newAct.setClass(mFragmentActivity, ChapterActivity.class );
+				
+				Tracker tracker = EasyTracker.getInstance(MyFavoriteFragment.this.getActivity());
+				tracker.set(Fields.SCREEN_NAME, "我的最愛Fragment");
+				 
+				tracker.send(MapBuilder.createEvent("我的最愛Fragment", "點擊", animateList.get(position).getName(), null).build());
+				
 				mFragmentActivity.startActivity(newAct);
             }
         });
@@ -193,5 +203,19 @@ public class MyFavoriteFragment extends Fragment {
         }
         
         super.onDestroy();
+    }
+    
+    @Override
+	public void onStart() {
+        super.onStart();
+        
+        EasyTracker.getInstance(this.getActivity()).activityStart(this.getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        
+        EasyTracker.getInstance(this.getActivity()).activityStop(this.getActivity());
     }
 }

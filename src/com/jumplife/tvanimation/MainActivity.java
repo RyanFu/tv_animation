@@ -4,6 +4,10 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.jumplife.fragment.MenuFragment;
 import com.jumplife.fragment.MyFavoriteFragment;
 import com.jumplife.fragment.SettingFragment;
@@ -97,6 +101,10 @@ public class MainActivity extends SlidingFragmentActivity {
         	ibRefresh.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {
+					Tracker tracker = EasyTracker.getInstance(MainActivity.this);
+					tracker.set(Fields.SCREEN_NAME, "主畫面");
+					tracker.send(MapBuilder.createEvent("ActionBar", "點擊", "搜尋按鈕", null).build());
+					
 					Intent newAct = new Intent();
 					newAct.setClass(MainActivity.this, SearchActivity.class );
 					MainActivity.this.startActivity(newAct);
@@ -145,6 +153,17 @@ public class MainActivity extends SlidingFragmentActivity {
 			public boolean onNavigationItemSelected(int itemPosition,
 					long itemId) {
 				TvAnimationGridlFragment fragment = TvAnimationGridlFragment.NewInstance(itemPosition, typeId);
+				
+				Tracker tracker = EasyTracker.getInstance(MainActivity.this);
+				tracker.set(Fields.SCREEN_NAME, "主畫面");
+				
+				if (itemPosition == 0) {
+					tracker.send(MapBuilder.createEvent("排序方式", "點擊", "依更新日期排序", null).build());
+				}
+				else if (itemPosition == 1) {
+					tracker.send(MapBuilder.createEvent("排序方式", "點擊", "依播放次數排序", null).build());
+				}
+				
 				switchContent(fragment, typeId, false);
 				return false;
 			}        	
@@ -393,7 +412,19 @@ public class MainActivity extends SlidingFragmentActivity {
         	}
 	       	super.onPostExecute(result);  
         } 
+    }
+	
+	@Override
+    protected void onStart() {
+        super.onStart();
         
-         
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        
+        EasyTracker.getInstance(this).activityStop(this);
     }
 }

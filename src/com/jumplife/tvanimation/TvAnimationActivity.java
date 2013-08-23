@@ -2,6 +2,10 @@ package com.jumplife.tvanimation;
 
 import java.util.ArrayList;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.google.android.gcm.GCMRegistrar;
 import com.jumplife.tvanimation.api.TvAnimationAPI;
 import com.jumplife.tvanimation.entity.Animate;
@@ -226,15 +230,23 @@ public class TvAnimationActivity extends Activity {
 	        	new AlertDialog.Builder(TvAnimationActivity.this).setTitle("已有新版電視連續劇")
 	    		.setMessage(message[0])
 	            .setPositiveButton("前往更新", new DialogInterface.OnClickListener() {
-	                public void onClick(DialogInterface arg0, int arg1) {	                	
+	                public void onClick(DialogInterface arg0, int arg1) {
+	                	Tracker tracker = EasyTracker.getInstance(TvAnimationActivity.this);
+	                	tracker.set(Fields.SCREEN_NAME, "入口頁");
+	                	tracker.send(MapBuilder.createEvent("使用者互動", "點擊", "前往更新按鈕", null).build());
+	                	
 	                	startActivity(new Intent(Intent.ACTION_VIEW, 
-	    			    		Uri.parse("market://details?id=com.jumplife.tvdrama")));
+	    			    		Uri.parse("market://details?id=com.jumplife.tvanimation")));
 	                	TvAnimationActivity.this.finish();
 	                }
 	            })
 	            .setNegativeButton("下次再說", new DialogInterface.OnClickListener() {
 	                public void onClick(DialogInterface arg0, int arg1) {
-	                    tvloading.setText("讀取中...");
+	                	Tracker tracker = EasyTracker.getInstance(TvAnimationActivity.this);
+	                	tracker.set(Fields.SCREEN_NAME, "入口頁");
+	                	tracker.send(MapBuilder.createEvent("使用者互動", "點擊", "下次再說按鈕", null).build());
+	                	
+	                	tvloading.setText("讀取中...");
 	                	taskLoad = new LoadDataTask();
 	                    if(Build.VERSION.SDK_INT < 11)
 	                    	taskLoad.execute();
@@ -297,11 +309,15 @@ public class TvAnimationActivity extends Activity {
 	@Override
     protected void onStart() {
         super.onStart();
+        
+        EasyTracker.getInstance(this).activityStart(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        
+        EasyTracker.getInstance(this).activityStop(this);
     }
     
     @Override

@@ -37,7 +37,7 @@ public class TvAnimationAPI {
 	private boolean doInput;
 	private boolean doOutput;
 	
-	public static final String TAG = "USADRAMA_API";
+	public static final String TAG = "TVANIMATION_API";
 	public static final boolean DEBUG = true;
 	
 	public TvAnimationAPI(String urlAddress, int connectionTimeout, int readTimeout) {
@@ -367,7 +367,7 @@ public class TvAnimationAPI {
 		
 		try{
 			DefaultHttpClient httpClient = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost(urlAddress + "api/v1/devices?registration_id="	+ regId + "&device_id=");
+			HttpPost httpPost = new HttpPost(urlAddress + "api/v1/devices.json?registration_id="+ regId);
 			HttpResponse response = httpClient.execute(httpPost);
 
 			StatusLine statusLine =  response.getStatusLine();

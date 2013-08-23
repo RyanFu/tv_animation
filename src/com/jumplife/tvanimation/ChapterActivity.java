@@ -51,8 +51,6 @@ import android.widget.ImageView.ScaleType;
 
 public class ChapterActivity extends SherlockActivity {
 	
-	private ImageView ivLoadingIcon;
-	private ImageView ivLoadingCircle;
 	private ImageView ivDialogLoadingIcon;
 	private ImageView ivDialogLoadingCircle;
 	private Dialog mDialogLoader;
@@ -173,10 +171,6 @@ public class ChapterActivity extends SherlockActivity {
 		/*
 		 * Loading Animation Init
 		 */
-		setLoadingAnimation();
-		ivLoadingIcon = (ImageView)findViewById(R.id.iv_loading_icon);
-		ivLoadingCircle = (ImageView)findViewById(R.id.iv_loading_circle);
-		
 		mDialogLoader = new Dialog(ChapterActivity.this, R.style.dialogLoader);
         mDialogLoader.setContentView(R.layout.layout_loading);
         mDialogLoader.setCanceledOnTouchOutside(false);        
@@ -253,15 +247,6 @@ public class ChapterActivity extends SherlockActivity {
 		.displayer(new SimpleBitmapDisplayer())
 		.build();
 		
-	}
-	
-	private void setLoadingAnimation() {
-		animation = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-		animation.setDuration((long) 500);
-		animation.setRepeatCount(Animation.INFINITE);
-		animation.setInterpolator(AnimationUtils.loadInterpolator(ChapterActivity.this, android.R.anim.linear_interpolator));
-		animation.setFillAfter(true);
-		animation.setFillEnabled(true);
 	}
 	
 	private void setClickListener() {

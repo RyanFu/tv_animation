@@ -20,8 +20,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="com.jumplife.usadrama.permission.C2D_MESSAGE" /> 
-    <permission android:name="com.jumplife.usadrama.permission.C2D_MESSAGE" 
+    <uses-permission android:name="com.jumplife.tvanimation.permission.C2D_MESSAGE" /> 
+    <permission android:name="com.jumplife.tvanimation.permission.C2D_MESSAGE" 
         android:protectionLevel="signature" />
     
     <application
@@ -57,6 +57,17 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
+ 
+        <!-- GCM Setting -->
+        <service android:name=".GCMIntentService" />
+        <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" 
+            android:permission="com.google.android.c2dm.permission.SEND" >
+          <intent-filter>
+            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+            <category android:name="com.jumplife.tvanimation" />
+          </intent-filter>
+        </receiver>
            
     </application>
 

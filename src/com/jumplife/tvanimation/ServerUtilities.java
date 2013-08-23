@@ -47,7 +47,8 @@ public final class ServerUtilities {
             Log.d(TAG, "Attempt #" + i + " to register");
             GCMRegistrar.setRegisteredOnServer(context, true);
             
-            String regIdShIO = TvAnimationApplication.shIO.getString("reg_id", "");            
+            String regIdShIO = TvAnimationApplication.shIO.getString("reg_id", "");  
+            io.vov.utils.Log.d(TAG, "regId : " + regId + " , shio regId : " + regIdShIO);
             if(!regId.equals(regIdShIO)) {            	
 	            TvAnimationAPI dramaAPI = new TvAnimationAPI();
 				if(dramaAPI.postGcm(regId, context)) {

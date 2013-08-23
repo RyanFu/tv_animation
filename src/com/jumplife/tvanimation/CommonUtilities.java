@@ -34,13 +34,13 @@ public final class CommonUtilities {
      * Google API project id registered to use GCM.
      */
     //static final String SENDER_ID = null;
-	static final String SENDER_ID = "1090380785049";
+	static final String SENDER_ID = "439842532510";
 	//static final String SENDER_ID = "151233037150";
 
     /**
      * Tag used on log messages.
      */
-    static final String TAG = "GCM_UsaDrama";
+    static final String TAG = "GCM_TvAnimation";
 
     /**
      * Intent used to display a message in the screen.

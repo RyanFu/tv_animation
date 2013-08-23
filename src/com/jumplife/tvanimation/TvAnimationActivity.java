@@ -6,6 +6,7 @@ import com.google.android.gcm.GCMRegistrar;
 import com.jumplife.tvanimation.api.TvAnimationAPI;
 import com.jumplife.tvanimation.entity.Animate;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -31,6 +32,9 @@ import android.widget.ImageView.ScaleType;
 public class TvAnimationActivity extends Activity {
 	private LoadDataTask taskLoad;
 	private CheckVersionTask taskVersion;
+	private CheckServerTask taskServer;
+	
+	private RelativeLayout rlActivity;
 	private ImageView ivWoad;
 	private ImageView ivLoading;
 	private TextView tvloading;
@@ -45,7 +49,32 @@ public class TvAnimationActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.activity_tvanimation);
+        initView();
         
+        taskServer = new CheckServerTask();
+        if(Build.VERSION.SDK_INT < 11)
+        	taskServer.execute();
+        else
+        	taskServer.executeOnExecutor(CheckServerTask.THREAD_POOL_EXECUTOR, 0);
+    }
+	
+	private void checkNotNull(Object reference, String name) {
+        if (reference == null) {
+        	throw new NullPointerException("error");
+        }
+    }    
+	
+	@Override  
+    public void onWindowFocusChanged(boolean hasFocus) {  
+        super.onWindowFocusChanged(hasFocus);  
+        ivLoading.setBackgroundResource(R.anim.landingpgaeicon);
+        animationDrawable = (AnimationDrawable) ivLoading.getBackground();
+        animationDrawable.start();
+    } 
+	
+	private void initView() {
+		rlActivity = (RelativeLayout)findViewById(R.id.rl_activity);
+		
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         
@@ -64,11 +93,17 @@ public class TvAnimationActivity extends Activity {
         ivLoading.setScaleType(ScaleType.FIT_CENTER);
         
         RelativeLayout.LayoutParams tvparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        tvparams.setMargins(0, (int) (displayMetrics.heightPixels * 0.75), 0, (int) (displayMetrics.heightPixels - (displayMetrics.heightPixels*0.95)));
+        tvparams.setMargins((int) (displayMetrics.widthPixels * 0.1), 
+        		(int) (displayMetrics.heightPixels * 0.75), 
+        		(int) (displayMetrics.widthPixels * 0.1), 
+        		(int) (displayMetrics.heightPixels - (displayMetrics.heightPixels*0.95)));
         tvparams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         tvloading = (TextView)findViewById(R.id.tv_load);
-        tvloading.setText("檢查版本中");
+        tvloading.setText("檢查伺服器中...");
         tvloading.setLayoutParams(tvparams);
+	}
+	
+	private void initGCM() {
         
         checkNotNull(CommonUtilities.SERVER_URL, "SERVER_URL");
         checkNotNull(CommonUtilities.SENDER_ID, "SENDER_ID");
@@ -99,27 +134,8 @@ public class TvAnimationActivity extends Activity {
                 mRegisterTask.execute(null, null, null);
             }
         }
-
-        taskVersion = new CheckVersionTask();
-        if(Build.VERSION.SDK_INT < 11)
-        	taskVersion.execute();
-        else
-        	taskVersion.executeOnExecutor(CheckVersionTask.THREAD_POOL_EXECUTOR, 0);
-    }
-	
-	private void checkNotNull(Object reference, String name) {
-        if (reference == null) {
-        	throw new NullPointerException("error");
-        }
-    }    
-	
-	@Override  
-    public void onWindowFocusChanged(boolean hasFocus) {  
-        super.onWindowFocusChanged(hasFocus);  
-        ivLoading.setBackgroundResource(R.anim.landingpgaeicon);
-        animationDrawable = (AnimationDrawable) ivLoading.getBackground();
-        animationDrawable.start();
-    } 
+		
+	}
 	
 	@SuppressWarnings("unchecked")
 	private String fetchData(){
@@ -176,12 +192,42 @@ public class TvAnimationActivity extends Activity {
 	}
 	
 	private void setData(){
-		
         Intent newAct = new Intent();
 		newAct.setClass( TvAnimationActivity.this, MainActivity.class );
 		startActivity(newAct);
     	finish();
 	}
+	
+	class CheckServerTask extends AsyncTask<Integer, Integer, String>{  
+        
+		int[] serverCode = new int[]{0};
+		String[] message = new String[]{""};
+		  
+        @Override  
+        protected String doInBackground(Integer... params) {
+        	Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+        	TvAnimationAPI api = new TvAnimationAPI();
+        	api.getServerStatus(serverCode, message);
+            return "progress end";
+        } 
+  
+        @Override  
+        protected void onPostExecute(String result) {			
+			if(serverCode[0] == 0) {
+				rlActivity.setBackgroundResource(R.color.landingpage_background_error);
+				ivLoading.setImageResource(R.drawable.landingeye_error);
+				tvloading.setText(message[0]);
+			} else {
+		        tvloading.setText("檢查版本中...");
+		        initGCM();
+		        taskVersion = new CheckVersionTask();
+		        if(Build.VERSION.SDK_INT < 11)
+		        	taskVersion.execute();
+		        else
+		        	taskVersion.executeOnExecutor(CheckVersionTask.THREAD_POOL_EXECUTOR, 0);
+			}	
+        }          
+    }
 	
 	class CheckVersionTask extends AsyncTask<Integer, Integer, String>{  
         
@@ -228,7 +274,7 @@ public class TvAnimationActivity extends Activity {
 	            .setPositiveButton("前往更新", new DialogInterface.OnClickListener() {
 	                public void onClick(DialogInterface arg0, int arg1) {	                	
 	                	startActivity(new Intent(Intent.ACTION_VIEW, 
-	    			    		Uri.parse("market://details?id=com.jumplife.tvdrama")));
+	    			    		Uri.parse("market://details?id=com.jumplife.tvanimation")));
 	                	TvAnimationActivity.this.finish();
 	                }
 	            })

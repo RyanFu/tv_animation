@@ -407,6 +407,23 @@ public class TvAnimationAPI {
 		}
 	}
 	
+	public void getServerStatus(int[] serverCode, String[] msg){
+		String message = getMessageFromServer("GET", "api/sever_check.json", null);
+		if(message == null) {
+			return;
+		}
+		else {			
+			try {
+				JSONObject jsonObject =  new JSONObject(message.toString());
+				serverCode[0] = jsonObject.getInt("sever_state");
+				msg[0] = jsonObject.getString("message");		
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return;
+			}
+		}
+	}
+	
 	public String getUrlAddress() {
 		return urlAddress;
 	}

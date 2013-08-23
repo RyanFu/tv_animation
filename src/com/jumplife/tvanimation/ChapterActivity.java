@@ -33,6 +33,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -169,6 +171,8 @@ public class ChapterActivity extends SherlockActivity {
 		/*
 		 * Loading Animation Init
 		 */
+		setLoadingAnimation();
+		
 		mDialogLoader = new Dialog(ChapterActivity.this, R.style.dialogLoader);
         mDialogLoader.setContentView(R.layout.layout_loading);
         mDialogLoader.setCanceledOnTouchOutside(false);        
@@ -245,6 +249,15 @@ public class ChapterActivity extends SherlockActivity {
 		.displayer(new SimpleBitmapDisplayer())
 		.build();
 		
+	}
+	
+	private void setLoadingAnimation() {
+		animation = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+		animation.setDuration((long) 500);
+		animation.setRepeatCount(Animation.INFINITE);
+		animation.setInterpolator(AnimationUtils.loadInterpolator(ChapterActivity.this, android.R.anim.linear_interpolator));
+		animation.setFillAfter(true);
+		animation.setFillEnabled(true);
 	}
 	
 	private void setClickListener() {

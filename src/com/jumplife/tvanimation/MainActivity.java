@@ -2,6 +2,7 @@ package com.jumplife.tvanimation;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.google.analytics.tracking.android.EasyTracker;
@@ -18,7 +19,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.SlidingMenu.OnCloseListener;
 import com.slidingmenu.lib.SlidingMenu.OnOpenListener;
-import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -46,7 +46,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class MainActivity extends SlidingFragmentActivity {
+public class MainActivity extends SherlockFragmentActivity {
 	
 	private static SlidingMenu menu;
 	
@@ -68,6 +68,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 		
 	    getSupportActionBar().setIcon(R.drawable.landingeye_3);
 		getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
@@ -119,7 +120,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			toggle();
+			slideMenuSwitch();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -179,7 +180,8 @@ public class MainActivity extends SlidingFragmentActivity {
 		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 		int screenWidth = displayMetrics.widthPixels;
 		
-		menu = getSlidingMenu();
+		//menu = getSlidingMenu();
+		menu = (SlidingMenu)findViewById(R.id.slidingmenulayout);
 	    menu.setShadowWidth(screenWidth/4);
 	    menu.setShadowDrawable(R.drawable.shadow);
 	    menu.setBehindOffset(screenWidth/2);
@@ -202,7 +204,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		/*
 		 *  set the Behind View
 		 */
-		setBehindContentView(R.layout.fragmentlayout_tvanimation_menu);
+		//setBehindContentView(R.layout.fragmentlayout_tvanimation_menu);
 		MenuFragment menuFrag = new MenuFragment();
 		if (savedInstanceState == null) {
 			FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
@@ -219,7 +221,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		sortId = TvAnimationApplication.shIO.getInt("sortId", 1);
 		setActionBarTitle(typeId);		
 
-		setContentView(R.layout.fragmentlayout_tvanimation_content);
+		//setContentView(R.layout.fragmentlayout_tvanimation_content);
 		if(typeId == -1) {
 			MyFavoriteFragment myFavorite = new MyFavoriteFragment();
 			getSupportFragmentManager()
@@ -239,9 +241,6 @@ public class MainActivity extends SlidingFragmentActivity {
 			.replace(R.id.content_frame, tvchannels)
 			.commit();
 		}
-		
-		setSlidingActionBarEnabled(false);
-		
 	}
 	
 	private void setLoadingAnimation() {
@@ -265,6 +264,13 @@ public class MainActivity extends SlidingFragmentActivity {
 		.replace(R.id.content_frame, fragment)
 		.commit();
 		menu.showContent();		
+	}
+	
+	public static void slideMenuSwitch() {
+		if(menu.isMenuShowing())
+			menu.showContent();
+		else
+			menu.showMenu();
 	}
 	
 	private void setActionBarTitle(int type) {

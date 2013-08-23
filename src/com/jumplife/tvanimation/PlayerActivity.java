@@ -18,6 +18,10 @@ import io.vov.vitamio.MediaPlayer.OnPreparedListener;
 
 import io.vov.vitamio.widget.VideoView;
 
+import com.jumplife.customPlayer.VideoControllerView;
+import com.jumplife.tvanimation.api.TvAnimationAPI;
+import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -164,6 +168,32 @@ public class PlayerActivity extends Activity implements VideoControllerView.Medi
         controller.setMediaPlayer(mVideoView);
         controller.setAnchorView((FrameLayout)findViewById(R.id.videoSurfaceContainer));
         
+        mVideoView = (VideoView)findViewById(R.id.videoview);
+        mVideoView.setOnInfoListener(new OnInfoListener(){
+			@Override
+			public boolean onInfo(MediaPlayer mp, int what, int extra) {
+				stopPosition = (int) mp.getCurrentPosition();
+				
+				switch (what) {
+		        case MediaPlayer.MEDIA_INFO_BUFFERING_START:
+		        	mVideoView.pause();
+		        	ivDialogLoadingIcon.setVisibility(View.VISIBLE);
+		    		ivDialogLoadingCircle.setVisibility(View.VISIBLE);
+		    		ivDialogLoadingCircle.startAnimation(animation);    		
+		    		mDialogLoader.show();        	
+		            break;
+		        case MediaPlayer.MEDIA_INFO_BUFFERING_END:
+		        	mVideoView.start();
+		        	mDialogLoader.cancel();
+	            	animation.cancel();
+	            	ivDialogLoadingCircle.clearAnimation();
+	            	ivDialogLoadingIcon.setVisibility(View.GONE);
+	            	ivDialogLoadingCircle.setVisibility(View.GONE);
+		            break;
+		        }
+		        return true;
+			}        	
+        });        
         
         mVideoView.setOnInfoListener(new OnInfoListener(){
 			@Override
@@ -212,7 +242,7 @@ public class PlayerActivity extends Activity implements VideoControllerView.Medi
         		
         		if(info==null || !info.isConnected()){
         			setDialogWifi();
-        			TvAnimationApplication.shIO.edit().putBoolean("wifi_remind", false).commit();
+                	TvAnimationApplication.shIO.edit().putBoolean("wifi_remind", false).commit();
                 	
         		}else {
         			
@@ -282,8 +312,8 @@ public class PlayerActivity extends Activity implements VideoControllerView.Medi
             
         	TvAnimationAPI tvAnimationAPI = new TvAnimationAPI();
         	
-        	videoLink = tvAnimationAPI.getVideoLink(dramaId, epsNum);            
-            
+        	videoLink = tvAnimationAPI.getVideoLink(dramaId, epsNum);
+        	
             if (videoLink != null) {            	
             	return Uri.parse(videoLink);
             } else {            	
@@ -380,7 +410,7 @@ public class PlayerActivity extends Activity implements VideoControllerView.Medi
         instance.updateTvAnimationTimeRecord(db, dramaId, stopPosition);
 		db.close();
         instance.closeHelper();
-        
+
         if (adView != null) {
             adView.destroy();
         }

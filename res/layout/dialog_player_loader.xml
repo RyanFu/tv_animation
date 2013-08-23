@@ -31,4 +31,12 @@
         android:layout_marginRight="@dimen/dialog_player_loading_v_margin_rl"
         android:layout_marginLeft="@dimen/dialog_player_loading_v_margin_rl"
         android:background="@drawable/dialog_player_loader_linecolor" />
+	
+	<RelativeLayout android:id="@+id/ad_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="6dp"
+        android:gravity="center_horizontal" 
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

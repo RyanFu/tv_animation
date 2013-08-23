@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+	<com.slidingmenu.lib.SlidingMenu
+		xmlns:sliding="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/slidingmenulayout"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_above="@+id/ad_layout"
+        sliding:viewAbove="@layout/fragmentlayout_tvanimation_content"
+        sliding:viewBehind="@layout/fragmentlayout_tvanimation_menu" />
+
+     
+     <RelativeLayout
+        android:id="@+id/ad_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:gravity="center_horizontal" 
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"/>
+     
+</RelativeLayout>

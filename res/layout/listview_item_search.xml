@@ -11,13 +11,9 @@
         android:layout_height="@dimen/search_activity_itemsize"
         android:padding="@dimen/search_activity_itempadding"
         android:singleLine="true"
-        android:text="名偵探柯南"
         android:textColor="@drawable/listview_item_textcolor"
         android:background="@null"
         android:textSize="@dimen/search_activity_textsize"/>
-	<View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/search_activity_seperate_height"
-        android:background="@color/background" />
+
 	
 </LinearLayout>

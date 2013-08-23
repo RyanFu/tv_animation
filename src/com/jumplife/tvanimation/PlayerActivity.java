@@ -1,5 +1,13 @@
 package com.jumplife.tvanimation;
 
+import com.google.ads.AdRequest;
+
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
+import com.jumplife.customPlayer.VideoControllerView;
+import com.jumplife.tvanimation.api.TvAnimationAPI;
+import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
+
 import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.MediaPlayer;
 
@@ -21,6 +29,7 @@ import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -43,12 +52,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class PlayerActivity extends Activity implements VideoControllerView.MediaPlayerControl {
 
 	private ImageView ivDialogLoadingIcon;
 	private ImageView ivDialogLoadingCircle;
+	private RelativeLayout rlAd;
 	private Dialog mDialogLoader;
 	private Dialog mDialogWifi;
 	private Animation animation;
@@ -66,6 +77,8 @@ public class PlayerActivity extends Activity implements VideoControllerView.Medi
     private final static int filter = 30000; 
     
     private final static int SETTING_WIFI_REQUESTCODE = 100;
+    
+    private AdView adView;
     
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -265,9 +278,13 @@ public class PlayerActivity extends Activity implements VideoControllerView.Medi
 				return false;
 			}			    	
         });
+        
+        rlAd = (RelativeLayout)mDialogLoader.findViewById(R.id.ad_layout);
 
 		ivDialogLoadingIcon = (ImageView)mDialogLoader.findViewById(R.id.iv_loading_icon);
 		ivDialogLoadingCircle = (ImageView)mDialogLoader.findViewById(R.id.iv_loading_circle);
+		
+		this.setAd();
     }
 	
 	private void setLoadingAnimation() {
@@ -393,7 +410,11 @@ public class PlayerActivity extends Activity implements VideoControllerView.Medi
         instance.updateTvAnimationTimeRecord(db, dramaId, stopPosition);
 		db.close();
         instance.closeHelper();
-        
+
+        if (adView != null) {
+            adView.destroy();
+        }
+
     	if (mQueryVideoTask!= null && mQueryVideoTask.getStatus() != AsyncTask.Status.FINISHED) {
     		mQueryVideoTask.cancel(true);
 	     }
@@ -523,4 +544,20 @@ public class PlayerActivity extends Activity implements VideoControllerView.Medi
 		mDialogWifi.setCanceledOnTouchOutside(false);
 		mDialogWifi.show();
 	}
+	
+	public void setAd() {
+    	
+    	Resources res = getResources();
+    	String admoblKey = res.getString(R.string.admob_key);
+    	
+    	// Create the adView
+    	adView = new AdView(this, AdSize.BANNER, admoblKey);
+
+    	// Add the adView to it
+    	rlAd.addView(adView);
+    	
+    	// Initiate a generic request to load it with an ad
+        adView.loadAd(new AdRequest());
+
+    }
 }

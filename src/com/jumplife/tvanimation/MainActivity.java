@@ -5,6 +5,9 @@ import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -26,6 +29,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnKeyListener;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,6 +47,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -65,6 +70,8 @@ public class MainActivity extends SherlockFragmentActivity {
 	private ImageLoader imageLoader = ImageLoader.getInstance();
 	private DisplayImageOptions options;
 	
+	private AdView adView;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,6 +83,8 @@ public class MainActivity extends SherlockFragmentActivity {
 		initView();
 		initSlidingMenu(savedInstanceState);
 		initPromote();
+		
+		this.setAd();
 	}
 
 	@Override
@@ -420,6 +429,23 @@ public class MainActivity extends SherlockFragmentActivity {
         } 
     }
 	
+	public void setAd() {
+    	
+    	RelativeLayout adLayout = (RelativeLayout)findViewById(R.id.ad_layout);
+    	Resources res = getResources();
+    	String admoblKey = res.getString(R.string.admob_key);
+    	
+    	// Create the adView
+    	adView = new AdView(this, AdSize.BANNER, admoblKey);
+
+    	// Add the adView to it
+    	adLayout.addView(adView);
+    	
+    	// Initiate a generic request to load it with an ad
+        adView.loadAd(new AdRequest());
+	    	
+	}
+	
 	@Override
     protected void onStart() {
         super.onStart();
@@ -432,5 +458,14 @@ public class MainActivity extends SherlockFragmentActivity {
         super.onStop();
         
         EasyTracker.getInstance(this).activityStop(this);
+    }
+    
+    @Override
+	 public void onDestroy() {	 
+		 if (adView != null) {
+	         adView.destroy();
+	     }
+	     super.onDestroy();
+
     }
 }

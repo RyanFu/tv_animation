@@ -2,11 +2,15 @@ package com.jumplife.tvanimation;
 
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -16,6 +20,7 @@ import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Filterable;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -38,6 +44,7 @@ public class SearchActivity extends SherlockActivity {
 	private Map<String, Object> item; 
 	
 	private SearchListAdapter Adapter;
+	private AdView adView;
 	
 	int textlength=0;
 	
@@ -50,9 +57,10 @@ public class SearchActivity extends SherlockActivity {
 	    
 	    setContentView(R.layout.activity_search);
 
-		initViews();  
+		initViews();
 		fetchData();
 		setListData();
+		this.setAd();
 	}
 
 	private void initViews() {
@@ -168,4 +176,30 @@ public class SearchActivity extends SherlockActivity {
         
         EasyTracker.getInstance(this).activityStop(this);
     }
+	
+	public void setAd() {
+    	
+    	RelativeLayout adLayout = (RelativeLayout)findViewById(R.id.ad_layout);
+    	Resources res = getResources();
+    	String admoblKey = res.getString(R.string.admob_key);
+    	
+    	// Create the adView
+    	adView = new AdView(this, AdSize.BANNER, admoblKey);
+
+    	// Add the adView to it
+    	adLayout.addView(adView);
+    	
+    	// Initiate a generic request to load it with an ad
+        adView.loadAd(new AdRequest());
+
+    }
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		if (adView != null) {
+            adView.destroy();
+        }
+	}
 }

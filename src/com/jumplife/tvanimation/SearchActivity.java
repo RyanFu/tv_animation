@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.jumplife.tvanimation.entity.Animate;
 import com.jumplife.tvanimation.sqlitehelper.SQLiteTvAnimationHelper;
 
@@ -81,6 +85,10 @@ public class SearchActivity extends SherlockActivity {
 	    	boolean hasItem = false;
 	    	textlength = etSearchInput.getText().length();
 	    	
+	    	Tracker tracker = EasyTracker.getInstance(SearchActivity.this);
+	    	tracker.set(Fields.SCREEN_NAME, "搜尋頁");
+	    	tracker.send(MapBuilder.createEvent("搜尋", "打字", etSearchInput.getText().toString(), null).build());
+	    	
 	    	temps.clear();
 	    	items.clear();
 			for(int i=0; i<animateList.size(); i++) {
@@ -151,6 +159,13 @@ public class SearchActivity extends SherlockActivity {
             instance.closeHelper();
             
       	}
-
-    } 
+      	EasyTracker.getInstance(this).activityStart(this);
+    }
+	
+	@Override
+    protected void onStop() {
+        super.onStop();
+        
+        EasyTracker.getInstance(this).activityStop(this);
+    }
 }

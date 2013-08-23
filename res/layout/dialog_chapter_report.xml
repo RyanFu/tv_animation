@@ -24,7 +24,8 @@
 	    <RelativeLayout 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/chapter_activity_dialog_margin" >
+            android:layout_margin="@dimen/chapter_activity_dialog_margin" 
+    	    >
             <ImageView android:id="@+id/iv_icon1"
                 android:layout_width="@dimen/chapter_activity_dialog_report_imagesize"
                 android:layout_height="@dimen/chapter_activity_dialog_report_imagesize"
@@ -38,7 +39,7 @@
                 android:layout_toRightOf="@+id/iv_icon1"
                 android:text="請選擇發生問題的集數"
                 android:textColor="@color/white"
-                android:textSize="@dimen/chapter_activity_dialog_content_textsize" />
+                android:textSize="@dimen/chapter_activity_dialog_content_textsize"/>
 
         </RelativeLayout>
 	    <Spinner android:id="@+id/sp_chapter"	        
@@ -51,12 +52,14 @@
 	    <RelativeLayout 
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-            android:layout_margin="@dimen/chapter_activity_dialog_margin" >
+            android:layout_margin="@dimen/chapter_activity_dialog_margin" 
+    	    >
 		    <ImageView android:id="@+id/iv_icon2"
 		        android:layout_width="@dimen/chapter_activity_dialog_report_imagesize"
 	            android:layout_height="@dimen/chapter_activity_dialog_report_imagesize"
 	            android:layout_marginRight="@dimen/chapter_activity_dialog_report_imageMargin"
 	            android:contentDescription="@null"
+	            
 	            android:background="@drawable/landingeye_3" />
 		    <TextView 
 		        android:layout_width="match_parent"
@@ -64,7 +67,8 @@
 		        android:layout_toRightOf="@+id/iv_icon2"
 		        android:textColor="@color/white"
 		        android:textSize="@dimen/chapter_activity_dialog_content_textsize"
-		        android:text="若還有其他使用上問題或建議，請使用設定裡的［建議回饋］功能告知我們，謝謝！"/>
+		        android:text="若還有其他使用上問題或建議，請使用設定裡的［建議回饋］功能告知我們，謝謝！"
+		        />
 	    </RelativeLayout>
 	     <LinearLayout 
             android:layout_width="match_parent"

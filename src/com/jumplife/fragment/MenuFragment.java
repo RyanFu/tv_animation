@@ -1,5 +1,9 @@
 package com.jumplife.fragment;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.jumplife.tvanimation.MainActivity;
 import com.jumplife.tvanimation.R;
 import com.jumplife.tvanimation.TvAnimationApplication;
@@ -154,8 +158,12 @@ public class MenuFragment extends Fragment {
 	}
 	
 	private void setListener() {
-		 llFavorite.setOnClickListener(new OnClickListener() {
+		final Tracker tracker = EasyTracker.getInstance(this.getActivity());
+		tracker.set(Fields.SCREEN_NAME, "MenuFragment");
+		
+		llFavorite.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "我的最愛", null).build());
 				typeId = FLAG_FAVORITE;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_FAVORITE).commit();
@@ -165,6 +173,7 @@ public class MenuFragment extends Fragment {
 		 });		
 		 llSetting.setOnClickListener(new OnClickListener() {
 			 public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "設定", null).build());
 				typeId = FLAG_SETTING;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_SETTING).commit();
@@ -175,6 +184,7 @@ public class MenuFragment extends Fragment {
 		
 		 llHotHeart.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "熱血", null).build());
 				typeId = FLAG_HOTHEART;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_HOTHEART).commit();
@@ -184,6 +194,7 @@ public class MenuFragment extends Fragment {
 		 });
 		 llLove.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "戀愛", null).build());
 				typeId = FLAG_LOVE;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_LOVE).commit();
@@ -193,6 +204,7 @@ public class MenuFragment extends Fragment {
 		});
 		llHumor.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "搞笑", null).build());
 				typeId = FLAG_HUMOR;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_HUMOR);				
@@ -202,6 +214,7 @@ public class MenuFragment extends Fragment {
 		});
 		llSuspense.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "懸疑", null).build());
 				typeId = FLAG_SUSPENSE;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_SUSPENSE).commit();				
@@ -211,6 +224,7 @@ public class MenuFragment extends Fragment {
 		});
 		llFantasy.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "奇幻", null).build());
 				typeId = FLAG_FANTASY;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_FANTASY).commit();				
@@ -220,6 +234,7 @@ public class MenuFragment extends Fragment {
 		});
 		llOthers.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
+				tracker.send(MapBuilder.createEvent("設定", "點擊", "其他", null).build());
 				typeId = FLAG_OTHERS;
 				switchItemState();
 				TvAnimationApplication.shIO.edit().putInt("typeId", FLAG_OTHERS);				
@@ -240,4 +255,18 @@ public class MenuFragment extends Fragment {
 		} else 
 			return;
 	}
+	
+	@Override
+	public void onStart() {
+        super.onStart();
+        
+        EasyTracker.getInstance(this.getActivity()).activityStart(this.getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        
+        EasyTracker.getInstance(this.getActivity()).activityStop(this.getActivity());
+    }
 }
